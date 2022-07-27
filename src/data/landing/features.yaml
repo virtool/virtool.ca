@@ -1,0 +1,27 @@
+- title: Detect Known Pathogens
+  description: Use our fast detection workflow and simple result visualization.
+  image: pathoscope.png
+- title: Detect Novel Pathogens
+  description: Use our assembly and profile hidden Markov model workflow to predict novel viral sequences.
+  image: nuvs.png
+- title: Sample Management
+  description: Intuitively manage samples and their analyses.
+  image: samples.png
+- title: QC
+  description: Automatically run and view FastQC-based quality control (QC) on sample data.
+  image: quality.png
+- title: Sequence References
+  description: Construct collections of sequences organized into organization taxonomic units (OTU).
+  image: references.png
+- title: OTU Records
+  description: Organize pathogens into organization taxonmic units (OTU), the fundamental building block of references.
+  image: otus.png
+- title: Hidden Markov Models
+  description: Explore the profile hidden Markov models used to predict novel viral sequences.
+  image: hmm.png
+- title: Subtraction Genomes
+  description: Manage genomes for eliminating non-pathogen reads from analysis workflows.
+  image: subtraction.png
+- title: Open Source
+  description: Virtool is open source and makes heavy use of open source software published bioinformatic tools.
+  image: papers.png"

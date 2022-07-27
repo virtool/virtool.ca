@@ -1,0 +1,2619 @@
+{
+    "components": {
+        "schemas": {
+            "EditPermissionsSchema": {
+                "description": "Possible permissions that will be updated for a user and group.",
+                "properties": {
+                    "cancel_job": {
+                        "title": "Cancel Job",
+                        "type": "boolean"
+                    },
+                    "create_ref": {
+                        "title": "Create Ref",
+                        "type": "boolean"
+                    },
+                    "create_sample": {
+                        "title": "Create Sample",
+                        "type": "boolean"
+                    },
+                    "modify_hmm": {
+                        "title": "Modify Hmm",
+                        "type": "boolean"
+                    },
+                    "modify_subtraction": {
+                        "title": "Modify Subtraction",
+                        "type": "boolean"
+                    },
+                    "remove_file": {
+                        "title": "Remove File",
+                        "type": "boolean"
+                    },
+                    "remove_job": {
+                        "title": "Remove Job",
+                        "type": "boolean"
+                    },
+                    "upload_file": {
+                        "title": "Upload File",
+                        "type": "boolean"
+                    }
+                },
+                "title": "EditPermissionsSchema",
+                "type": "object"
+            },
+            "GroupMinimal": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "title": "GroupMinimal",
+                "type": "object"
+            },
+            "HMMMinimal": {
+                "properties": {
+                    "cluster": {
+                        "title": "Cluster",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    },
+                    "families": {
+                        "additionalProperties": {
+                            "type": "integer"
+                        },
+                        "title": "Families",
+                        "type": "object"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Name",
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "id",
+                    "cluster",
+                    "count",
+                    "families",
+                    "name"
+                ],
+                "title": "HMMMinimal",
+                "type": "object"
+            },
+            "HMMSequenceEntry": {
+                "properties": {
+                    "accession": {
+                        "title": "Accession",
+                        "type": "string"
+                    },
+                    "gi": {
+                        "title": "Gi",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "organism": {
+                        "title": "Organism",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "accession",
+                    "gi",
+                    "name",
+                    "organism"
+                ],
+                "title": "HMMSequenceEntry",
+                "type": "object"
+            },
+            "HistoryIndex": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "version": {
+                        "title": "Version",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "id",
+                    "version"
+                ],
+                "title": "HistoryIndex",
+                "type": "object"
+            },
+            "HistoryMethod": {
+                "description": "An enumeration.",
+                "enum": [
+                    "add_isolate",
+                    "create",
+                    "create_sequence",
+                    "clone",
+                    "edit",
+                    "edit_sequence",
+                    "edit_isolate",
+                    "remove",
+                    "remote",
+                    "remove_isolate",
+                    "remove_sequence",
+                    "import",
+                    "set_as_default",
+                    "update"
+                ],
+                "title": "HistoryMethod",
+                "type": "string"
+            },
+            "HistoryOTU": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "version": {
+                        "title": "Version",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "version"
+                ],
+                "title": "HistoryOTU",
+                "type": "object"
+            },
+            "NucleotideComposition": {
+                "properties": {
+                    "a": {
+                        "title": "A",
+                        "type": "number"
+                    },
+                    "c": {
+                        "title": "C",
+                        "type": "number"
+                    },
+                    "g": {
+                        "title": "G",
+                        "type": "number"
+                    },
+                    "n": {
+                        "title": "N",
+                        "type": "number"
+                    },
+                    "t": {
+                        "title": "T",
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "a",
+                    "c",
+                    "g",
+                    "t",
+                    "n"
+                ],
+                "title": "NucleotideComposition",
+                "type": "object"
+            },
+            "Permissions": {
+                "description": "The permissions possessed by a user and group.",
+                "properties": {
+                    "cancel_job": {
+                        "default": false,
+                        "title": "Cancel Job",
+                        "type": "boolean"
+                    },
+                    "create_ref": {
+                        "default": false,
+                        "title": "Create Ref",
+                        "type": "boolean"
+                    },
+                    "create_sample": {
+                        "default": false,
+                        "title": "Create Sample",
+                        "type": "boolean"
+                    },
+                    "modify_hmm": {
+                        "default": false,
+                        "title": "Modify Hmm",
+                        "type": "boolean"
+                    },
+                    "modify_subtraction": {
+                        "default": false,
+                        "title": "Modify Subtraction",
+                        "type": "boolean"
+                    },
+                    "remove_file": {
+                        "default": false,
+                        "title": "Remove File",
+                        "type": "boolean"
+                    },
+                    "remove_job": {
+                        "default": false,
+                        "title": "Remove Job",
+                        "type": "boolean"
+                    },
+                    "upload_file": {
+                        "default": false,
+                        "title": "Upload File",
+                        "type": "boolean"
+                    }
+                },
+                "title": "Permissions",
+                "type": "object"
+            },
+            "ReferenceNested": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "title": "ReferenceNested",
+                "type": "object"
+            },
+            "SubtractionFile": {
+                "properties": {
+                    "download_url": {
+                        "title": "Download Url",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "size": {
+                        "title": "Size",
+                        "type": "integer"
+                    },
+                    "subtraction": {
+                        "title": "Subtraction",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Type",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "download_url",
+                    "id",
+                    "name",
+                    "size",
+                    "subtraction",
+                    "type"
+                ],
+                "title": "SubtractionFile",
+                "type": "object"
+            },
+            "SubtractionLinkedSample": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "title": "SubtractionLinkedSample",
+                "type": "object"
+            },
+            "SubtractionUpload": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "title": "SubtractionUpload",
+                "type": "object"
+            },
+            "UploadMinimal": {
+                "description": "Model for user uploads.",
+                "properties": {
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "name_on_disk": {
+                        "title": "Name On Disk",
+                        "type": "string"
+                    },
+                    "ready": {
+                        "title": "Ready",
+                        "type": "boolean"
+                    },
+                    "removed": {
+                        "title": "Removed",
+                        "type": "boolean"
+                    },
+                    "removed_at": {
+                        "format": "date-time",
+                        "title": "Removed At",
+                        "type": "string"
+                    },
+                    "reserved": {
+                        "title": "Reserved",
+                        "type": "boolean"
+                    },
+                    "size": {
+                        "title": "Size",
+                        "type": "integer"
+                    },
+                    "type": {
+                        "title": "Type",
+                        "type": "string"
+                    },
+                    "uploaded_at": {
+                        "format": "date-time",
+                        "title": "Uploaded At",
+                        "type": "string"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserMinimal"
+                    }
+                },
+                "required": [
+                    "id",
+                    "created_at",
+                    "name",
+                    "name_on_disk",
+                    "ready",
+                    "removed",
+                    "reserved",
+                    "size",
+                    "type",
+                    "uploaded_at",
+                    "user"
+                ],
+                "title": "UploadMinimal",
+                "type": "object"
+            },
+            "UserB2C": {
+                "properties": {
+                    "display_name": {
+                        "title": "Display Name",
+                        "type": "string"
+                    },
+                    "family_name": {
+                        "title": "Family Name",
+                        "type": "string"
+                    },
+                    "given_name": {
+                        "title": "Given Name",
+                        "type": "string"
+                    },
+                    "oid": {
+                        "title": "Oid",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "oid"
+                ],
+                "title": "UserB2C",
+                "type": "object"
+            },
+            "UserMinimal": {
+                "properties": {
+                    "administrator": {
+                        "title": "Administrator",
+                        "type": "boolean"
+                    },
+                    "b2c": {
+                        "$ref": "#/components/schemas/UserB2C"
+                    },
+                    "b2c_display_name": {
+                        "title": "B2C Display Name",
+                        "type": "string"
+                    },
+                    "b2c_family_name": {
+                        "title": "B2C Family Name",
+                        "type": "string"
+                    },
+                    "b2c_given_name": {
+                        "title": "B2C Given Name",
+                        "type": "string"
+                    },
+                    "b2c_oid": {
+                        "title": "B2C Oid",
+                        "type": "string"
+                    },
+                    "handle": {
+                        "title": "Handle",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "administrator",
+                    "handle"
+                ],
+                "title": "UserMinimal",
+                "type": "object"
+            }
+        }
+    },
+    "info": {
+        "title": "Aiohttp pydantic application",
+        "version": "1.0.0"
+    },
+    "openapi": "3.0.0",
+    "paths": {
+        "/groups": {
+            "get": {
+                "description": "List all existing user groups.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "example": [
+                                            {
+                                                "id": "technicians",
+                                                "name": "technicians",
+                                                "permissions": {
+                                                    "cancel_job": true,
+                                                    "create_ref": false,
+                                                    "create_sample": true,
+                                                    "modify_hmm": false,
+                                                    "modify_subtraction": false,
+                                                    "remove_file": false,
+                                                    "remove_job": true,
+                                                    "upload_file": true
+                                                }
+                                            }
+                                        ],
+                                        "properties": {
+                                            "id": {
+                                                "title": "Id",
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "minLength": 1,
+                                                "title": "Name",
+                                                "type": "string"
+                                            },
+                                            "permissions": {
+                                                "$ref": "#/components/schemas/Permissions"
+                                            }
+                                        },
+                                        "required": [
+                                            "id",
+                                            "permissions"
+                                        ],
+                                        "title": "GetGroupResponse",
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new group. New groups have no permissions.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "A schema for requests to create groups.",
+                                "example": {
+                                    "group_id": "research"
+                                },
+                                "properties": {
+                                    "group_id": {
+                                        "description": "a unique id for the group",
+                                        "minLength": 1,
+                                        "title": "Group Id",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "group_id"
+                                ],
+                                "title": "CreateGroupSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "id": "research",
+                                        "name": "research",
+                                        "permissions": {
+                                            "cancel_job": true,
+                                            "create_ref": false,
+                                            "create_sample": true,
+                                            "modify_hmm": false,
+                                            "modify_subtraction": false,
+                                            "remove_file": false,
+                                            "remove_job": true,
+                                            "upload_file": true
+                                        }
+                                    },
+                                    "properties": {
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "minLength": 1,
+                                            "title": "Name",
+                                            "type": "string"
+                                        },
+                                        "permissions": {
+                                            "$ref": "#/components/schemas/Permissions"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "permissions"
+                                    ],
+                                    "title": "CreateGroupResponse",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Group already exists"
+                    }
+                }
+            }
+        },
+        "/groups/{group_id}": {
+            "delete": {
+                "description": "Delete a group.",
+                "responses": {
+                    "204": {
+                        "content": {},
+                        "description": "No content"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Group not found"
+                    }
+                }
+            },
+            "get": {
+                "description": "Get the complete representation of a single user group.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "id": "technicians",
+                                        "name": "technicians",
+                                        "permissions": {
+                                            "cancel_job": true,
+                                            "create_ref": false,
+                                            "create_sample": true,
+                                            "modify_hmm": false,
+                                            "modify_subtraction": false,
+                                            "remove_file": false,
+                                            "remove_job": true,
+                                            "upload_file": true
+                                        }
+                                    },
+                                    "properties": {
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "minLength": 1,
+                                            "title": "Name",
+                                            "type": "string"
+                                        },
+                                        "permissions": {
+                                            "$ref": "#/components/schemas/Permissions"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "permissions"
+                                    ],
+                                    "title": "GroupResponse",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Group not found"
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update the permissions of a group.\n\nUnset permissions will retain their previous setting.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Used when updating permissions.",
+                                "example": {
+                                    "permissions": {
+                                        "create_ref": true
+                                    }
+                                },
+                                "properties": {
+                                    "permissions": {
+                                        "allOf": [
+                                            {
+                                                "$ref": "#/components/schemas/EditPermissionsSchema"
+                                            }
+                                        ],
+                                        "default": {},
+                                        "description": "a permission update comprising an object keyed by permissions with boolean values",
+                                        "title": "Permissions"
+                                    }
+                                },
+                                "title": "EditGroupSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "id": "technicians",
+                                        "name": "technicians",
+                                        "permissions": {
+                                            "cancel_job": true,
+                                            "create_ref": true,
+                                            "create_sample": true,
+                                            "modify_hmm": false,
+                                            "modify_subtraction": false,
+                                            "remove_file": false,
+                                            "remove_job": true,
+                                            "upload_file": true
+                                        }
+                                    },
+                                    "properties": {
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "minLength": 1,
+                                            "title": "Name",
+                                            "type": "string"
+                                        },
+                                        "permissions": {
+                                            "$ref": "#/components/schemas/Permissions"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "permissions"
+                                    ],
+                                    "title": "GroupResponse",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Group not found"
+                    }
+                }
+            }
+        },
+        "/history": {
+            "get": {
+                "description": "Get a list of change documents.\n\n200: Successful Operation\n422: Invalid query",
+                "responses": {
+                    "422": {
+                        "content": {},
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/history/{change_id}": {
+            "delete": {
+                "description": "Remove the change document with the given ``change_id`` and\nany subsequent changes.\n\n204: Successful Operation\n403: Insufficient Rights\n404: Not found\n409: Not unbuilt",
+                "responses": {
+                    "204": {
+                        "content": {},
+                        "description": ""
+                    },
+                    "403": {
+                        "content": {},
+                        "description": ""
+                    },
+                    "404": {
+                        "content": {},
+                        "description": ""
+                    },
+                    "409": {
+                        "content": {},
+                        "description": ""
+                    }
+                }
+            },
+            "get": {
+                "description": "Get a specific change document by its ``change_id``.\n\n200: Successful Operation\n404: Not found",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "title": "Description",
+                                            "type": "string"
+                                        },
+                                        "diff": {
+                                            "title": "Diff",
+                                            "type": "object"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "index": {
+                                            "$ref": "#/components/schemas/HistoryIndex"
+                                        },
+                                        "method_name": {
+                                            "$ref": "#/components/schemas/HistoryMethod"
+                                        },
+                                        "otu": {
+                                            "$ref": "#/components/schemas/HistoryOTU"
+                                        },
+                                        "reference": {
+                                            "$ref": "#/components/schemas/ReferenceNested"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserMinimal"
+                                        }
+                                    },
+                                    "required": [
+                                        "created_at",
+                                        "description",
+                                        "id",
+                                        "index",
+                                        "method_name",
+                                        "otu",
+                                        "reference",
+                                        "user",
+                                        "diff"
+                                    ],
+                                    "title": "History",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
+                        "content": {},
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/hmms": {
+            "delete": {
+                "description": "Delete all installed HMM data.\n\nThis won't break analyses that reference the installed HMM data.",
+                "responses": {
+                    "204": {
+                        "content": {},
+                        "description": "Successful operation"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    }
+                }
+            },
+            "get": {
+                "description": "Find HMM annotation documents.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "documents": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/HMMMinimal"
+                                            },
+                                            "title": "Documents",
+                                            "type": "array"
+                                        },
+                                        "found_count": {
+                                            "title": "Found Count",
+                                            "type": "integer"
+                                        },
+                                        "page": {
+                                            "title": "Page",
+                                            "type": "integer"
+                                        },
+                                        "page_count": {
+                                            "title": "Page Count",
+                                            "type": "integer"
+                                        },
+                                        "per_page": {
+                                            "title": "Per Page",
+                                            "type": "integer"
+                                        },
+                                        "status": {
+                                            "title": "Status",
+                                            "type": "object"
+                                        },
+                                        "total_count": {
+                                            "title": "Total Count",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "found_count",
+                                        "page",
+                                        "page_count",
+                                        "per_page",
+                                        "total_count",
+                                        "documents",
+                                        "status"
+                                    ],
+                                    "title": "HMMSearchResult",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/hmms/status": {
+            "get": {
+                "description": "Get the status of the HMM data. Contains the following fields:\n\n- `errors`: lists any errors in the HMM data\n- `id`: is always 'hmm'\n- `installed`: a dict describing the installed HMM data\n- `process.id`: the ID of the process installing the HMM data\n- `release`: a dict describing the latest available release\n\nInstalled HMM data cannot currently be updated.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/hmms/status/release": {
+            "get": {
+                "description": "Get the latest release for the HMM data.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "502": {
+                        "content": {},
+                        "description": "count not reach Github"
+                    }
+                }
+            }
+        },
+        "/hmms/status/updates": {
+            "get": {
+                "description": "List all updates applied to the HMM collection.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "description": "Install the latest official HMM database from GitHub.",
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Target release does not exist"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    }
+                }
+            }
+        },
+        "/hmms/{hmm_id}": {
+            "get": {
+                "description": "Get a complete individual HMM annotation document.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "cluster": {
+                                            "title": "Cluster",
+                                            "type": "integer"
+                                        },
+                                        "count": {
+                                            "title": "Count",
+                                            "type": "integer"
+                                        },
+                                        "entries": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/HMMSequenceEntry"
+                                            },
+                                            "title": "Entries",
+                                            "type": "array"
+                                        },
+                                        "families": {
+                                            "additionalProperties": {
+                                                "type": "integer"
+                                            },
+                                            "title": "Families",
+                                            "type": "object"
+                                        },
+                                        "genera": {
+                                            "additionalProperties": {
+                                                "type": "integer"
+                                            },
+                                            "title": "Genera",
+                                            "type": "object"
+                                        },
+                                        "hidden": {
+                                            "title": "Hidden",
+                                            "type": "boolean"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "length": {
+                                            "title": "Length",
+                                            "type": "integer"
+                                        },
+                                        "mean_entropy": {
+                                            "title": "Mean Entropy",
+                                            "type": "number"
+                                        },
+                                        "name": {
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "title": "Name",
+                                            "type": "array"
+                                        },
+                                        "total_entropy": {
+                                            "title": "Total Entropy",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "cluster",
+                                        "count",
+                                        "families",
+                                        "name",
+                                        "entries",
+                                        "genera",
+                                        "hidden",
+                                        "length",
+                                        "mean_entropy",
+                                        "total_entropy"
+                                    ],
+                                    "title": "HMM",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/jobs": {
+            "delete": {
+                "description": "Clear completed, failed or all finished jobs.",
+                "responses": {
+                    "200": {
+                        "content": {},
+                        "description": "Successful Operation"
+                    }
+                }
+            },
+            "get": {
+                "description": "List all job documents.",
+                "responses": {
+                    "200": {
+                        "content": {},
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Invalid query"
+                    }
+                }
+            }
+        },
+        "/jobs/{job_id}": {
+            "delete": {
+                "description": "Remove a job.",
+                "responses": {
+                    "204": {
+                        "content": {},
+                        "description": "Successful operation"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    },
+                    "409": {
+                        "content": {},
+                        "description": "Job is running or waiting and cannot be removed"
+                    }
+                }
+            },
+            "get": {
+                "description": "Return the complete document for a given job.",
+                "responses": {
+                    "200": {
+                        "content": {},
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/jobs/{job_id}/cancel": {
+            "put": {
+                "description": "Cancel a job.",
+                "responses": {
+                    "200": {
+                        "content": {},
+                        "description": "Successful operation"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    },
+                    "409": {
+                        "content": {},
+                        "description": "Not cancellable"
+                    }
+                }
+            }
+        },
+        "/labels": {
+            "get": {
+                "description": "List all sample labels.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "properties": {
+                                            "color": {
+                                                "title": "Color",
+                                                "type": "string"
+                                            },
+                                            "count": {
+                                                "title": "Count",
+                                                "type": "integer"
+                                            },
+                                            "description": {
+                                                "title": "Description",
+                                                "type": "string"
+                                            },
+                                            "id": {
+                                                "title": "Id",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "title": "Name",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "color",
+                                            "description",
+                                            "id",
+                                            "name",
+                                            "count"
+                                        ],
+                                        "title": "Label",
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Invalid query"
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a sample label.\n\nThe color must be a valid hexadecimal code.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Label fields for creating a new label.",
+                                "properties": {
+                                    "color": {
+                                        "default": "#A0AEC0",
+                                        "title": "Color",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "default": "",
+                                        "description": "description of the document",
+                                        "title": "Description",
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "unique name for the label document",
+                                        "minLength": 1,
+                                        "title": "Name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "name"
+                                ],
+                                "title": "CreateLabelSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "color": {
+                                            "title": "Color",
+                                            "type": "string"
+                                        },
+                                        "count": {
+                                            "title": "Count",
+                                            "type": "integer"
+                                        },
+                                        "description": {
+                                            "title": "Description",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "title": "Name",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "color",
+                                        "description",
+                                        "id",
+                                        "name",
+                                        "count"
+                                    ],
+                                    "title": "Label",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Invalid Input"
+                    }
+                }
+            }
+        },
+        "/labels/{label_id}": {
+            "delete": {
+                "description": "Delete a sample label.",
+                "responses": {
+                    "204": {
+                        "content": {},
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                }
+            },
+            "get": {
+                "description": "Get the details for a sample label.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "color": {
+                                            "title": "Color",
+                                            "type": "string"
+                                        },
+                                        "count": {
+                                            "title": "Count",
+                                            "type": "integer"
+                                        },
+                                        "description": {
+                                            "title": "Description",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "title": "Name",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "color",
+                                        "description",
+                                        "id",
+                                        "name",
+                                        "count"
+                                    ],
+                                    "title": "Label",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                }
+            },
+            "patch": {
+                "description": "Edit an existing sample label.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Label fields for editing an existing label.",
+                                "properties": {
+                                    "color": {
+                                        "title": "Color",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "description of the existing label document",
+                                        "title": "Description",
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "name of the existing label document",
+                                        "title": "Name",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "color",
+                                    "description"
+                                ],
+                                "title": "EditLabelSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "color": {
+                                            "title": "Color",
+                                            "type": "string"
+                                        },
+                                        "count": {
+                                            "title": "Count",
+                                            "type": "integer"
+                                        },
+                                        "description": {
+                                            "title": "Description",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "title": "Name",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "color",
+                                        "description",
+                                        "id",
+                                        "name",
+                                        "count"
+                                    ],
+                                    "title": "Label",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/subtractions": {
+            "get": {
+                "description": "Find subtractions by id (name) or nickname.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Minimal Subtraction model used for WebSocked messages and resource listings.",
+                                    "properties": {
+                                        "count": {
+                                            "title": "Count",
+                                            "type": "integer"
+                                        },
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
+                                        },
+                                        "file": {
+                                            "anyOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/UploadMinimal"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/SubtractionUpload"
+                                                }
+                                            ],
+                                            "title": "File"
+                                        },
+                                        "has_file": {
+                                            "title": "Has File",
+                                            "type": "boolean"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "title": "Name",
+                                            "type": "string"
+                                        },
+                                        "nickname": {
+                                            "default": "",
+                                            "title": "Nickname",
+                                            "type": "string"
+                                        },
+                                        "ready": {
+                                            "title": "Ready",
+                                            "type": "boolean"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserMinimal"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "name",
+                                        "created_at",
+                                        "file",
+                                        "has_file",
+                                        "ready",
+                                        "user"
+                                    ],
+                                    "title": "SubtractionMinimal",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "description": "Add a new subtraction. Starts a 'CreateSubtraction' job process.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Used for creating a new Subtraction.",
+                                "properties": {
+                                    "name": {
+                                        "description": "A unique name for the host (eg. Arabidopsis)",
+                                        "minLength": 1,
+                                        "title": "Name",
+                                        "type": "string"
+                                    },
+                                    "nickname": {
+                                        "default": "",
+                                        "description": "A nickname of the host",
+                                        "title": "Nickname",
+                                        "type": "string"
+                                    },
+                                    "upload_id": {
+                                        "description": "The unique id of the file",
+                                        "title": "Upload Id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "upload_id"
+                                ],
+                                "title": "CreateSubtractionSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Complete Subtraction model.",
+                                    "properties": {
+                                        "count": {
+                                            "title": "Count",
+                                            "type": "integer"
+                                        },
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
+                                        },
+                                        "deleted": {
+                                            "title": "Deleted",
+                                            "type": "boolean"
+                                        },
+                                        "file": {
+                                            "anyOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/UploadMinimal"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/SubtractionUpload"
+                                                }
+                                            ],
+                                            "title": "File"
+                                        },
+                                        "files": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/SubtractionFile"
+                                            },
+                                            "title": "Files",
+                                            "type": "array"
+                                        },
+                                        "gc": {
+                                            "$ref": "#/components/schemas/NucleotideComposition"
+                                        },
+                                        "has_file": {
+                                            "title": "Has File",
+                                            "type": "boolean"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "linked_samples": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/SubtractionLinkedSample"
+                                            },
+                                            "title": "Linked Samples",
+                                            "type": "array"
+                                        },
+                                        "name": {
+                                            "title": "Name",
+                                            "type": "string"
+                                        },
+                                        "nickname": {
+                                            "default": "",
+                                            "title": "Nickname",
+                                            "type": "string"
+                                        },
+                                        "ready": {
+                                            "title": "Ready",
+                                            "type": "boolean"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserMinimal"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "name",
+                                        "created_at",
+                                        "file",
+                                        "has_file",
+                                        "ready",
+                                        "user",
+                                        "deleted",
+                                        "files",
+                                        "linked_samples"
+                                    ],
+                                    "title": "Subtraction",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Bad request"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    }
+                }
+            }
+        },
+        "/subtractions/{subtraction_id}": {
+            "delete": {
+                "description": "Remove an existing subtraction.",
+                "responses": {
+                    "204": {
+                        "content": {},
+                        "description": "No content"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    },
+                    "409": {
+                        "content": {},
+                        "description": "Has linked samples"
+                    }
+                }
+            },
+            "get": {
+                "description": "Get a complete host document.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Complete Subtraction model.",
+                                    "properties": {
+                                        "count": {
+                                            "title": "Count",
+                                            "type": "integer"
+                                        },
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
+                                        },
+                                        "deleted": {
+                                            "title": "Deleted",
+                                            "type": "boolean"
+                                        },
+                                        "file": {
+                                            "anyOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/UploadMinimal"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/SubtractionUpload"
+                                                }
+                                            ],
+                                            "title": "File"
+                                        },
+                                        "files": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/SubtractionFile"
+                                            },
+                                            "title": "Files",
+                                            "type": "array"
+                                        },
+                                        "gc": {
+                                            "$ref": "#/components/schemas/NucleotideComposition"
+                                        },
+                                        "has_file": {
+                                            "title": "Has File",
+                                            "type": "boolean"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "linked_samples": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/SubtractionLinkedSample"
+                                            },
+                                            "title": "Linked Samples",
+                                            "type": "array"
+                                        },
+                                        "name": {
+                                            "title": "Name",
+                                            "type": "string"
+                                        },
+                                        "nickname": {
+                                            "default": "",
+                                            "title": "Nickname",
+                                            "type": "string"
+                                        },
+                                        "ready": {
+                                            "title": "Ready",
+                                            "type": "boolean"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserMinimal"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "name",
+                                        "created_at",
+                                        "file",
+                                        "has_file",
+                                        "ready",
+                                        "user",
+                                        "deleted",
+                                        "files",
+                                        "linked_samples"
+                                    ],
+                                    "title": "Subtraction",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Operation Successful"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                }
+            },
+            "patch": {
+                "description": "Updates the nickname for an existing subtraction.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Used when modifying a Subtraction",
+                                "properties": {
+                                    "name": {
+                                        "description": "A unique name for the host (eg. Arabidopsis)",
+                                        "minLength": 1,
+                                        "title": "Name",
+                                        "type": "string"
+                                    },
+                                    "nickname": {
+                                        "description": "A nickname of the host",
+                                        "title": "Nickname",
+                                        "type": "string"
+                                    }
+                                },
+                                "title": "EditSubtractionSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Complete Subtraction model.",
+                                    "properties": {
+                                        "count": {
+                                            "title": "Count",
+                                            "type": "integer"
+                                        },
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
+                                        },
+                                        "deleted": {
+                                            "title": "Deleted",
+                                            "type": "boolean"
+                                        },
+                                        "file": {
+                                            "anyOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/UploadMinimal"
+                                                },
+                                                {
+                                                    "$ref": "#/components/schemas/SubtractionUpload"
+                                                }
+                                            ],
+                                            "title": "File"
+                                        },
+                                        "files": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/SubtractionFile"
+                                            },
+                                            "title": "Files",
+                                            "type": "array"
+                                        },
+                                        "gc": {
+                                            "$ref": "#/components/schemas/NucleotideComposition"
+                                        },
+                                        "has_file": {
+                                            "title": "Has File",
+                                            "type": "boolean"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "linked_samples": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/SubtractionLinkedSample"
+                                            },
+                                            "title": "Linked Samples",
+                                            "type": "array"
+                                        },
+                                        "name": {
+                                            "title": "Name",
+                                            "type": "string"
+                                        },
+                                        "nickname": {
+                                            "default": "",
+                                            "title": "Nickname",
+                                            "type": "string"
+                                        },
+                                        "ready": {
+                                            "title": "Ready",
+                                            "type": "boolean"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserMinimal"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "name",
+                                        "created_at",
+                                        "file",
+                                        "has_file",
+                                        "ready",
+                                        "user",
+                                        "deleted",
+                                        "files",
+                                        "linked_samples"
+                                    ],
+                                    "title": "Subtraction",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Operation successful"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Invalid input"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/subtractions/{subtraction_id}/files/{filename}": {
+            "get": {
+                "description": "Download a Bowtie2 index file or a FASTA file for the given subtraction.",
+                "responses": {
+                    "200": {
+                        "content": {},
+                        "description": "Operation successful"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/tasks": {
+            "get": {
+                "description": "Get a list of all task documents in the database.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "properties": {
+                                            "complete": {
+                                                "title": "Complete",
+                                                "type": "boolean"
+                                            },
+                                            "context": {
+                                                "title": "Context",
+                                                "type": "object"
+                                            },
+                                            "count": {
+                                                "title": "Count",
+                                                "type": "integer"
+                                            },
+                                            "created_at": {
+                                                "format": "date-time",
+                                                "title": "Created At",
+                                                "type": "string"
+                                            },
+                                            "error": {
+                                                "title": "Error",
+                                                "type": "string"
+                                            },
+                                            "file_size": {
+                                                "title": "File Size",
+                                                "type": "integer"
+                                            },
+                                            "id": {
+                                                "title": "Id",
+                                                "type": "integer"
+                                            },
+                                            "progress": {
+                                                "title": "Progress",
+                                                "type": "integer"
+                                            },
+                                            "step": {
+                                                "title": "Step",
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "title": "Type",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "complete",
+                                            "context",
+                                            "count",
+                                            "created_at",
+                                            "id",
+                                            "progress",
+                                            "step",
+                                            "type"
+                                        ],
+                                        "title": "Task",
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/tasks/{task_id}": {
+            "get": {
+                "description": "Get a complete task document.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "complete": {
+                                            "title": "Complete",
+                                            "type": "boolean"
+                                        },
+                                        "context": {
+                                            "title": "Context",
+                                            "type": "object"
+                                        },
+                                        "count": {
+                                            "title": "Count",
+                                            "type": "integer"
+                                        },
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "title": "Error",
+                                            "type": "string"
+                                        },
+                                        "file_size": {
+                                            "title": "File Size",
+                                            "type": "integer"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "integer"
+                                        },
+                                        "progress": {
+                                            "title": "Progress",
+                                            "type": "integer"
+                                        },
+                                        "step": {
+                                            "title": "Step",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "title": "Type",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "complete",
+                                        "context",
+                                        "count",
+                                        "created_at",
+                                        "id",
+                                        "progress",
+                                        "step",
+                                        "type"
+                                    ],
+                                    "title": "Task",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "description": "Get a list of all user documents in the database.",
+                "responses": {
+                    "200": {
+                        "content": {},
+                        "description": "Successful operation"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    }
+                }
+            },
+            "post": {
+                "description": "Add a new user to the user database.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "User fields for creating a new user.",
+                                "properties": {
+                                    "force_reset": {
+                                        "default": true,
+                                        "description": "force password reset on login if true",
+                                        "title": "Force Reset",
+                                        "type": "boolean"
+                                    },
+                                    "handle": {
+                                        "description": "a unique handle for the user",
+                                        "minLength": 1,
+                                        "title": "Handle",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "a unique password for the user",
+                                        "minLength": 1,
+                                        "title": "Password",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "handle",
+                                    "password"
+                                ],
+                                "title": "CreateUserSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "administrator": {
+                                            "title": "Administrator",
+                                            "type": "boolean"
+                                        },
+                                        "b2c": {
+                                            "$ref": "#/components/schemas/UserB2C"
+                                        },
+                                        "b2c_display_name": {
+                                            "title": "B2C Display Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_family_name": {
+                                            "title": "B2C Family Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_given_name": {
+                                            "title": "B2C Given Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_oid": {
+                                            "title": "B2C Oid",
+                                            "type": "string"
+                                        },
+                                        "force_reset": {
+                                            "title": "Force Reset",
+                                            "type": "boolean"
+                                        },
+                                        "groups": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/GroupMinimal"
+                                            },
+                                            "title": "Groups",
+                                            "type": "array"
+                                        },
+                                        "handle": {
+                                            "title": "Handle",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "last_password_change": {
+                                            "format": "date-time",
+                                            "title": "Last Password Change",
+                                            "type": "string"
+                                        },
+                                        "permissions": {
+                                            "$ref": "#/components/schemas/Permissions"
+                                        },
+                                        "primary_group": {
+                                            "$ref": "#/components/schemas/GroupMinimal"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "administrator",
+                                        "handle",
+                                        "force_reset",
+                                        "groups",
+                                        "last_password_change",
+                                        "permissions"
+                                    ],
+                                    "title": "User",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Password does not meet length requirement"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    }
+                }
+            }
+        },
+        "/users/first": {
+            "put": {
+                "description": "Creates the first user for the instance.\n\nThis endpoint will not work after the first is created. Authenticate as the\nfirst user and use those credentials to continue interacting with the API.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "User fields for adding the first user to a user database.",
+                                "properties": {
+                                    "handle": {
+                                        "description": "a unique handle for the user",
+                                        "minLength": 1,
+                                        "title": "Handle",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "a unique password for the user",
+                                        "minLength": 1,
+                                        "title": "Password",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "handle",
+                                    "password"
+                                ],
+                                "title": "CreateFirstUserSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "administrator": {
+                                            "title": "Administrator",
+                                            "type": "boolean"
+                                        },
+                                        "b2c": {
+                                            "$ref": "#/components/schemas/UserB2C"
+                                        },
+                                        "b2c_display_name": {
+                                            "title": "B2C Display Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_family_name": {
+                                            "title": "B2C Family Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_given_name": {
+                                            "title": "B2C Given Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_oid": {
+                                            "title": "B2C Oid",
+                                            "type": "string"
+                                        },
+                                        "force_reset": {
+                                            "title": "Force Reset",
+                                            "type": "boolean"
+                                        },
+                                        "groups": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/GroupMinimal"
+                                            },
+                                            "title": "Groups",
+                                            "type": "array"
+                                        },
+                                        "handle": {
+                                            "title": "Handle",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "last_password_change": {
+                                            "format": "date-time",
+                                            "title": "Last Password Change",
+                                            "type": "string"
+                                        },
+                                        "permissions": {
+                                            "$ref": "#/components/schemas/Permissions"
+                                        },
+                                        "primary_group": {
+                                            "$ref": "#/components/schemas/GroupMinimal"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "administrator",
+                                        "handle",
+                                        "force_reset",
+                                        "groups",
+                                        "last_password_change",
+                                        "permissions"
+                                    ],
+                                    "title": "User",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Bad request"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    }
+                }
+            }
+        },
+        "/users/{user_id}": {
+            "delete": {
+                "description": "Deletes a user.\n\nUsers cannot delete their own accounts.",
+                "responses": {
+                    "204": {
+                        "content": {},
+                        "description": "No content"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Bad request"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                }
+            },
+            "get": {
+                "description": "Gets the details of a user.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "administrator": {
+                                            "title": "Administrator",
+                                            "type": "boolean"
+                                        },
+                                        "b2c": {
+                                            "$ref": "#/components/schemas/UserB2C"
+                                        },
+                                        "b2c_display_name": {
+                                            "title": "B2C Display Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_family_name": {
+                                            "title": "B2C Family Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_given_name": {
+                                            "title": "B2C Given Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_oid": {
+                                            "title": "B2C Oid",
+                                            "type": "string"
+                                        },
+                                        "force_reset": {
+                                            "title": "Force Reset",
+                                            "type": "boolean"
+                                        },
+                                        "groups": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/GroupMinimal"
+                                            },
+                                            "title": "Groups",
+                                            "type": "array"
+                                        },
+                                        "handle": {
+                                            "title": "Handle",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "last_password_change": {
+                                            "format": "date-time",
+                                            "title": "Last Password Change",
+                                            "type": "string"
+                                        },
+                                        "permissions": {
+                                            "$ref": "#/components/schemas/Permissions"
+                                        },
+                                        "primary_group": {
+                                            "$ref": "#/components/schemas/GroupMinimal"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "administrator",
+                                        "handle",
+                                        "force_reset",
+                                        "groups",
+                                        "last_password_change",
+                                        "permissions"
+                                    ],
+                                    "title": "User",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Success"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                }
+            },
+            "patch": {
+                "description": "Updates the user with the passed parameters.\n\nUsers cannot modify their own administrative status.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "administrator": {
+                                        "description": "set the user\u2019s administrator status",
+                                        "title": "Administrator",
+                                        "type": "boolean"
+                                    },
+                                    "force_reset": {
+                                        "description": "force a password reset next time the user logs in",
+                                        "title": "Force Reset",
+                                        "type": "boolean"
+                                    },
+                                    "groups": {
+                                        "description": "the ids of the groups the user belongs to",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "title": "Groups",
+                                        "type": "array"
+                                    },
+                                    "password": {
+                                        "description": "the new password",
+                                        "title": "Password",
+                                        "type": "string"
+                                    },
+                                    "primary_group": {
+                                        "description": "the users primary group used for sample rights",
+                                        "title": "Primary Group",
+                                        "type": "string"
+                                    }
+                                },
+                                "title": "UpdateUserSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "administrator": {
+                                            "title": "Administrator",
+                                            "type": "boolean"
+                                        },
+                                        "b2c": {
+                                            "$ref": "#/components/schemas/UserB2C"
+                                        },
+                                        "b2c_display_name": {
+                                            "title": "B2C Display Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_family_name": {
+                                            "title": "B2C Family Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_given_name": {
+                                            "title": "B2C Given Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_oid": {
+                                            "title": "B2C Oid",
+                                            "type": "string"
+                                        },
+                                        "force_reset": {
+                                            "title": "Force Reset",
+                                            "type": "boolean"
+                                        },
+                                        "groups": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/GroupMinimal"
+                                            },
+                                            "title": "Groups",
+                                            "type": "array"
+                                        },
+                                        "handle": {
+                                            "title": "Handle",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "last_password_change": {
+                                            "format": "date-time",
+                                            "title": "Last Password Change",
+                                            "type": "string"
+                                        },
+                                        "permissions": {
+                                            "$ref": "#/components/schemas/Permissions"
+                                        },
+                                        "primary_group": {
+                                            "$ref": "#/components/schemas/GroupMinimal"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "administrator",
+                                        "handle",
+                                        "force_reset",
+                                        "groups",
+                                        "last_password_change",
+                                        "permissions"
+                                    ],
+                                    "title": "User",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Bad request"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    },
+                    "409": {
+                        "content": {},
+                        "description": "User is not member of group"
+                    }
+                }
+            }
+        }
+    }
+}
