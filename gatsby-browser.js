@@ -7,6 +7,7 @@ import { Link } from "gatsby";
 import React from "react";
 import { Endpoint } from "./src/components/Endpoint";
 import * as Headings from "./src/components/Headings";
+import { PrimaryLayout } from "./src/components/Layout";
 import { Permission } from "./src/components/Permission";
 import { Recommended } from "./src/components/Recommended";
 import { Request } from "./src/components/Request";
@@ -23,6 +24,7 @@ const components = {
   Warning,
   Recommended,
   Permission,
+  PrimaryLayout,
   Status,
   ...Headings,
   ...Table,

@@ -1,3 +1,4 @@
+import GatsbyLink from "gatsby-link";
 import React from "react";
 import { Link } from "../../components/Link";
 import { Main } from "../../components/Main";
@@ -14,8 +15,10 @@ const DocsIndex = () => (
           <p>For users of Virtool</p>
         </section>
         <section>
-          <h2>Administrator Guide</h2>
-          <p>For experts deploying and maintaining an instance</p>
+          <h2>
+            <GatsbyLink to="/docs/deployment">Deployment Guide</GatsbyLink>
+          </h2>
+          <p>For deploying and maintaining an instance</p>
         </section>
         <section>
           <h2>Developer Docs</h2>
