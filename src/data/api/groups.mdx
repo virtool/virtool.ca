@@ -1,0 +1,211 @@
+---
+title: "Groups"
+---
+
+# List
+
+List all existing user groups.
+
+<Endpoint method="GET" path="/groups" />
+
+# Example
+
+<Request method="GET" path="/groups" />
+
+# Response
+
+<Response status="200 Successful operation">
+
+```json
+[
+  {
+    "id": "technicians",
+    "name": "technicians",
+    "permissions": {
+      "cancel_job": true,
+      "create_ref": false,
+      "create_sample": true,
+      "modify_hmm": false,
+      "modify_subtraction": false,
+      "remove_file": false,
+      "remove_job": true,
+      "upload_file": true
+    }
+  }
+]
+```
+
+</Response>
+
+# Errors
+
+_None_
+
+# Create
+
+Create a new group. New groups have no permissions.
+
+<Endpoint method="Post" path="/groups" />
+
+# Input
+
+| Name     | Type   | Description               |
+| :------- | :----- | :------------------------ |
+| group_id | string | a unique id for the group |
+
+# Example
+
+<Request method="POST" path="/groups">
+
+```json
+{
+  "group_id": "research"
+}
+```
+
+</Request>
+
+# Response
+
+<Response status="201 Successful operation">
+
+```json
+{
+  "id": "research",
+  "name": "research",
+  "permissions": {
+    "cancel_job": true,
+    "create_ref": false,
+    "create_sample": true,
+    "modify_hmm": false,
+    "modify_subtraction": false,
+    "remove_file": false,
+    "remove_job": true,
+    "upload_file": true
+  }
+}
+```
+
+</Response>
+
+# Errors
+
+| Status | Message              |
+| :----- | :------------------- |
+| `400`  | Group already exists |
+
+# Get
+
+Get the complete representation of a single user group.
+
+<Endpoint method="GET" path="/groups/{group_id}" />
+
+# Example
+
+<Request method="GET" path="/groups/technicians" />
+
+# Response
+
+<Response status="200 Successful operation">
+
+```json
+{
+  "id": "technicians",
+  "name": "technicians",
+  "permissions": {
+    "cancel_job": true,
+    "create_ref": false,
+    "create_sample": true,
+    "modify_hmm": false,
+    "modify_subtraction": false,
+    "remove_file": false,
+    "remove_job": true,
+    "upload_file": true
+  }
+}
+```
+
+</Response>
+
+# Errors
+
+| Status | Message         |
+| :----- | :-------------- |
+| `404`  | Group not found |
+
+# Edit
+
+Update the permissions of a group.
+
+Unset permissions will retain their previous setting.
+
+<Endpoint method="PATCH" path="/groups/{group_id}" />
+
+# Input
+
+| Name        | Type   | Description                                                                          |
+| :---------- | :----- | :----------------------------------------------------------------------------------- |
+| permissions | object | a permission update comprising of an object keyed by permissions with boolean values |
+
+# Example
+
+<Request method="PATCH" path="/groups/technicians">
+
+```json
+{
+  "permissions": {
+    "create_ref": true
+  }
+}
+```
+
+</Request>
+
+# Response
+
+<Response status="200 Successful operation">
+
+```json
+{
+  "id": "technicians",
+  "name": "technicians",
+  "permissions": {
+    "cancel_job": true,
+    "create_ref": true,
+    "create_sample": true,
+    "modify_hmm": false,
+    "modify_subtraction": false,
+    "remove_file": false,
+    "remove_job": true,
+    "upload_file": true
+  }
+}
+```
+
+</Response>
+
+# Errors
+
+| Status | Message         |
+| :----- | :-------------- |
+| `404`  | Group not found |
+
+# Remove
+
+Delete a group.
+
+<Endpoint method="DELETE" path="/groups/{group_id}" />
+
+# Example
+
+<Request method="DELETE" path="/groups/foobar" />
+
+# Response
+
+<Response status="204 No content" />
+
+# Errors
+
+| Status | Message         |
+| :----- | :-------------- |
+| `404`  | Group not found |
