@@ -1,6 +1,94 @@
 {
     "components": {
         "schemas": {
+            "AccountSettings": {
+                "properties": {
+                    "quick_analyze_workflow": {
+                        "$ref": "#/components/schemas/QuickAnalyzeWorkflow"
+                    },
+                    "show_ids": {
+                        "title": "Show Ids",
+                        "type": "boolean"
+                    },
+                    "show_versions": {
+                        "title": "Show Versions",
+                        "type": "boolean"
+                    },
+                    "skip_quick_analyze_dialog": {
+                        "title": "Skip Quick Analyze Dialog",
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "quick_analyze_workflow",
+                    "show_ids",
+                    "show_versions",
+                    "skip_quick_analyze_dialog"
+                ],
+                "title": "AccountSettings",
+                "type": "object"
+            },
+            "AnalysisFile": {
+                "properties": {
+                    "analysis": {
+                        "title": "Analysis",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "format": {
+                        "title": "Format",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "name_on_disk": {
+                        "title": "Name On Disk",
+                        "type": "string"
+                    },
+                    "size": {
+                        "title": "Size",
+                        "type": "integer"
+                    },
+                    "uploaded_at": {
+                        "format": "date-time",
+                        "title": "Uploaded At",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "analysis",
+                    "format",
+                    "id",
+                    "name",
+                    "name_on_disk",
+                    "size",
+                    "uploaded_at"
+                ],
+                "title": "AnalysisFile",
+                "type": "object"
+            },
+            "AnalysisSample": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "title": "AnalysisSample",
+                "type": "object"
+            },
             "EditPermissionsSchema": {
                 "description": "Possible permissions that will be updated for a user and group.",
                 "properties": {
@@ -44,6 +132,11 @@
                 "properties": {
                     "id": {
                         "title": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "minLength": 1,
+                        "title": "Name",
                         "type": "string"
                     }
                 },
@@ -182,6 +275,186 @@
                 "title": "HistoryOTU",
                 "type": "object"
             },
+            "IndexMinimal": {
+                "properties": {
+                    "change_count": {
+                        "title": "Change Count",
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "has_files": {
+                        "title": "Has Files",
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "job": {
+                        "$ref": "#/components/schemas/JobMinimal"
+                    },
+                    "modified_otu_count": {
+                        "title": "Modified Otu Count",
+                        "type": "integer"
+                    },
+                    "reference": {
+                        "$ref": "#/components/schemas/ReferenceMinimal"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserMinimal"
+                    },
+                    "version": {
+                        "title": "Version",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "change_count",
+                    "created_at",
+                    "has_files",
+                    "id",
+                    "job",
+                    "modified_otu_count",
+                    "reference",
+                    "user",
+                    "version"
+                ],
+                "title": "IndexMinimal",
+                "type": "object"
+            },
+            "JobError": {
+                "properties": {
+                    "details": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Details",
+                        "type": "array"
+                    },
+                    "traceback": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Traceback",
+                        "type": "array"
+                    },
+                    "type": {
+                        "title": "Type",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "details",
+                    "traceback",
+                    "type"
+                ],
+                "title": "JobError",
+                "type": "object"
+            },
+            "JobMinimal": {
+                "properties": {
+                    "archived": {
+                        "default": false,
+                        "title": "Archived",
+                        "type": "boolean"
+                    },
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "progress": {
+                        "title": "Progress",
+                        "type": "integer"
+                    },
+                    "rights": {
+                        "title": "Rights",
+                        "type": "object"
+                    },
+                    "stage": {
+                        "title": "Stage",
+                        "type": "string"
+                    },
+                    "state": {
+                        "title": "State",
+                        "type": "string"
+                    },
+                    "status": {
+                        "items": {
+                            "$ref": "#/components/schemas/JobStatus"
+                        },
+                        "title": "Status",
+                        "type": "array"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserMinimal"
+                    },
+                    "workflow": {
+                        "title": "Workflow",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "created_at",
+                    "id",
+                    "progress",
+                    "rights",
+                    "stage",
+                    "state",
+                    "status",
+                    "user",
+                    "workflow"
+                ],
+                "title": "JobMinimal",
+                "type": "object"
+            },
+            "JobStatus": {
+                "properties": {
+                    "error": {
+                        "$ref": "#/components/schemas/JobError"
+                    },
+                    "progress": {
+                        "title": "Progress",
+                        "type": "integer"
+                    },
+                    "stage": {
+                        "title": "Stage",
+                        "type": "string"
+                    },
+                    "state": {
+                        "title": "State",
+                        "type": "string"
+                    },
+                    "step_description": {
+                        "title": "Step Description",
+                        "type": "string"
+                    },
+                    "step_name": {
+                        "title": "Step Name",
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "format": "date-time",
+                        "title": "Timestamp",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "progress",
+                    "state",
+                    "timestamp"
+                ],
+                "title": "JobStatus",
+                "type": "object"
+            },
             "NucleotideComposition": {
                 "properties": {
                     "a": {
@@ -262,6 +535,232 @@
                 "title": "Permissions",
                 "type": "object"
             },
+            "QuickAnalyzeWorkflow": {
+                "description": "An enumeration.",
+                "enum": [
+                    "aodp",
+                    "nuvs",
+                    "pathoscope_bowtie"
+                ],
+                "title": "QuickAnalyzeWorkflow",
+                "type": "string"
+            },
+            "ReferenceBuild": {
+                "properties": {
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "has_json": {
+                        "title": "Has Json",
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserMinimal"
+                    },
+                    "version": {
+                        "title": "Version",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "created_at",
+                    "id",
+                    "version",
+                    "user",
+                    "has_json"
+                ],
+                "title": "ReferenceBuild",
+                "type": "object"
+            },
+            "ReferenceClonedFrom": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "title": "ReferenceClonedFrom",
+                "type": "object"
+            },
+            "ReferenceDataType": {
+                "description": "An enumeration.",
+                "enum": [
+                    "barcode",
+                    "genome"
+                ],
+                "title": "ReferenceDataType",
+                "type": "string"
+            },
+            "ReferenceInstalled": {
+                "properties": {
+                    "body": {
+                        "title": "Body",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "filename": {
+                        "title": "Filename",
+                        "type": "string"
+                    },
+                    "html_url": {
+                        "title": "Html Url",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "newer": {
+                        "title": "Newer",
+                        "type": "boolean"
+                    },
+                    "published_at": {
+                        "format": "date-time",
+                        "title": "Published At",
+                        "type": "string"
+                    },
+                    "ready": {
+                        "title": "Ready",
+                        "type": "boolean"
+                    },
+                    "size": {
+                        "title": "Size",
+                        "type": "integer"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserMinimal"
+                    }
+                },
+                "required": [
+                    "body",
+                    "created_at",
+                    "filename",
+                    "html_url",
+                    "id",
+                    "name",
+                    "newer",
+                    "published_at",
+                    "ready",
+                    "size",
+                    "user"
+                ],
+                "title": "ReferenceInstalled",
+                "type": "object"
+            },
+            "ReferenceMinimal": {
+                "properties": {
+                    "cloned_from": {
+                        "$ref": "#/components/schemas/ReferenceClonedFrom"
+                    },
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "data_type": {
+                        "$ref": "#/components/schemas/ReferenceDataType"
+                    },
+                    "groups": {
+                        "items": {
+                            "$ref": "#/components/schemas/ReferenceUser"
+                        },
+                        "title": "Groups",
+                        "type": "array"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "installed": {
+                        "$ref": "#/components/schemas/ReferenceInstalled"
+                    },
+                    "internal_control": {
+                        "title": "Internal Control",
+                        "type": "string"
+                    },
+                    "latest_build": {
+                        "$ref": "#/components/schemas/ReferenceBuild"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "organism": {
+                        "title": "Organism",
+                        "type": "string"
+                    },
+                    "otu_count": {
+                        "title": "Otu Count",
+                        "type": "integer"
+                    },
+                    "release": {
+                        "$ref": "#/components/schemas/ReferenceRelease"
+                    },
+                    "remotes_from": {
+                        "$ref": "#/components/schemas/ReferenceRemotesFrom"
+                    },
+                    "task": {
+                        "$ref": "#/components/schemas/Task"
+                    },
+                    "unbuilt_change_count": {
+                        "title": "Unbuilt Change Count",
+                        "type": "integer"
+                    },
+                    "updating": {
+                        "title": "Updating",
+                        "type": "boolean"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserMinimal"
+                    },
+                    "users": {
+                        "items": {
+                            "$ref": "#/components/schemas/ReferenceUser"
+                        },
+                        "title": "Users",
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "id",
+                    "created_at",
+                    "data_type",
+                    "groups",
+                    "internal_control",
+                    "latest_build",
+                    "name",
+                    "organism",
+                    "otu_count",
+                    "task",
+                    "unbuilt_change_count",
+                    "user",
+                    "users"
+                ],
+                "title": "ReferenceMinimal",
+                "type": "object"
+            },
             "ReferenceNested": {
                 "properties": {
                     "id": {
@@ -273,6 +772,168 @@
                     "id"
                 ],
                 "title": "ReferenceNested",
+                "type": "object"
+            },
+            "ReferenceRelease": {
+                "properties": {
+                    "body": {
+                        "title": "Body",
+                        "type": "string"
+                    },
+                    "content_type": {
+                        "title": "Content Type",
+                        "type": "string"
+                    },
+                    "download_url": {
+                        "title": "Download Url",
+                        "type": "string"
+                    },
+                    "etag": {
+                        "title": "Etag",
+                        "type": "string"
+                    },
+                    "filename": {
+                        "title": "Filename",
+                        "type": "string"
+                    },
+                    "html_url": {
+                        "title": "Html Url",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "newer": {
+                        "title": "Newer",
+                        "type": "boolean"
+                    },
+                    "published_at": {
+                        "format": "date-time",
+                        "title": "Published At",
+                        "type": "string"
+                    },
+                    "retrieved_at": {
+                        "format": "date-time",
+                        "title": "Retrieved At",
+                        "type": "string"
+                    },
+                    "size": {
+                        "title": "Size",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "body",
+                    "content_type",
+                    "download_url",
+                    "etag",
+                    "filename",
+                    "html_url",
+                    "id",
+                    "name",
+                    "newer",
+                    "published_at",
+                    "retrieved_at",
+                    "size"
+                ],
+                "title": "ReferenceRelease",
+                "type": "object"
+            },
+            "ReferenceRemotesFrom": {
+                "properties": {
+                    "errors": {
+                        "items": {},
+                        "title": "Errors",
+                        "type": "array"
+                    },
+                    "slug": {
+                        "title": "Slug",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "errors",
+                    "slug"
+                ],
+                "title": "ReferenceRemotesFrom",
+                "type": "object"
+            },
+            "ReferenceUser": {
+                "properties": {
+                    "administrator": {
+                        "title": "Administrator",
+                        "type": "boolean"
+                    },
+                    "b2c": {
+                        "$ref": "#/components/schemas/UserB2C"
+                    },
+                    "b2c_display_name": {
+                        "title": "B2C Display Name",
+                        "type": "string"
+                    },
+                    "b2c_family_name": {
+                        "title": "B2C Family Name",
+                        "type": "string"
+                    },
+                    "b2c_given_name": {
+                        "title": "B2C Given Name",
+                        "type": "string"
+                    },
+                    "b2c_oid": {
+                        "title": "B2C Oid",
+                        "type": "string"
+                    },
+                    "build": {
+                        "title": "Build",
+                        "type": "boolean"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "handle": {
+                        "title": "Handle",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "modify": {
+                        "title": "Modify",
+                        "type": "boolean"
+                    },
+                    "modify_otu": {
+                        "title": "Modify Otu",
+                        "type": "boolean"
+                    },
+                    "remove": {
+                        "title": "Remove",
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id",
+                    "administrator",
+                    "handle",
+                    "count",
+                    "build",
+                    "created_at",
+                    "modify",
+                    "modify_otu",
+                    "remove"
+                ],
+                "title": "ReferenceUser",
                 "type": "object"
             },
             "SubtractionFile": {
@@ -331,6 +992,66 @@
                 "title": "SubtractionLinkedSample",
                 "type": "object"
             },
+            "SubtractionMinimal": {
+                "description": "Minimal Subtraction model used for WebSocked messages and resource listings.",
+                "properties": {
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "file": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/UploadMinimal"
+                            },
+                            {
+                                "$ref": "#/components/schemas/SubtractionUpload"
+                            }
+                        ],
+                        "title": "File"
+                    },
+                    "has_file": {
+                        "title": "Has File",
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "nickname": {
+                        "default": "",
+                        "title": "Nickname",
+                        "type": "string"
+                    },
+                    "ready": {
+                        "title": "Ready",
+                        "type": "boolean"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserMinimal"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "created_at",
+                    "file",
+                    "has_file",
+                    "ready",
+                    "user"
+                ],
+                "title": "SubtractionMinimal",
+                "type": "object"
+            },
             "SubtractionUpload": {
                 "properties": {
                     "id": {
@@ -347,6 +1068,63 @@
                     "name"
                 ],
                 "title": "SubtractionUpload",
+                "type": "object"
+            },
+            "Task": {
+                "properties": {
+                    "complete": {
+                        "title": "Complete",
+                        "type": "boolean"
+                    },
+                    "context": {
+                        "title": "Context",
+                        "type": "object"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "error": {
+                        "title": "Error",
+                        "type": "string"
+                    },
+                    "file_size": {
+                        "title": "File Size",
+                        "type": "integer"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "progress": {
+                        "title": "Progress",
+                        "type": "integer"
+                    },
+                    "step": {
+                        "title": "Step",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Type",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "complete",
+                    "context",
+                    "count",
+                    "created_at",
+                    "id",
+                    "progress",
+                    "step",
+                    "type"
+                ],
+                "title": "Task",
                 "type": "object"
             },
             "UploadMinimal": {
@@ -494,9 +1272,855 @@
     },
     "openapi": "3.0.0",
     "paths": {
+        "/account": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "administrator": {
+                                            "title": "Administrator",
+                                            "type": "boolean"
+                                        },
+                                        "b2c": {
+                                            "$ref": "#/components/schemas/UserB2C"
+                                        },
+                                        "b2c_display_name": {
+                                            "title": "B2C Display Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_family_name": {
+                                            "title": "B2C Family Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_given_name": {
+                                            "title": "B2C Given Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_oid": {
+                                            "title": "B2C Oid",
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "title": "Email",
+                                            "type": "string"
+                                        },
+                                        "force_reset": {
+                                            "title": "Force Reset",
+                                            "type": "boolean"
+                                        },
+                                        "groups": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/GroupMinimal"
+                                            },
+                                            "title": "Groups",
+                                            "type": "array"
+                                        },
+                                        "handle": {
+                                            "title": "Handle",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "last_password_change": {
+                                            "format": "date-time",
+                                            "title": "Last Password Change",
+                                            "type": "string"
+                                        },
+                                        "permissions": {
+                                            "$ref": "#/components/schemas/Permissions"
+                                        },
+                                        "primary_group": {
+                                            "$ref": "#/components/schemas/GroupMinimal"
+                                        },
+                                        "settings": {
+                                            "$ref": "#/components/schemas/AccountSettings"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "administrator",
+                                        "handle",
+                                        "force_reset",
+                                        "groups",
+                                        "last_password_change",
+                                        "permissions",
+                                        "settings",
+                                        "email"
+                                    ],
+                                    "title": "Account",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful Operation"
+                    },
+                    "401": {
+                        "content": {},
+                        "description": "Requires Authorization"
+                    }
+                },
+                "summary": "Get complete user document"
+            },
+            "patch": {
+                "description": "Provide a ``password`` to update the account password. The ``old_password`` must\nalso be provided in the request.\n\nThe ``email`` address is not currently used, but will be in future releases.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Fields for editing a user account.",
+                                "properties": {
+                                    "email": {
+                                        "title": "Email",
+                                        "type": "string"
+                                    },
+                                    "old_password": {
+                                        "title": "Old Password",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "title": "Password",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "old_password",
+                                    "password"
+                                ],
+                                "title": "EditAccountSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "administrator": {
+                                            "title": "Administrator",
+                                            "type": "boolean"
+                                        },
+                                        "b2c": {
+                                            "$ref": "#/components/schemas/UserB2C"
+                                        },
+                                        "b2c_display_name": {
+                                            "title": "B2C Display Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_family_name": {
+                                            "title": "B2C Family Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_given_name": {
+                                            "title": "B2C Given Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_oid": {
+                                            "title": "B2C Oid",
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "title": "Email",
+                                            "type": "string"
+                                        },
+                                        "force_reset": {
+                                            "title": "Force Reset",
+                                            "type": "boolean"
+                                        },
+                                        "groups": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/GroupMinimal"
+                                            },
+                                            "title": "Groups",
+                                            "type": "array"
+                                        },
+                                        "handle": {
+                                            "title": "Handle",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "last_password_change": {
+                                            "format": "date-time",
+                                            "title": "Last Password Change",
+                                            "type": "string"
+                                        },
+                                        "permissions": {
+                                            "$ref": "#/components/schemas/Permissions"
+                                        },
+                                        "primary_group": {
+                                            "$ref": "#/components/schemas/GroupMinimal"
+                                        },
+                                        "settings": {
+                                            "$ref": "#/components/schemas/AccountSettings"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "administrator",
+                                        "handle",
+                                        "force_reset",
+                                        "groups",
+                                        "last_password_change",
+                                        "permissions",
+                                        "settings",
+                                        "email"
+                                    ],
+                                    "title": "Account",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful Operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Invalid input"
+                    },
+                    "401": {
+                        "content": {},
+                        "description": "Requires Authorization"
+                    }
+                },
+                "summary": "Update the account"
+            }
+        },
+        "/account/keys": {
+            "delete": {
+                "description": "",
+                "responses": {
+                    "204": {
+                        "content": {},
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "content": {},
+                        "description": "Requires authorization"
+                    }
+                },
+                "summary": "Remove all API keys for the account associated with the requesting session"
+            },
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "content": {},
+                        "description": "Requires authorization"
+                    }
+                },
+                "summary": "List API keys associated with the authenticated user account"
+            },
+            "post": {
+                "description": "The new key value is returned in the response. This is the only response\nfrom the server that will ever include the key.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "minLength": 1,
+                                        "title": "Name",
+                                        "type": "string"
+                                    },
+                                    "permissions": {
+                                        "default": {},
+                                        "title": "Permissions",
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "name"
+                                ],
+                                "title": "CreateKeysSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Invalid input"
+                    },
+                    "401": {
+                        "content": {},
+                        "description": "Requires authorization"
+                    }
+                },
+                "summary": "Create a new API key"
+            }
+        },
+        "/account/keys/{key_id}": {
+            "delete": {
+                "description": "",
+                "responses": {
+                    "204": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "content": {},
+                        "description": "Requires authorization"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                },
+                "summary": "Remove an API key by its ID"
+            },
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                },
+                "summary": "Get the complete representation of the API key identified by the `key_id`"
+            },
+            "patch": {
+                "description": "",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "permissions": {
+                                        "title": "Permissions",
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "permissions"
+                                ],
+                                "title": "EditKeySchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Invalid input"
+                    },
+                    "401": {
+                        "content": {},
+                        "description": "Requires Authorization"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                },
+                "summary": "Change the permissions for an existing API key"
+            }
+        },
+        "/account/login": {
+            "post": {
+                "description": "",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "password": {
+                                        "minLength": 1,
+                                        "title": "Password",
+                                        "type": "string"
+                                    },
+                                    "remember": {
+                                        "default": false,
+                                        "title": "Remember",
+                                        "type": "boolean"
+                                    },
+                                    "username": {
+                                        "minLength": 1,
+                                        "title": "Username",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "username",
+                                    "password"
+                                ],
+                                "title": "CreateLoginSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Invalid input"
+                    }
+                },
+                "summary": "Create a new session for the user with `username`"
+            }
+        },
+        "/account/logout": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "204": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    }
+                },
+                "summary": "Invalidates the requesting session, effectively logging out the user"
+            }
+        },
+        "/account/reset": {
+            "post": {
+                "description": "",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "password": {
+                                        "title": "Password",
+                                        "type": "string"
+                                    },
+                                    "reset_code": {
+                                        "title": "Reset Code",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "password",
+                                    "reset_code"
+                                ],
+                                "title": "ResetPasswordSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Invalid input"
+                    }
+                },
+                "summary": "Handles `POST` requests for resetting the password for a session user"
+            }
+        },
+        "/account/settings": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "content": {},
+                        "description": "Requires authorization"
+                    }
+                },
+                "summary": "Get account settings"
+            },
+            "patch": {
+                "description": "",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Fields for editing a user account's settings.",
+                                "properties": {
+                                    "quick_analyze_workflow": {
+                                        "$ref": "#/components/schemas/QuickAnalyzeWorkflow"
+                                    },
+                                    "show_ids": {
+                                        "title": "Show Ids",
+                                        "type": "boolean"
+                                    },
+                                    "skip_quick_analyze_dialog": {
+                                        "title": "Skip Quick Analyze Dialog",
+                                        "type": "boolean"
+                                    }
+                                },
+                                "title": "EditSettingsSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Invalid input"
+                    },
+                    "401": {
+                        "content": {},
+                        "description": "Requires Authorization"
+                    }
+                },
+                "summary": "Update account settings"
+            }
+        },
+        "/analyses": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "properties": {
+                                            "created_at": {
+                                                "format": "date-time",
+                                                "title": "Created At",
+                                                "type": "string"
+                                            },
+                                            "id": {
+                                                "title": "Id",
+                                                "type": "string"
+                                            },
+                                            "index": {
+                                                "$ref": "#/components/schemas/IndexMinimal"
+                                            },
+                                            "job": {
+                                                "$ref": "#/components/schemas/JobMinimal"
+                                            },
+                                            "ready": {
+                                                "title": "Ready",
+                                                "type": "boolean"
+                                            },
+                                            "reference": {
+                                                "$ref": "#/components/schemas/ReferenceMinimal"
+                                            },
+                                            "sample": {
+                                                "$ref": "#/components/schemas/AnalysisSample"
+                                            },
+                                            "subtractions": {
+                                                "items": {
+                                                    "$ref": "#/components/schemas/SubtractionMinimal"
+                                                },
+                                                "title": "Subtractions",
+                                                "type": "array"
+                                            },
+                                            "updated_at": {
+                                                "format": "date-time",
+                                                "title": "Updated At",
+                                                "type": "string"
+                                            },
+                                            "user": {
+                                                "$ref": "#/components/schemas/UserMinimal"
+                                            },
+                                            "workflow": {
+                                                "title": "Workflow",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "created_at",
+                                            "id",
+                                            "index",
+                                            "job",
+                                            "ready",
+                                            "reference",
+                                            "sample",
+                                            "subtractions",
+                                            "updated_at",
+                                            "user",
+                                            "workflow"
+                                        ],
+                                        "title": "AnalysisMinimal",
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    }
+                },
+                "summary": "Find and list all analyses"
+            }
+        },
+        "/analyses/documents/{analysis_id}.{extension}": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Operation successful"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                },
+                "summary": "Download an analysis in CSV or XSLX format"
+            }
+        },
+        "/analyses/{analysis_id}": {
+            "delete": {
+                "description": "",
+                "responses": {
+                    "204": {
+                        "content": {},
+                        "description": "Successful operation"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Insufficient rights"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    },
+                    "409": {
+                        "content": {},
+                        "description": "Analysis is still running"
+                    }
+                },
+                "summary": "Delete an analysis"
+            },
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
+                                        },
+                                        "files": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/AnalysisFile"
+                                            },
+                                            "title": "Files",
+                                            "type": "array"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "index": {
+                                            "$ref": "#/components/schemas/IndexMinimal"
+                                        },
+                                        "job": {
+                                            "$ref": "#/components/schemas/JobMinimal"
+                                        },
+                                        "ready": {
+                                            "title": "Ready",
+                                            "type": "boolean"
+                                        },
+                                        "reference": {
+                                            "$ref": "#/components/schemas/ReferenceMinimal"
+                                        },
+                                        "results": {
+                                            "title": "Results",
+                                            "type": "object"
+                                        },
+                                        "sample": {
+                                            "$ref": "#/components/schemas/AnalysisSample"
+                                        },
+                                        "subtractions": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/SubtractionMinimal"
+                                            },
+                                            "title": "Subtractions",
+                                            "type": "array"
+                                        },
+                                        "updated_at": {
+                                            "format": "date-time",
+                                            "title": "Updated At",
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserMinimal"
+                                        },
+                                        "workflow": {
+                                            "title": "Workflow",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "created_at",
+                                        "id",
+                                        "index",
+                                        "job",
+                                        "ready",
+                                        "reference",
+                                        "sample",
+                                        "subtractions",
+                                        "updated_at",
+                                        "user",
+                                        "workflow",
+                                        "files"
+                                    ],
+                                    "title": "Analysis",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Parent sample does not exist"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Insufficient rights"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                },
+                "summary": "Get the details of an analysis"
+            }
+        },
+        "/analyses/{analysis_id}/files/{upload_id}": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                },
+                "summary": "Download a file generated during the analysis"
+            }
+        },
+        "/analyses/{analysis_id}/{sequence_index}/blast": {
+            "put": {
+                "description": "BLAST data will be attached to that sequence.",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Operation successful"
+                    },
+                    "400": {
+                        "content": {},
+                        "description": "Parent sample does not exist"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Insufficient rights"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Sequence not found"
+                    },
+                    "409": {
+                        "content": {},
+                        "description": "Analysis is still running"
+                    }
+                },
+                "summary": "BLAST a contig sequence that is part of a NuVs result record. The resulting"
+            }
+        },
         "/groups": {
             "get": {
-                "description": "List all existing user groups.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
@@ -506,17 +2130,11 @@
                                         "example": [
                                             {
                                                 "id": "technicians",
-                                                "name": "technicians",
-                                                "permissions": {
-                                                    "cancel_job": true,
-                                                    "create_ref": false,
-                                                    "create_sample": true,
-                                                    "modify_hmm": false,
-                                                    "modify_subtraction": false,
-                                                    "remove_file": false,
-                                                    "remove_job": true,
-                                                    "upload_file": true
-                                                }
+                                                "name": "technicians"
+                                            },
+                                            {
+                                                "id": "sidney",
+                                                "name": "sidney"
                                             }
                                         ],
                                         "properties": {
@@ -528,14 +2146,10 @@
                                                 "minLength": 1,
                                                 "title": "Name",
                                                 "type": "string"
-                                            },
-                                            "permissions": {
-                                                "$ref": "#/components/schemas/Permissions"
                                             }
                                         },
                                         "required": [
-                                            "id",
-                                            "permissions"
+                                            "id"
                                         ],
                                         "title": "GetGroupResponse",
                                         "type": "object"
@@ -546,10 +2160,11 @@
                         },
                         "description": "Successful operation"
                     }
-                }
+                },
+                "summary": "List all existing user groups"
             },
             "post": {
-                "description": "Create a new group. New groups have no permissions.",
+                "description": "",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -592,7 +2207,8 @@
                                             "remove_file": false,
                                             "remove_job": true,
                                             "upload_file": true
-                                        }
+                                        },
+                                        "users": []
                                     },
                                     "properties": {
                                         "id": {
@@ -606,11 +2222,19 @@
                                         },
                                         "permissions": {
                                             "$ref": "#/components/schemas/Permissions"
+                                        },
+                                        "users": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserMinimal"
+                                            },
+                                            "title": "Users",
+                                            "type": "array"
                                         }
                                     },
                                     "required": [
                                         "id",
-                                        "permissions"
+                                        "permissions",
+                                        "users"
                                     ],
                                     "title": "CreateGroupResponse",
                                     "type": "object"
@@ -623,12 +2247,13 @@
                         "content": {},
                         "description": "Group already exists"
                     }
-                }
+                },
+                "summary": "Create a new group. New groups have no permissions"
             }
         },
         "/groups/{group_id}": {
             "delete": {
-                "description": "Delete a group.",
+                "description": "",
                 "responses": {
                     "204": {
                         "content": {},
@@ -638,10 +2263,11 @@
                         "content": {},
                         "description": "Group not found"
                     }
-                }
+                },
+                "summary": "Delete a group"
             },
             "get": {
-                "description": "Get the complete representation of a single user group.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
@@ -659,7 +2285,19 @@
                                             "remove_file": false,
                                             "remove_job": true,
                                             "upload_file": true
-                                        }
+                                        },
+                                        "users": [
+                                            {
+                                                "administrator": false,
+                                                "b2c": null,
+                                                "b2c_display_name": null,
+                                                "b2c_family_name": null,
+                                                "b2c_given_name": null,
+                                                "b2c_oid": null,
+                                                "handle": "leeashley",
+                                                "id": "7CtBo2yG"
+                                            }
+                                        ]
                                     },
                                     "properties": {
                                         "id": {
@@ -673,11 +2311,19 @@
                                         },
                                         "permissions": {
                                             "$ref": "#/components/schemas/Permissions"
+                                        },
+                                        "users": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserMinimal"
+                                            },
+                                            "title": "Users",
+                                            "type": "array"
                                         }
                                     },
                                     "required": [
                                         "id",
-                                        "permissions"
+                                        "permissions",
+                                        "users"
                                     ],
                                     "title": "GroupResponse",
                                     "type": "object"
@@ -690,10 +2336,11 @@
                         "content": {},
                         "description": "Group not found"
                     }
-                }
+                },
+                "summary": "Get the complete representation of a single user group"
             },
             "patch": {
-                "description": "Update the permissions of a group.\n\nUnset permissions will retain their previous setting.",
+                "description": "Unset permissions will retain their previous setting.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -739,7 +2386,19 @@
                                             "remove_file": false,
                                             "remove_job": true,
                                             "upload_file": true
-                                        }
+                                        },
+                                        "users": [
+                                            {
+                                                "administrator": false,
+                                                "b2c": null,
+                                                "b2c_display_name": null,
+                                                "b2c_family_name": null,
+                                                "b2c_given_name": null,
+                                                "b2c_oid": null,
+                                                "handle": "leeashley",
+                                                "id": "7CtBo2yG"
+                                            }
+                                        ]
                                     },
                                     "properties": {
                                         "id": {
@@ -753,11 +2412,19 @@
                                         },
                                         "permissions": {
                                             "$ref": "#/components/schemas/Permissions"
+                                        },
+                                        "users": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserMinimal"
+                                            },
+                                            "title": "Users",
+                                            "type": "array"
                                         }
                                     },
                                     "required": [
                                         "id",
-                                        "permissions"
+                                        "permissions",
+                                        "users"
                                     ],
                                     "title": "GroupResponse",
                                     "type": "object"
@@ -770,49 +2437,250 @@
                         "content": {},
                         "description": "Group not found"
                     }
-                }
+                },
+                "summary": "Update the permissions of a group"
             }
         },
         "/history": {
             "get": {
-                "description": "Get a list of change documents.\n\n200: Successful Operation\n422: Invalid query",
-                "responses": {
-                    "422": {
-                        "content": {},
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/history/{change_id}": {
-            "delete": {
-                "description": "Remove the change document with the given ``change_id`` and\nany subsequent changes.\n\n204: Successful Operation\n403: Insufficient Rights\n404: Not found\n409: Not unbuilt",
-                "responses": {
-                    "204": {
-                        "content": {},
-                        "description": ""
-                    },
-                    "403": {
-                        "content": {},
-                        "description": ""
-                    },
-                    "404": {
-                        "content": {},
-                        "description": ""
-                    },
-                    "409": {
-                        "content": {},
-                        "description": ""
-                    }
-                }
-            },
-            "get": {
-                "description": "Get a specific change document by its ``change_id``.\n\n200: Successful Operation\n404: Not found",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "items": {
+                                        "example": [
+                                            {
+                                                "created_at": "2022-01-28T23:28:53.881000Z",
+                                                "description": "Removed Betaflexivirus from Camelia #1 (BFV_CAM1)",
+                                                "id": "1wfc5x6e.removed",
+                                                "index": {
+                                                    "id": "s7frhn8n",
+                                                    "version": 1
+                                                },
+                                                "method_name": "remove",
+                                                "otu": {
+                                                    "id": "1wfc5x6e",
+                                                    "name": "Betaflexivirus from Camelia #1",
+                                                    "version": "removed"
+                                                },
+                                                "reference": {
+                                                    "id": "pat6xdn3"
+                                                },
+                                                "user": {
+                                                    "administrator": true,
+                                                    "handle": "igboyes",
+                                                    "id": "igboyes"
+                                                }
+                                            }
+                                        ],
+                                        "properties": {
+                                            "created_at": {
+                                                "format": "date-time",
+                                                "title": "Created At",
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "title": "Description",
+                                                "type": "string"
+                                            },
+                                            "id": {
+                                                "title": "Id",
+                                                "type": "string"
+                                            },
+                                            "index": {
+                                                "$ref": "#/components/schemas/HistoryIndex"
+                                            },
+                                            "method_name": {
+                                                "$ref": "#/components/schemas/HistoryMethod"
+                                            },
+                                            "otu": {
+                                                "$ref": "#/components/schemas/HistoryOTU"
+                                            },
+                                            "reference": {
+                                                "$ref": "#/components/schemas/ReferenceNested"
+                                            },
+                                            "user": {
+                                                "$ref": "#/components/schemas/UserMinimal"
+                                            }
+                                        },
+                                        "required": [
+                                            "created_at",
+                                            "description",
+                                            "id",
+                                            "index",
+                                            "method_name",
+                                            "otu",
+                                            "reference",
+                                            "user"
+                                        ],
+                                        "title": "GetHistoryResponse",
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "Successful Operation"
+                    },
+                    "422": {
+                        "content": {},
+                        "description": "Invalid query"
+                    }
+                },
+                "summary": "Get a list of change documents"
+            }
+        },
+        "/history/{change_id}": {
+            "delete": {
+                "description": "any subsequent changes.",
+                "responses": {
+                    "204": {
+                        "content": {},
+                        "description": "Successful Operation"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Insufficient Rights"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    },
+                    "409": {
+                        "content": {},
+                        "description": "Not unbuilt"
+                    }
+                },
+                "summary": "Remove the change document with the given ``change_id`` and"
+            },
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "created_at": "2022-01-28T23:28:53.881000Z",
+                                        "description": "Removed Betaflexivirus from Camelia #1 (BFV_CAM1)",
+                                        "diff": {
+                                            "_id": "1wfc5x6e",
+                                            "abbreviation": "BFV_CAM1",
+                                            "created_at": "2021-12-09T01:32:35.390000Z",
+                                            "imported": true,
+                                            "isolates": [
+                                                {
+                                                    "default": false,
+                                                    "id": "714d1ea9",
+                                                    "sequences": [
+                                                        {
+                                                            "_id": "eukvplhn",
+                                                            "accession": "16SP043_BFV_CAM1",
+                                                            "definition": "Betaflexivirus, complete genome",
+                                                            "host": "Camelia",
+                                                            "isolate_id": "714d1ea9",
+                                                            "otu_id": "1wfc5x6e",
+                                                            "reference": {
+                                                                "id": "pat6xdn3"
+                                                            },
+                                                            "remote": {
+                                                                "id": "g84vd2rm"
+                                                            },
+                                                            "segment": "",
+                                                            "sequence": "TTCAGAAATCAACTCAACCTGTTGTGAGTACCCATCACATCAAAGCAATGGCTTCAGTGATGATAAGAACTCCTATGGAAAAGTTTTTTTCAGCAAATGACAAGAATGATCAAAAAATAATTCTTACGTCTGGAGTGAATTATGTTAAAAAATTTTGTGATGAGCAGGGTTTACACTTTGCATACTCAGTGGATGAGAGGAAAAAGGCTGCACTGACCAATCTTGGCATTAATTTGCATCCAGTGCCCTTTTTACCTCATTCACACCCTTTTTGCAAAATTCTTGAAAATAACCAGCTCATCAACATCCTACCAGGGATATTAGGTAGTGGTAGATGGACATTTATGTCAATTAAAGAAGGAAAAGTAGAAAGTATTATAAAAAAAAGTGGAGGTGTAAATAATAATATTAGTTTAATTAATAGATGTATATGTGCAAAAGATTTTTCAAGGTATGATTTCACCCCTGAAGAAGTTGATTTGAGAACAAATGTTCTCTCTGAGGATCATTTATTTCCAGAGAATCTGATGAGAAGCCTCAAAGGGAAAAAGATTTTTATACATGATGAGGTTCATCACTGGAATTCAAAAATCATGATCAACTTTCTGGAGAAAGTCAAACCTAAGATAATCTTTTGTTCAGTCGTTTATCCGCCAGAATTATTGGCTGGAATATTGGAACCTCAAAATAAAAGTTTTTATGATTTTAAGGTTGATGGTGATAAATTATTTTTTTTTCCAGATGGCAATAGGAGTGAATTTTATGAGCAGCCAAAGGATCTTGGTTGGCTAATGCTTGCAAAGAAATTCAAGCTCAATGACTGCAATTACACTGTTAAATTAATCAGCAGCACTTACTGCCATCACTTATTTCAAATATCTAGAGGTGAGAAGATAACTGAATCAAAGAGATTCTTCTCAGACTTTGATACCATTGACCTCAAAGTTATACACAATGAGAGGTTCAGATACTACGATCACATCCCCATAAGAAGGGCACATCTTGAGAAAGTGTACACATACTTGATGTGTCTTAAAAAACCGGATGTTGAATCAGCCATTGCAAAACTACGCCAACTTATGGAGGATGAGCAGGACACCAGAGTTGTGGCTTTTTTCTGCAAATTTGCAAGGGATGTGATTGAGAAATTCAAGGGAAAGATACATCTGTATGAAACGGGGTGGTTGAGTCAAATTGGAGACAATTTCATACAGATGCTTCCAAATTTCTGGGGGAGGATATTGTCAAGGTGGCATGGATTGAATCTTTTTGACTTCTTGTTCAAGCTTGATAACTTGAGAATTGAGGTTGAGTTGATTGACGTGGATGCTGAGTACTCATCGAGAAGTGAGGTCCTTAAACGCTTGTTTAAGAAGGATCAATTTAGTGAAAATTTTGATGGGCTTAATGTTGAGTACCTCAGAACTATTGGTCTTGAGGTCGAGATGGATGACGCATGGAGCAAGGGTTTCTCATCAAAAAAAAATAACTCAATTCATGCCTGCATCTCAAAATTTGGTGTTGAGAGAGTATCCAGCAAGGCCTTTGAAAGTAAACTCATCTCAAGATTTCATCTCAAAGTTGGCATTCTTGCCTTACTGCACAGGAGAAATGGAAATGGGAAGTCCTTGTTGAAAGGAGCACCTGTGAACCCAGATTCTAAGCAGGAAAAGAAAGGTATTTTAATGATCAAGCTCAGGTCAGATGACAAGGTTGAATCATATCCAGAGCCTTTTTTCTTAAATTTGAGAAATTTTTCATCAAAAGAATGTCCATTTGAAGATTTACGATGGATGAGAGTTCATAACAAGATTTGGGGTGGAACTTTCGGCACCCCATTAATACCAAGTGACTCACCATTGGAAGGAGATGAGGATGTTGACGTTTGTGTCATGGTGGACGAATTAGGATATGATAATGATGTCCAAGATGAGCAATGTGTCAAAAATTTGGAAATTCTTGAGATGGATGAAATTTTGAATGATTCCAACCCCAATATGAATGTGACTTCAACTGAAGTCAAACAAGATGATAAAAGGGAAGATTGCCAGCTCAATTTGATTGAATCCAGCGAAGTGGAAACTTCCAAATTCATGTCAGAGCTTGAGGACTCTGTATATCTCAGTTTCCATGATGATGAAACATTTAATTACTCAAATGTGCCAATAATAGGAGATGGCAATTGTTTTTTTAGAGCCATTTGCATGTCAGTGCATGGAAATGACTTTGGTCATCTTGAAACTAGGAAAAAATTTTCTGAACATGCAAGAAAAATTGGATTCAAATTTAATGCTGAAATTGAGGAGGCAATCACCAAGGATGGCACTTTCTCTGACACATGGATGGTCAATCTCTTTGCAAATGTTATGAATGTTAGACTCTTCATTCATGAAACAGAGGATGGTCCTTACTATGAGATTCACCCAACAATCATCAAGTATGATGACCCCCCAGTGTTCACAGTTAGATTACTATTTAGGGACGCACACTTTACTCTTTTGAAAGAGGAAAAGAGTGAGACTTGTGAAACGCTTAAGAAAGAGTTTTTGATTGATTGGGGGGAGAATGAATTCAGAGCTCTTAATGAATTTGTTGACTTGATAGTGGCTGAGCAGCAAAGGTTCAAGGCCAATAACTTCAAATCAAGGAAGGCCTTCTTTTTCTCTGAGCACGAGGGCATTGACTATGGGCATGATAAAGTTAAGTACCATCGGAATCAGATTGATTCAATTGACAGTCTTCTGCCCAGAGGAATGAATTGTGGTTTCAATTCAATGCTTGTGCAGATCTACGCTGATGGTGCTGAATTGCCAATGCACAGAGATGATGAGAAGGTTTATGACAATGACAACATCCTTTCCATCAATCTCAGGGGAGACTGCAAATTCATAATTAATGAGTCAAAAAAAGGGGCTAGCAATGTCAGGTCAATTGAGATGAAGCAAGGGGCTTATATAGTAATGTTAAGTGGCTTTCAAAAAAAATTCAAACATGGGGTTTCTGAATGTAGAAATGGGCGTGTGAATGTCACATTCAGAAGGCATGTGAGAAGTATGAGGGGTCATGACTTGATTGATTTTGATCTTTCCAAAATTAAAAATGGGTGTTTAATAAGGTCAATTGCAAATGCTGAATGCAGAGGACTGAATCAAGTTGTCCAGGCCTTGATCAGAAAGGATAGAGCCTTTTGGAGTGATTGGATTCATTCAGGGCAGGGGGGGACGATAGATGATCTAGTCAAAGCTGCCACTGAACTTCATTTCTCATTTGATCTAATTACTGAAAAGGGGTGTGACTCTTTTAAAAATTCCGGGCCCAAATTCACATTCCAACTTAAAAATGGTCATTTTGAAAGTATTAATGAAAGACCTTCATGTGTGGAAATGACCTTCCTGAATATGAGATCAAAAGGAAAAAAAAGTGGGAAAGGCATTGAAAAGCTCAAGTTCGAGCACATGAATGAAACAAATTTTGAGATTGTCGGAGAATTTGCCGCAATCCTTAAAAGATCATTCATGGAGCGAACAACAGGTCTAATTCTCTCCGAATGTTATGGCTCTGCATGCAAGAATCTTGAAGATTTGCAAATAGATCCAAGCAGTCAATTTGAGAAGAGAATTGACTTTATCTGTGGCTTTGCGGGGTCAGGAAAGAGCTTTTCAATTCAGTGCAAACTTGCATCGGAGCCTAAAGCTGATTTCTTGGTTATATGTCCCAGGAATGAACTCAAAAAAGATTGGCTTGAAAAAATCAATTGCAGTGAGAAAAAAGTTAGGACATTTGAAGTAGCCTTAACGCTCAACCTTTCAAAGATTGAATTGATTGTGATAGATGAACTGGGCTTGTTTCCAAATGGGTATCTCGATTTGCTGTGTCTAATGCTAACAAACCAGGGCAATTACAATTGCCAAGTGGTATGTTTGTTCGACCCTTTACAAGCGAGGTACCACAGTGATCTTGATGATTCTCTTTTAGATTTTCAGCATGACTGTGATAGGCTGATTGCTGATTGTGAATATCTGTACCTTGCAGAAAGTAGGAGGTTATCAAGCAAGTTCTTTGGAGCTTTCTTTCCAGACATCCACCTGCACAATGAAGGGAAAGAAGATCTAAGCATAACAATATTTGATAGTGTTGTTGTGGCGATAAATGAAATGAAAAAGAAAGAAACTCCAATCGACTTGGTGCTGGTTGCCTCAAGAGATGAAAAAAAGGCGCTGGCAACATCTGTTCGAACATTAACATTTGGGGAAGCTCAAGGCCTCACAGTCAATTATGCTTGTATTGTACTCTCTGAGTACTCAGAAAAGCAAGACGACCTACGGTGGATGGTAGCACTGACAAGGGCAAGGATCAAAATAGTCTTTGTATGTATGTACAGGGGAGGTCCAAGTTGCTTTTTACAAAACAATACATCCAGGTTAATAGGTCTGTTTCTGAGACAATCACCCATGACTATAAACAGGATGAAATTGATGGTCAAGGGTGATTTGATACCTTTTAGAAAGACAATAGGTTGTTCAGATGAAATGGATAGAGAGGAGAGATTGGAAGGAGACCCTTTTCTTAAACCACTGATTTTTCTTGGTAGTAGGATCAATTCAGAACAGGTTGAAGTTCTGGAGCCAGAAGTTGTTGAACCAATTGAGATGACTCACATCCCATTACCCCCAAGCCATTTTGATCAAAGCATTAATTTTGACAGAATTAGAGCACGTGAGCATAGGGAGTTCAGGATGTATTCAATGTGTACAAAGCAGTTTTGTGAGGATTTTGAACATTCAAGAGCCTCGGGGAAGCAGATGACACCAGGTCCTATGAGATTCGAAGCAATCTACCCAAGACATAAAGCAGATGATGACCTGACCTTTTGGATGGCTGTCAAGAAGAGGTTGCGCTTTTCCGAGGAGTTTGTTGAAAGAGCAAAACTTAAAGAAGCAATGGGAGTTGGGGGTTTGTTGTATTCAAACTTCAAGGAGACATTGGGTTTGAAGTTCAATTGGGATCAGAAGCTCCTTGACGAGTGCGTCAATGACTTTGAAGAGAAGAAACTTAGCAAAAGCAAGGCAACTCTACAAGCTCATAGCTCAAGATCTGACTCAGACTGGAAATTGGATCATATCTTTCTGTTCATGAAATCCCAATTGTGCACAAAATTTGAAAAGCAGTATGTTGACGCAAAAGCCGGGCAAACATTGGCTTGTTTTGCACACTGCATTTTAGTCAAGTTTGCGCCTTATTGCAGATACATGGAAAAACAATTGAGAAATCAATTTCCAGATAACATATACATTCACTCAGGAAAGAACTTCAATGATCTTAATCAGTGGGTTAAAGAGAACATGAAGGGGAAGGAATGTATAGAGTCAGACTATGAAGCATTCGATGCGAGTCAAGATGAATACATACTGGCCTTTGAAATATGCCTCATGGAGGATATGGGGATGCCAACTTGGTTCATCAATGATTATATAGATCTTAAATGCACACTTGGGTGCAAATTGGGCCACTTTGCCATTATGAGATTCACTGGTGAGTTTAGCACCTTTCTATTCAACACATTGGCAAACATGGCCTTCACATATGCCAGATATGATTGTGATGCATCAACTCCAATTGCCTTTGCTGGAGATGACATGTGCATGCTTGACAATTGTGCCGAGACTGACAAATTCGAAGGAATTTTTGAGAAAATATCACTGAAGGCGAAGGTTTTGAGGTCATGTACACCTATGTTTTGTGGGTGGAATTTGTGCAAGTATGGAATCTTCAAGGAACCGGCTCTAGTTTATAATAGATTTATGGTTGCTCAGGAAAGGGGTAATGTAGAGGAGTGCCTTGAGAATTATGCAATAGAGGTTTCCTATGCTTACATGTTAGGTGAGAAGCTCTATGAATTTTTGAAAGAAGAAGAGAGAATTAACTATCATCAAAGCGTAGTGAGATTCATAATTAAAAGAGCATATAAACTCAAGACCAAAGTGCGGCTTCTGTACACCAGTGATGGCGAAAGCAATTAGAGTTAAGAGCCTCACCAATCGGCTAGAGGTTGACAAATCTCTGCTCAATTCAAATGAAGTCTCAGCTCTGTATGGTGGTGCCTTTGCACCACTAGTTTTTAAGGATGAGGTTAAAATGGTAATTCCTGGCAACCTACTGGGCGGGCCAATTCGTCTACAGGCAAACATACTCACAAAGTCAAGACTCGAAAAAATTCGCAGCCAAAAATTTAAAGGAAACTCATGTGCTTATCTGCATCTTGGGGTGGTCACCATTGTTATACAATCACTGCTGGTGTCTGGCAATGAAAATGTCAGAGGCAGGTGCTCATTGGTTGATCTTTCAAGGGGCTCTGAAATGACTGGGCTCATTGACAAATTCAAGTTCAGCTTTACTAAAAACGAACCTTTCGCTGCAAAAATGTTGACAATAAATGCAGCAATTGATATTGACTGCGAGGTGTCTGCTGGAAGTATTCAGGCTCTCCTTGAAGTTGAAGGCATTGATGTCAGATCTGAGAGGAGTGTTCTAGCCATCACCACTGGGATAACCTGTGTTCCAACTAACTCCATGGTAATGTTGCCAGGTCTGAAAAGAGAAACCCCGAAGTTTGCAATTGCGAATGTTTACAATGTTCCTGATGAAGATCCAACTGAATGCGAGGCGTTTAACAGATTATTTGGAGCCGCTAATCCAAAGTTGATTGATTTGGGTAGTGAGACTGTGTTGGAAGAAGGGAAGAGATTTGGCCTATGGGGACCTGTCGTTAAACCAGTACACAGAAGGAAGCTCGTGACAAAAGGCATTATCAAGGATCACATGAGCCAATTTATGTCAGGCCCTTCCAAAGATTTGAAAATAGAAGAAGGTTTGGAAAGGTCAAGCTCATTACGTGTTGAAAATGTCTGCGAAACTGGCAAAGAAGAGGCTGATACACGACGAAGTGTCGGAATGGATTTTCAGGAGTTTCGTGGACCAGATAATTCAATGGGGGTTGTTGCTGGTAAATGCTGGGAATCAGAGAGTTCAGCTGAATTTAAACCAACAGGAGCAGAAATCAAGAGTTCAGAACAGCAGACTCCGGACGATTTTTGGCAATATAGCAGATCACTCAGCAGGGCCAGCAACAGTGTACCCGTCAATCAGTGTAAGTTATCAGGTGATGAACATTCAGGGAATCGAAGGTGTTGCACAGATGGATGGAAATTTCAATCTGAGAACATTGGTGGAAAATCTGAAGACCTTCCTTCTGACCAGCCAGGATCCTCAGCTCAACACTGCAACATTAAGGGAGGTCTGCCGGAGCTTTGCAAACTACGCCCTTGAGTACTACATGGAAGACCCCGACAGGATGTCCAATCTAGCTGACAAAATGCCACAACTAGCTCTGCAGGCGAGGGAGGTCATGTTTGACTTTTCTGATGGAATAAGTCAGCAATATTTGAGGGGTTTTCCAATGAGGGCTAAGGTTATACAGGAATTGAATAGTAGGCTTCTGCAGTCCACTGGCACCAAGGCTGTGTTTGAAGCAAGGGGCACAGTTGAGTCCTCAGTTAATTTGATTGTTTAAGGAAACAATACAGGCTTTGTCATTTGAGTGCTGTGAGTTCAAATGATACCTTATAAGTCAGATTCATCTGCACAGGTAAGTTTCAACCTCTTTGTATTTAAAGAGTGGCCGAGTGAGTGTACGCTCATGTTCGGAGATTAGCTTCCCAGCTTTATCAAATATTATGACTTAAGTATTAATAGGGATGTCTTTTATGAAT"
+                                                        }
+                                                    ],
+                                                    "source_name": "16SP043",
+                                                    "source_type": "internal"
+                                                },
+                                                {
+                                                    "default": true,
+                                                    "id": "950197de",
+                                                    "sequences": [
+                                                        {
+                                                            "_id": "5oydqvv1",
+                                                            "accession": "16SP042_BFV_CAM1_B",
+                                                            "definition": "Betaflexivirus, complete genome",
+                                                            "host": "Camelia",
+                                                            "isolate_id": "950197de",
+                                                            "otu_id": "1wfc5x6e",
+                                                            "reference": {
+                                                                "id": "pat6xdn3"
+                                                            },
+                                                            "remote": {
+                                                                "id": "nkun91us"
+                                                            },
+                                                            "segment": "",
+                                                            "sequence": "GTTGAAAATAATATTAGTGTAGTAAATACGAAAACAAACACACATAACTAACACTTGAACTTGAATTCATCTCCCAACGGTACCCATCAGTGTAAGTCCAATGGCATCAGTGATGATAAGAACCCCTCTGGAGAAATTCTTTTCTGCCAATGATAAGGCTGACCAAAAGGTCATCCTTACATCTGGAGTTAGTTATGTAAAAAAATATTGTGATGATAAAGGTCTGCATTTTGCCTATTACCTTGATGAAAGGAAGAAAAAGGCAATCACAGATCTTGGAATTAATTTGCATCCCGTACCCTTTCTGGCACATTCACACCCATTCTGTAAAGTTCTTGAAAACAATCAGCTTGTCAACATTTTGCCAGGTCTGCTTGGCTCAGGCAAATGGGTATTTATGTCCATTAAAGAAGGAAAGGTGGAGCAAATTATTAAAAAAAGTGGAGGAGTTGAAAATAATATTAGTGTAGTAAATAGATGTATATGTGCTAAGGATTTCTCTAGATACGACTTCACACCTAATGAGGTCGATATTCGGCGAAACTCCATTAAAGGTGACCACCTTTTTCCAGAAAATTTAATGCGGAGCCTTAAAGGAAAGAAAATCTTCATTCATGATGAAGTTCATCATTGGAATTCCAAGCAGATGATTGATTTTTTGGAAAGGGTTTCACCTACAATATTATATTGTTCAGTAGTTTACCCACCTGAGCTTTTGGGTGGGATCACCACCCCTCAAAATAAGACCTTTTATGATTTTAAAGTTGAAGGGGACAAACTTTATTTTTTTCCTGACGGTAATCGGAGTGAATTCTATGAACAACCTGCTGATCTCAAATGGTTGCTCATGGCTAAAAGGTTCATTTTGAAGGACTCTGAGTACACTGTCAAAATGCTCAGTAGCACTTATTGTCATCACCTTATCCAAATTTCAAAAGGGGCCAAAATCACGGAATCAAAACGGTTTTTCTCAAACTTTGATACCATTGATTTGAAGGTCATACACAAAGAAAGGTTTAGGTATTATGATGACATTCCAATTCGGAAACTGCACCTTGAGAAGGTTTACACTTATTTGATGTGTCTTAAAAAACCAGATGTTGAATCAGCCATTGCTAAGCTGAGGCAGCTTATGGAGGATGAACAAGACACAAGGGTTGTTGCCTTTTTTTGCAAATTTGCAAAGGATATAATTGACAGATTCAAAGGCAAAATACATCTTTATGAAACTGGATGGTTTGAGCACATTAAAGACTCATTTGTAAAGATGTTGCCCAACTTTTGGGGTAGATTGCTCTCAAGGTGGCACGGCGTTAATCTTTTCGAGTTTCTATTTAAGCTGGAATGCTTATGCATAGAGGTTGAATTGATTGACGTTGATTCTAGTTTCTCAGTCAAGGAATCCCTCAAGGATAGAGTTTTGGGCAGATCTGAGGGATGCAGTGCCGAGCTACAAAATTTGTATATGCAGGAGTTTGGTCCTTCAGCCATGCTAGAAGTAGGCTGGCATGGCAATCTTAAAAAGGTCATGAAGGATGTTGAAGAGAAAAACTTGATTAAAAATGGCAGATTATCCATCCGTGAAAAAGCATATTCTTCAAAGTTACTAAGCAGGTTCCATTTGAGAGTTGGAATTCTTAAGTATATTGGTGTTCAAAATAGAATAGGGGAAAGGAATGAGTTAAAACTTAGAACACCAATGATCAAGATGCACAATTCTGATGGCATTTACTCCTATCCAGAACCTGAATTCATCAGAGATGAGGGGTTCACCTCATTTGAATGTGAGTACAGCAACCTTAGGTGGCTGAATGTTCATAGAAACCTTTGGTTCAACAATTTGGAATTAGGGGTTGACGTTTGTGATGTTCATGAGCCACAAGTCACCAATTCTGAGGACTTGTCTTCCGCTGAAAACCTTTTAGAGGTCATTGAAGTGGATGATGAGTTCTTTCCCTCAAACATGAAAGAGACTGTTGAGGTGGCTAAAGAAACTGGTACTCTCAGAGAGAAAAGTGACCCTATGAGGCAAAGTTCATCTGAAGTTTTGGATGATGAGCTGATTCGTGAACTTGATGGATCTGTGACCATAATTCACAATTTTACAGAGGAGTTGTTGGTTAAAAAAGATGTGCTTGGAGATGGTAACTGCTTTTACAGAGCACTGAGGCTCAAATTAACTGGGAGTCAGGAGGGCCATGAGGAGGTCAGATTGAAATTTGCAAATCATGCTAGTCATATTGGCTTTAATTTGTCTACAAACATGAGAAATATGATCATCACGCCAGGTGTTTTTACTGAGACGTGGATGGTGAATCTTTTTGTGAATGTTATGAATATAGACATCATGATTCATGAGGACATGAGTGGCAATTACTACTCAATCAAACCCAACCTGATTCATTATGATGAAACCCCAAAAATCCAAATAAGATTGCTTTTTGAAAATTCTCACTTTGCATTGCTGGAGTCAGCAGACAAGTATGAAGAGAAAATGGATTTGGACTCCAAATCTTTTGAGGCAAAGTATCTCATTAAAAGTGGGTTTGGAGATTTTGAAGCTATTAGAACTTTAGTTGAAGATCTTGTCAGCAGGGTGAAAGAATACAAATTCAATGAGTTTAAAGGAAGGAGGGCTTATTTCTTCTCTGAAAATGAAAGCATTGATTATGCACATGGGAAGACCAAATATTTGAGAAATCAATTTGACTCTGTCAACGAATTACTTCCCATTGAATTGAAAGGGAAATTCAATGCCTTTCTGCTCCAAATTTTTGAAGAGGATGGAGAGATAGGGTTCCATAGAGACAATGAAGGTGTGTATGACAATGACAACATTCTTTCAATCAATCTCAATGGTTGTGCATCCTTCATGATTGAAGACTGTGGCAGCAAGGAAATCTATGAAATCAAAATGACTGATGGTTTATTCATTTCAATGCTTCCTGGATTTCAAAAGAAGTTCCGTCACGGTGTCACCAATTGTTCGTCAAAAAGAGTTAATATCACTTTCCGAAACCATGTTAGATCGGTCAATGGCAGGCCTGTAATTGAAATTGACCTTTCTGAAATAAGAAATGGTTGCATGCTTAGAGCAATAGCTGATGCTGAAAAGCGCAGCTTAGGGCAGGTTGTGCATGCATTATTTAAAAAAGATCGTGACTTTTGGAAGATGTGGATTTCAGAAGCAAAGGGTGGCACAATTGAAGATATGATGAAAGCAGCCATTGACCTCAAATTTTCATTCGAACTTTTGAGTGATGGCAAGTGTGAAATCTTTGGAACTTCAGGTCCAAAACTCAATTTCGAGTTAAAGGGGGGACACTTTTCAGTCATGGATTCAAGACCTTCATGTGTAGAGAGGACCTTCTTAAATTCAAACACCTCAAGGAGAGGGTCATCTAAACATTTGGGTGAGATGGACCTTGAATATTTGAATAATACCAACTTTGAAGCAAAGGGAATTTTTGCGAACCAACTCCAGATATCCTTTCTGGAACGTACTACTGGTCTAATTTTGTCAGAGGTTTACGGTTCAGCTGGGAAAAATTTGGAATTGGTTAAGATCAACAGGGAGAACATGATTGAAAAGGAAATTAATTTTATGTGTGGATTTGCAGGATCTGGGAAGAGTTATTCCTTACAACAGAGGGTTAAACAGAGCCTGGATGCTGAATTCCTCATAATATGCCCAAGAAATGAGCTCAAGAAGGATTGGTTGAGTAAGTTGAATTGCAATGAGAAAAAAGTGAGAACATTTGAAGTTGCATTAACTCTCAATTTATCCAAATTGGACTTGATAATTATTGATGAGCTTGGCCTTTTCCCAAATGGTTATCTAGATTTAATTTGCTATATGCTTGCGGATCAAGGTAATCATGACTGTAAGATCATGTGTCTGTTCGACCCTTTGCAATCTAGATACCATAGCGACCTAGACAACCATCTTTTGGATTTTGACCATGAATGCGACAGATTGATAGATGGTCTTGATTTTAACTATTTGATGGAGAGTAGGAGAATGTCCAAATCATTCTTTGGAGCCTTCTTTAGAGATGTAACTTTATACAACGAGGGTGATCAAAACTTCAAATTGGAGGTGTATGATTCAGTCATCGTTGCCATAAATGAAGGAAAGAAAAAGGGCATTGAGGTCGATCTGATACTAGTTGCATCCAGAGATGAGAAAAGAGCATTATCTTGTTCTGTCAATACATTGACATTTGGAGAAGCACAAGGTTTGACGGTGAACCATGCATGCATTGTGCTTTCAGAATATGCAGAGAAACAAGATGATTTCAGATGGATGGTCGCATTAACTAGGTCCAGAATAAAGGTCAGCTTTGCGGTCATGTACAGAGGTGGATTAGTGAGTTTTGTTCAAAATAACTCAGCAAGATTGATTGGCCTGTTTATGGCTCAATCACCACTAACCATCAATCGAATGCAATTAATGCTCAAAGGAAACATTAATCCATGCATCAGAAGTCTAGGATGCTCTGATGAGATGGACAGGGAAGAAAGGCTTGAGGGTGATCCCTTTCTAAAACCGCATATATACCTTGGCCAGAGGATCAATGCTGAAGAGTTTGAGGTTTTTGAGCCAGAAGTTGTTGAGCCAATTTGTAGAACGCATATTGAACTACCTCCTGAAAACTTTGATCAAAGCATCAACTTTGATTTAATTAGAGCGAGGGAGTTTCGGGAAATGCGGATTGGAGGTGAGACAACTAAACAATTTTGCGAAGACTTTGAGCATTCTAGAGCAAATGGAAAAAGAATGACTTCAGGTCCAATGAGGTATGAAGCAATATACCCTAGGCACAAAGCCGATGATGATGTGACCTTTTGGATGGCAGTCAAGAAAAGATTGAGATTTTCCGAGGAGCATGTTGAGAGGGCCAAATTGAAAGATGCATTTGGGGTCGGAGGCTTGTTATACGAAAATTTCAAAAGTAAAATGGGACTCAAATTCAACTGGGATCAACAACTTTTGGATGAATGTGTTAACGACTTTGAAGTCAAAAAACTGAGTAAAAGTAAAGCCACTTTGCAAGCTCACAGCTCCAGGTCTGATTCTGACTGGAAGATTGACAACATATTTCTCTTCATGAAATCACAATTGTGCACAAAGTATGAAAAGCAATATGTAGATGCGAAGGCTGGCCAAACGTTGGCGTGCTTTGCTCACATGGTGTTGGTCAAATTTGCGCCATATTGTAGGTATATGGAGAAGCAGTTAAGAAATCAATTTCCAGAGAACATTTATATACATTCAGGGAAGAACTTCAATGACCTTAATGACTGGGTTAAAAGGCATATGTCAGACAATGAATGCATTGAATCGGATTATGAAGCATTTGATGCATGTCAAGATGAGTATATATTGGCATTTGAGGTACTTCTCATGGAAGATATGGGTATGCCAAATTGGTTCATTAATGACTACATTGATCTTAAATGTACTTTGGGTTGCAAATTGGGCCACTTTGCGATCATGAGATTTACTGGTGAGTTTAGCACCTTTTTGTTCAACACCTTGGCAAACATGGCATTTACTTTTGCCAAATATGATTGTGATGGGAAAACACCAATTGCTTTTGCTGGAGATGATATGTGCATGCTTTCAAAATGTGATGAAATCTCAAAATTTGAGAGCGTCTTTGAGAAGATATCACTAAAAGCAAAGGTGGTAATCTCAAAAAATCCAATGTTTTGTGGGTGGAATCTGTGTAAGTATGGAATTTTCAAAGAACCTGCATTGGTGTACAACAGGTTCATGGTTGCAGAGGAAAGGGGAAATGTCAATGAATGCTTAGAAAATTATGCAATTGAAGTTTCCTATGCTTACATGTTAGGTGAGAAGCTCTATGAATTTTTGAAAGAAGAGGATAGGGTCAATTATCATCAAATTGTGGTCAGATACATTGTTAAACACATCGACAAACTCAAAACGAAGGTAAAGGTTCTGTTCTCAGGGAAAGATGTCTAAGGCTGTCAAAGTTAAAAGCCTTGTACAGAGATTGGAAGTTGACAGGTCGTTATTGAACTCAAATGAGATATCCGCTCTGTATGGGGGTGCATTTGCGCCATTGGTCTTTAAAGATGAGGTCAAGATGGTCATCCCTGGTAATCTATTGGGTGGTCCGATTTGTTTGCAAACAAACATTCTAACCAAGTCAAGGCTTGAAAAAATAAGAAGTCAGAAATTCAAAGGGAAGAGCTGTGCTTATTTGCATTTAGGCGTTGTGACAGTCGCTATTCAATCCTTATTAGTTTCCGGCAATGAGAAAATTAAGGGTAGATGCTCGCTTGTTGATTTATCCAGAGGGTCAGAGGAGACTGGCTTAATAGACAGATTCAAGTTTTGCTTCACAAAATCTGAACCTTTTGCTGCAAAAATGTTGACCATCAATGCTGCAATCGATATCGACTGTGATGTATCTGCAGGGAGCTTGCAAGCTCTGCTCGAAGTTGAGGGAATAGATATTCGAACTGAAAGGAGTGTGCTTGCAGTTACTACAGGTATAACGTGTGTGCCAACCAATTCCATGGTGATGCTCCCTGGTTTGAAGAGAGAGACTCCCAAATTCGCAATTGCAAATGTTTATAATGTTTCTGATGAGGACCCGGAAGAACATGCTGCTTTCAATTCATTATTCAGTGCAGCAAATCCAAAGCTGATCGATTTGGGCCAAGAATGCATTTTGGAGGAAGGAAAAAGATTTGGCTTTTGGGGTCCAATGGTTAAGCCAGTTCATAGAAGGAAATTAACAACTCGCGGCTTGATCAGAACTCATATGGATCAAATTATGTCTGGTCCTGGAAAAGATTTGAAAGAAGAAGGAAATTCAAAGTTGTCCAGATCATACTTATCAAGAAATGTCTGCGAAATTGGCAAAGAAGAGGCTCATCCACGACGAAGTGTCGGAATGGCTATGGAGGAGCTTTGTGGACCCAGAAAATTCGATGGGAGTTTGGTTGGTGAATGCAGCAAATCAGCGGGTTCAGTTAAATCTGAATCAGCAGGAGCAAAAATCAAGGGTGCAAGTGAGTCGCCTAAGATCTATTTTTGGGAACATAGCAGATCACTCGGCAGGTCCAGCAACCGTGTACCCGTCAATCAATGTAAGCTTTCAAACTCTGAACATTCAGGGAATAGAAGGAGTTGCACAGATGGATGGGAATTTCAATCTGAGAACACTTGTCGAAAATCTGAAGATGTTTCTGATAACGAGTCAGGATCAGCAGCTGAGCACTGCAACATTGAGGGAGGTTTGCCGGAGCTTTGCAAATTACGCCCTTGAGTATTACTTGGAAGACCCCGACAGAATGTCAAATCTCGCTGACAAAATGCCTCAATTGGCACTGCAGGCTAGAGAAGTTATGTTTGACTTTTCTGATGGCATTAGTCAGCAATTCATAAGGGGTTTTCCAATGAGGGCAAAGGTAATCCAGGAGTTGAATAGCAGGTTGTTACAGTCATCTGGGACAAAAGCTGTGTTTGAAGCAAGGGGCACAGTTGAGTCTTCAGTTAATTTGATTGTTTAAGGAAACAATACAGGCTTTGTCATTTGAGTGCTGTGAGTTCAAATGATACCTTATAAGTCGCTTGCGCACAGGTAAGTTTCTATACCTCTTTGTATTTAAAGAGGAGTCACTTCCTTTGGTAGAATTGCTTTAATTAGCAGTGGGCCGCCAAACAGTGCATTAAGTACTCCCCAACTAAGTAAAATATTATGATATAACTATTAATAGGGATGCCTTTTCAATATTTAGG"
+                                                        }
+                                                    ],
+                                                    "source_name": "16SP042_B",
+                                                    "source_type": "internal"
+                                                },
+                                                {
+                                                    "default": false,
+                                                    "id": "eb4c1673",
+                                                    "sequences": [
+                                                        {
+                                                            "_id": "yymkrcpy",
+                                                            "accession": "16SP042_BFV_CAM1_A",
+                                                            "definition": "Betaflexivirus, complete genome",
+                                                            "host": "Camelia",
+                                                            "isolate_id": "eb4c1673",
+                                                            "otu_id": "1wfc5x6e",
+                                                            "reference": {
+                                                                "id": "pat6xdn3"
+                                                            },
+                                                            "remote": {
+                                                                "id": "u7ni2w4n"
+                                                            },
+                                                            "segment": "",
+                                                            "sequence": "ATCACAAAATACAACAACATAATTCAGAAACTAACTTAACCTGTCGTGAGTACCCATCACATCAAAGCAATGGCTTCAGTGATGATAAGAACTCCTATGGAAAAGTTTTTTTCAGCAAATGACAAGAATGATCAAAAGATCATTCTCACGTCTGGGGTGAATTATGTTAAAAGATTTTGTGATGAGCAGGGTTTACATTTTGCATACTCGGTGGATGAGAGGAAAAAGGCTGCACTGACCAATCTTGGTATTAATTTGCATCCAGTCCCCTTTCTACCTCATTCGCACCCTTTTTGCAAGATCCTTGAAAATAACCAGCTCATTAACATTTTACCAGGGATACTAGGTAGTGGTAGGTGGACGTTTATGTCAATTAAAGAAGGAAAAGTAGAAAGTATAATTAAAAAAAGCGGAGGTGTAAATAATAATATTAGTTTAATCAATAGATGTATATGCGCAAAGGATTTTTCAAGATATGACTTTACTCCCGAAGAGGTTGATTTGAGGACAAATGTCCTCTCTGAAGATCATTTATTTCCTGAAAATCTGATGAGGAGCCTCAAAGGAAAGAAAATATTCATACACGATGAGGTTCATCACTGGGATTCGAAAATTATGATCAACTTTTTAGAGAAAGTTAAACCGAAAATAATCTTTTGCTCAGTTGTTTATCCGCCAGAATTATTAGCTGGCATATTAGAACCTCAGAACAAGAGTTTTTATGACTTTAAGGTGGATGGTAATAAGTTATTCTTTTTCCCTGATGGTAATAGGAGTGAGTTTTATGAACAGCCAAAGGATCTCAGTTGGCTAATGCTCGCAAAAAGATTCAAACTTGATGATTGCAATTACACCGTCAAGTTGATCAGCAGCACCTATTGCCATCATCTGTTTCAAATATCCAGAGGGGAAAAAATAACGGAGTCAAAGAGATTCTTCTCAGACTTTGACACCATTGACCTCAAAGTTATACACAATGAGAGGTTTAGATACTACGATCACATTCCAATAAGAAGAGCACACCTTGAGAAAGTGTACACATATTTGATGTGCTTAAAGAAGCCTGATGTTGAATCGGCTATTGCAAAATTGCGCCAACTTATGGAGGATGAGCAGGACACCAGAGTTGTGGCCTTTTTCTGCAAATTTGCAAGGGATGTGATTGAGAAATTCAAGGGAAAGATACATCTGTATGAAACTGGATGGCTAAGTCAAATTGGAGACAATTTCATACAGATGCTTCCAAATTTTTGGGGGAGAATATTGTCAAGGTGGCATGGGCTTAATCTCTTTGATTTCCTATTTAAGCTTGACAATTTGAGAATTGAAGTTGAGCTGATTGACGTTGATGCAGAGTACTCATCAAGGAATGAGGTACTCAAACGTCTGTTCAAAAAAGACCAATTTGGTGAGAACCTCGATGGGCTAAACACTGAATACCTTAGGACCATTGGTCTTGAGGCTGAAATGGATAATGCATGGGGAAAAGGTTTCTCATCAAAGAAAGATAGCTCAATTCGTGCATGTGTCTCAAAATTTGGCATTGAGAGGGTCTCAAGTAAGGCTTTTCAGAGCAAGCTCGTCTCAAGATTCCATCTCAAAGTTGGAATTCTTGCCCTGCTACATGAGAGAAACAGGAATGAGAAGTTCTTACAAAAAGGGATGTCTGTTGATTTCAATTCCAAATCCCAAGAGAGAAGGGTTTTAATGATCAAGTTCAAGTCGGAGGATAGGGTTGACTCATATCCCGAACCCTTTTTCTTGAATTTGAGAAATTTTTCATCAAAAGAGTGTCCATTCGAGGATCTTAGATGGATGAAAGTGCATAATAAAATTTGGGGTGAAACTTTTTGCACTCCATTGATTCCAAATGAATTTCCATCAGAAAAAGATGAAGATATTGACGTCTGCAGCATTGTGGATGAGTCAGAATGTGATGACAGCAATCACGATGGGCAGTGTCTTGAAAACTCAGGGTCTTTTGGAATTAACAAGACCTCAGATGACCCAAACATTAATGTGGAAATAACTTCAATTGAGACCAGGCAGGGTGATGAAATCGATTGCCGGCTTAATTCAACTGAACCTAGTGAGGTGGAAACATCTGAATTCATGTCTGAGCTAGAGAATTCTGTGTATCTCAGCTTTCATGATGATGAAGTTTTCAATTATTCAAAGGTGCCAATAATAGGGGATGGCAATTGTTTCTTCAGAGCCATTTGTATGGCAGTGCATGGGAATGATCATGGTCACCTTGAAACTAGGAGGAAATTCTCTGAACATGCAAAGAGGATTGGATTCAAATTTAACGCTGAGATTGAGAAGGCAATTGTCGAGAGTGGAACTTTCTCTGACACATGGATGGTCAATCTCTTTGCAAATGTTATGAATGTTAGACTCTTCATTCATGAAACAGAGGATGGTCCTTACTATGAGATTCACCCAACAATCATCAAGTATGATGATCCCCCATTATTTTCAATTAGACTATTATTTGGGGATGCACACTTCACACTTTTGAGGGAAGTGGAAGGTGAATCATGTGAAAAACTTAAAGAAGAGTACATGATTGATTGGGGAGAGAACGAATTCAAGGTCCTCAATGAGTTTGTTGACTCAATAATGGACGAGCAGCATAGGTTCAAGGCTAACAATCTCAGGTCAAGAAAGGCTTTCTTCTTTTCTGAGCACGAGGGTATTGACTACGGGCATGATAAAGTTAAGTACCATCGGAATCAGATTGATTCAATTGACAGTCTTCTGCCCAGAGGAATGAATTGTGGTTTCAATTCAATGCTTGTGCAGGTGTACACTGATGGTGCTGAGCTACCAATGCATAAAGATGATGAGAAGGTCTACGACAATGACAACATTCTCTCTATCAATCTAAGGGGAAGCTGCAACTTCATAATTAATGAGTCAAAAAGAGGAGCTGACAATGCCAGATCAATTGAAATGAAGCCAGGGGCTTACATAGTGATGTTGAGTGGCTTCCAGAAAAAGTTCAAACATGGGGTTTCTGAATGTAGAAATGGGCGTGTGAATGTCACATTCAGAAGGCATGTGAGAAGTATGAGGGGTCATGACTTAATTGATTTTGATCTTTCCAAAATTAAAAATGGGTGTTTAATTAGGTCAATTGCAAATGCTGAATGCAGAGGACTGAATCAAGTTGTCCAGGCCTTGATTAGAAAGGACAGAACCTTCTGGAGTGATTGGATTCACTCAGGGCAGGGGGGAACAATAGATGATCTGGTTAAGGCCGCCACTGAGCTTCACTTCTCATTTGACTTAATCACTGAAAAAGGGTGTGAATCCTTCAAAAATTCTGGGCCAAAGTTCACATTCCAACTCAAAGATGGACATTTCGAAAGCATCAATGAAAGACCATCATGTGTGGAAATGACCTTCCTGAACATGAAATCAAAAGGAAGCAGCAAAGATAGGAGGAGCATTGGAAAGTTGAGGTTTGAACACATGAATGAAACCACTTTTGAGATCGTTGGAGAGTTTGCTGCAATCCTCAAAAGATCATTCATGGAGAGAACAACAGGTCTAATCCTCTCTGAATGTTATGGCTCAGCATGCAAGAACCTTGAAGACTTACAAATAGATCCAAACAGTCAATTTGAAAAAGAAATTGACTTCATATGTGGTTTTGCAGGATCCGGGAAAAGCTTTTCAATTCAATGCAAACTTGCATCGGAACCTAAAGCTGATTTCTTGGTTATATGTCCCAGGAATGAACTTAAAAAAGATTGGCTTGAAAAGGTCAATTGTAATGAGAAGAAAGTGAGGACATTTGAAGTGGCTCTGACACTAAATCTTTCAAAAATTGAACTGATCGTGATAGACGAGCTGGGCTTGTTTCCTAATGGATACCTCGATCTGCTGTGTCTAATGTTGATCAATCAAGGGAATTACTCCTGTCAGGTGATATGTTTGTTCGACCCCTTACAGGCAAGGTACCATAGCGATCTTGATGACTCCCTTCTGGATTTTCAACATGACTGTGATAGGTTGGTCACTGACTGTGAGTATCTGTACCTCGCAGAAAGCAGAAGATTGTCAAGCAAATTCTTTGGGGCCTTTTTCCCAGACATTCACCTACATAACGAGGGGAGGGAGGATTTTGGCATGACAATATATGACAGTGTTGTCGTGGCAGTGAATGAAATGAAGAAGAAGGAAACCCCGCTTGACTTGGTGCTGGTCGCTTCAAGGGATGAAAAAAAAGCATTGGCAACATCCGTTCGAACCTTGACATTTGGAGAAGCACAGGGGCTTACAGTGAACTACGCCTGCATTGTGCTCTCTGAATATTCAGAAAAGCAAGATGACTTACGATGGATGGTGGCGCTAACAAGGGCAAGGATCAAAATAATTTTTGTGTGCATGTATAGAGGTGGTTCAAGCTGCTTTCTACAAAACAATTCATCTAGGTTAATAGGTCTGTTCATGAGACAATCACCCATGACAATAAACAGGATGAAGCTGATGGTCAAGGGCGATTTGATACCTTTCAGAAAGACGATAGGTTGTTCGGACGAGGTGGATAGAGAAGAAAGGCTAGAAGGGGACCCCTTTCTCAAACCACTTATTTTCCTTGGAAGCAGGATCAACTCAGAGCAAGTTGAAGTGCTGGAGCCAGAAGTTGTTGAACCAATTGAAATGACGCATATTCCACTACCTCCAAGTCACTTTGATCAAAGCATCAATTTTGACAGAATCAGAGCTCGTGAGCACAGAGAATTCAAAATGAATTCAATGTGTACAAAACAGTTCTGTGAAGATTTTGAGCATTCAAAGGCCTCAGGAAAACAGATGACGTCAGGCCCTATGCGCTTCGAGGCAATTTACCCAAGACATAAAGCAGATGACGATCTCACCTTCTGGATGGCTGTTAAGAAGAGACTGCGTTTTTCTGAAGAGTTTGTTGAAAGGGCAAAACTCAAAGAGGCAATGGGGGTTGGAGGTCTGTTGTATTCCAATCTTAAAGAGACATTAAATTTGAAATTCAATTGGGATCAGAGCCTCCTTGACGAATGTGTCAATGACTTTGAAGAGAAGAAGCTTAGCAAAAGCAAGGCAACTCTACAAGCTCATAGCTCAAGATCTGACTCAGACTGGAAATTGGACCACATCTTTCTATTTATGAAATCTCAATTGTGTACAAAATATGAGAAGCAGTACGTAGACGCAAAAGCTGGACAGACATTGGCATGTTTTGCGCACTGCATTCTGGTTAAATTTGCACCCTACTGCAGATATATGGAAAAGCAATTGAGGAGTCAATTTCCGGATAACATATACATTCACTCAGGAAAGAACTTCAATGATCTTAATCAGTGGGTTAAAGAGAACATGAAGGGGAAGGAATGTATAGAGTCAGACTATGAAGCGTTCGATGCGAGTCAAGATGAATACATACTGGCCTTTGAGATATGCCTCATGGAGGATATGGGGATGCCAACTTGGTTCATCAATGATTATATAGACCTTAAATGCACACTCGGGTGCAAATTGGGCCATTTTGCCATTATGAGGTTCACTGGGGAGTTTAGCACCTTTCTATTCAACACACTGGCAAACATGGCCTTCACGTATGCCAGATATGATTGTGATGCATCAACTCCAATTGCCTTTGCTGGGGATGACATGTGCATGCTTGATAACTGTGCTGAAACTGACAAATTCGAAGGAATTTTTGAGAAAATATCACTGAAGGCGAAGGTTTTGAGGTCATGTACACCCATGTTTTGTGGGTGGAATTTATGTAAGCATGGGATCTTTAAGGAACCAGCTCTAGTTTACAACAGATTCATGGTGGCTCAGGAAAGAGGTAACGTGGAAGAATGCCTTGAGAACTACGCAATAGAGGTATCCTATGCTTACATGTTAGGTGAGAAGCTCTATGACTTTTTGAAAGAAGAAGAGAGGATTAACTACCATCAAAGTGTTGTGAGGTTCATAATCAAAAGAGCAGATAGACTTAAAACAAAGGTGCGACTTCTGTATACCAGTGATGGCAAAGGCAATTAGGGTCAAAAGTCTCACCAATCGATTGGAGGTTGACAAGTCTTTGCTCAACTCCAATGAGGTCTCAGCTTTGTACGGCGGCGCTTTCGCACCACTAGTATTCAAAGATGAAGTCAAAATGGTGATTCCTGGCAATCTATTAGGTGGGCCAATTCGTTTGCAAGCAAATATACTCACCAAATCGAGACTTGAGAAAATTCGCAGTCAGAAGTTCAAAGGGAATTCCTGTGCCTACCTGCATCTTGGGGTGGTTACTATTGTCATACAATCACTATTGGTGTCCGGAAATGAAAATGTCAAAGGCAGATGCTCACTGGTTGACCTCTCAAGAGGCTCCGAGATAACTGGGCTTATTGACAAATTCAAGTTTAGTTTTACCAAGAGTGAACCATTCGCAGCAAAGATGTTAACAATAAATGCAGCAATTGATATTGATTGCGAGGTATCTGCTGGGAGTATTCAAGCCCTTCTTGAGGTCGAGGGCATTGATGTAAGATCTGAAAGAAGTGTCTTAGCCATCACCACCGGCATAACCTGTATTCCAACCAACTCCATGGTGATGCTACCAGGCTTAAAGAGGGAAACCCCAAAATTTGCAATCGCAAATGTTTACAATGTTCCTGATGAAGACCCGATTGAATGCGAGGCATTCAATAGGCTGTTCGGAGCTGCCAATCCAAAATTGATCGACCTAGGTAGTGAAACTGTATTGGAAGAAGGGAAAAGGTTTGGTCTATGGGGCCCTGTTGTGAAACCAGTGCACAGGAGGAAGCTTGTAACAAAAGGCATCATTAAGGATCATATGAGCCAGATTATGTCAGGCCCTTCCAAAGTTTTGAAAATAGAAGAAGGCTTGAAGAGATCAAACTCATTACGTGTTGAAGATGTCTGCAAAACTAGCGAAGAAGAGGCTGATACACGACGAAGTTTCGGAATGGATTTTCAGGAGCTTCGTGGATCCGGAGAATTCAATGGGGGTTTGGTTGGTGAATGCTGGGAACCAAAGAGTTCAGCTGAATTTAAACCAACAGGAGCAAAAATCAAGAGTTCAAAACAGTCGACTCCGGACGATTTTTGGCAACATAGCAGATCACTCAGCAGGGCCAGCAACAGTGTACCCGTCAATCAGTGTAAGTTATCAAGTGATGAACATTCAGGGAATCGAGGGTGTTGCACAGATGGATGGAAATTTCAATCTGAGAACATTGGTGGAAAATCTGAAGACCTTCCTTCTGACCAGCCAGGATCCTCAGCTCAACACTGCAACATTAAGGGAGGTTTGCCGGAGCTTTGCAAACTACGCCCTTGAGTACTACATGGAAGACCCCGATAGAATGTCGAATCTAGCTGACAAAATGCCACAACTAGCTCTGCAGGCGAGGGAGGTTATGTTTGACTTTTCTGATGGAATAAGTCAGCAATATTTGAGGGGTTTTCCAATGAGGGCTAAGGTGATACAGGAATTGAATAGCAGGCTTCTGCAGTCCACTGGCACCAAGGCTGTGTTTGAAGCAAAGGGGACTATTGAGTCCTCAGTTAATTTGATAGTTTAGAAACTATCTAGGCTTTGTATGTTGAGTGCTAAAAGTTCAACATATACCTCATAAGTCAGATTTATCTGCTCAGGTAAGTTTCAACCTCTTTGTATTTAAAGAGTGGCCGAATGAGTGCATGCTCATGTTCGGAGACCAGCTTCCCAGCTTTATCAAATATTATGACTTAAGTATTAATAGGGATGTCTTTTATGAATATTTATG"
+                                                        }
+                                                    ],
+                                                    "source_name": "16SP042_A",
+                                                    "source_type": "internal"
+                                                }
+                                            ],
+                                            "issues": null,
+                                            "last_indexed_version": 0,
+                                            "lower_name": "betaflexivirus from camelia #1",
+                                            "name": "Betaflexivirus from Camelia #1",
+                                            "reference": {
+                                                "id": "pat6xdn3"
+                                            },
+                                            "remote": {
+                                                "id": "5ce8b98a"
+                                            },
+                                            "schema": [],
+                                            "user": {
+                                                "id": "igboyes"
+                                            },
+                                            "verified": true,
+                                            "version": 0
+                                        },
+                                        "id": "1wfc5x6e.removed",
+                                        "index": {
+                                            "id": "s7frhn8n",
+                                            "version": 1
+                                        },
+                                        "method_name": "remove",
+                                        "otu": {
+                                            "id": "1wfc5x6e",
+                                            "name": "Betaflexivirus from Camelia #1",
+                                            "version": "removed"
+                                        },
+                                        "reference": {
+                                            "id": "pat6xdn3"
+                                        },
+                                        "user": {
+                                            "administrator": true,
+                                            "handle": "igboyes",
+                                            "id": "igboyes"
+                                        }
+                                    },
                                     "properties": {
                                         "created_at": {
                                             "format": "date-time",
@@ -858,23 +2726,24 @@
                                         "user",
                                         "diff"
                                     ],
-                                    "title": "History",
+                                    "title": "HistoryResponse",
                                     "type": "object"
                                 }
                             }
                         },
-                        "description": ""
+                        "description": "Successful Operation"
                     },
                     "404": {
                         "content": {},
-                        "description": ""
+                        "description": "Not found"
                     }
-                }
+                },
+                "summary": "Get a specific change document by its ``change_id``"
             }
         },
         "/hmms": {
             "delete": {
-                "description": "Delete all installed HMM data.\n\nThis won't break analyses that reference the installed HMM data.",
+                "description": "This won't break analyses that reference the installed HMM data.",
                 "responses": {
                     "204": {
                         "content": {},
@@ -884,10 +2753,11 @@
                         "content": {},
                         "description": "Not permitted"
                     }
-                }
+                },
+                "summary": "Delete all installed HMM data"
             },
             "get": {
-                "description": "Find HMM annotation documents.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
@@ -942,12 +2812,13 @@
                         },
                         "description": "Successful operation"
                     }
-                }
+                },
+                "summary": "Find HMM annotation documents"
             }
         },
         "/hmms/status": {
             "get": {
-                "description": "Get the status of the HMM data. Contains the following fields:\n\n- `errors`: lists any errors in the HMM data\n- `id`: is always 'hmm'\n- `installed`: a dict describing the installed HMM data\n- `process.id`: the ID of the process installing the HMM data\n- `release`: a dict describing the latest available release\n\nInstalled HMM data cannot currently be updated.",
+                "description": "- `errors`: lists any errors in the HMM data\n- `id`: is always 'hmm'\n- `installed`: a dict describing the installed HMM data\n- `process.id`: the ID of the process installing the HMM data\n- `release`: a dict describing the latest available release\n\nInstalled HMM data cannot currently be updated.",
                 "responses": {
                     "200": {
                         "content": {
@@ -957,12 +2828,13 @@
                         },
                         "description": "Successful operation"
                     }
-                }
+                },
+                "summary": "Get the status of the HMM data. Contains the following fields:"
             }
         },
         "/hmms/status/release": {
             "get": {
-                "description": "Get the latest release for the HMM data.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
@@ -976,12 +2848,13 @@
                         "content": {},
                         "description": "count not reach Github"
                     }
-                }
+                },
+                "summary": "Get the latest release for the HMM data"
             }
         },
         "/hmms/status/updates": {
             "get": {
-                "description": "List all updates applied to the HMM collection.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
@@ -991,10 +2864,11 @@
                         },
                         "description": "Successful operation"
                     }
-                }
+                },
+                "summary": "List all updates applied to the HMM collection"
             },
             "post": {
-                "description": "Install the latest official HMM database from GitHub.",
+                "description": "",
                 "responses": {
                     "201": {
                         "content": {
@@ -1012,12 +2886,13 @@
                         "content": {},
                         "description": "Not permitted"
                     }
-                }
+                },
+                "summary": "Install the latest official HMM database from GitHub"
             }
         },
         "/hmms/{hmm_id}": {
             "get": {
-                "description": "Get a complete individual HMM annotation document.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
@@ -1105,21 +2980,23 @@
                         "content": {},
                         "description": "Not found"
                     }
-                }
+                },
+                "summary": "Get a complete individual HMM annotation document"
             }
         },
         "/jobs": {
             "delete": {
-                "description": "Clear completed, failed or all finished jobs.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {},
                         "description": "Successful Operation"
                     }
-                }
+                },
+                "summary": "Clear completed, failed or all finished jobs"
             },
             "get": {
-                "description": "List all job documents.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {},
@@ -1129,12 +3006,13 @@
                         "content": {},
                         "description": "Invalid query"
                     }
-                }
+                },
+                "summary": "List all job documents"
             }
         },
         "/jobs/{job_id}": {
             "delete": {
-                "description": "Remove a job.",
+                "description": "",
                 "responses": {
                     "204": {
                         "content": {},
@@ -1152,10 +3030,11 @@
                         "content": {},
                         "description": "Job is running or waiting and cannot be removed"
                     }
-                }
+                },
+                "summary": "Remove a job"
             },
             "get": {
-                "description": "Return the complete document for a given job.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {},
@@ -1165,12 +3044,13 @@
                         "content": {},
                         "description": "Not found"
                     }
-                }
+                },
+                "summary": "Return the complete document for a given job"
             }
         },
         "/jobs/{job_id}/cancel": {
             "put": {
-                "description": "Cancel a job.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {},
@@ -1188,18 +3068,28 @@
                         "content": {},
                         "description": "Not cancellable"
                     }
-                }
+                },
+                "summary": "Cancel a job"
             }
         },
         "/labels": {
             "get": {
-                "description": "List all sample labels.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "items": {
+                                        "example": [
+                                            {
+                                                "color": "#6B7280",
+                                                "count": 0,
+                                                "description": "dsRNA/Ab",
+                                                "id": 22,
+                                                "name": "Ab"
+                                            }
+                                        ],
                                         "properties": {
                                             "color": {
                                                 "title": "Color",
@@ -1229,7 +3119,7 @@
                                             "name",
                                             "count"
                                         ],
-                                        "title": "Label",
+                                        "title": "GetLabelResponse",
                                         "type": "object"
                                     },
                                     "type": "array"
@@ -1242,18 +3132,25 @@
                         "content": {},
                         "description": "Invalid query"
                     }
-                }
+                },
+                "summary": "List all sample labels"
             },
             "post": {
-                "description": "Create a sample label.\n\nThe color must be a valid hexadecimal code.",
+                "description": "The color must be a valid hexadecimal code.",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
                                 "description": "Label fields for creating a new label.",
+                                "example": {
+                                    "color": "#374151",
+                                    "description": "dsRNA/binding protein",
+                                    "name": "Binding protein"
+                                },
                                 "properties": {
                                     "color": {
                                         "default": "#A0AEC0",
+                                        "description": "color of the label",
                                         "title": "Color",
                                         "type": "string"
                                     },
@@ -1284,6 +3181,13 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "example": {
+                                        "color": "#374151",
+                                        "count": 0,
+                                        "description": "dsRNA/binding protein",
+                                        "id": 23,
+                                        "name": "Binding protein"
+                                    },
                                     "properties": {
                                         "color": {
                                             "title": "Color",
@@ -1313,7 +3217,7 @@
                                         "name",
                                         "count"
                                     ],
-                                    "title": "Label",
+                                    "title": "CreateLabelResponse",
                                     "type": "object"
                                 }
                             }
@@ -1324,12 +3228,13 @@
                         "content": {},
                         "description": "Invalid Input"
                     }
-                }
+                },
+                "summary": "Create a sample label"
             }
         },
         "/labels/{label_id}": {
             "delete": {
-                "description": "Delete a sample label.",
+                "description": "",
                 "responses": {
                     "204": {
                         "content": {},
@@ -1339,15 +3244,23 @@
                         "content": {},
                         "description": "Not found"
                     }
-                }
+                },
+                "summary": "Delete a sample label"
             },
             "get": {
-                "description": "Get the details for a sample label.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "example": {
+                                        "color": "#6B7280",
+                                        "count": 0,
+                                        "description": "dsRNA/Ab",
+                                        "id": 22,
+                                        "name": "Ab"
+                                    },
                                     "properties": {
                                         "color": {
                                             "title": "Color",
@@ -1377,7 +3290,7 @@
                                         "name",
                                         "count"
                                     ],
-                                    "title": "Label",
+                                    "title": "LabelResponse",
                                     "type": "object"
                                 }
                             }
@@ -1388,15 +3301,21 @@
                         "content": {},
                         "description": "Not found"
                     }
-                }
+                },
+                "summary": "Get the details for a sample label"
             },
             "patch": {
-                "description": "Edit an existing sample label.",
+                "description": "",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
                                 "description": "Label fields for editing an existing label.",
+                                "example": {
+                                    "color": "#93C5FD",
+                                    "description": "Blueberry",
+                                    "name": "Blueberry"
+                                },
                                 "properties": {
                                     "color": {
                                         "title": "Color",
@@ -1429,6 +3348,13 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "example": {
+                                        "color": "#93C5FD",
+                                        "count": 0,
+                                        "description": "Blueberry",
+                                        "id": 22,
+                                        "name": "Blueberry"
+                                    },
                                     "properties": {
                                         "color": {
                                             "title": "Color",
@@ -1458,7 +3384,7 @@
                                         "name",
                                         "count"
                                     ],
-                                    "title": "Label",
+                                    "title": "LabelResponse",
                                     "type": "object"
                                 }
                             }
@@ -1473,89 +3399,373 @@
                         "content": {},
                         "description": "Not found"
                     }
-                }
+                },
+                "summary": "Edit an existing sample label"
             }
         },
-        "/subtractions": {
+        "/settings": {
             "get": {
-                "description": "Find subtractions by id (name) or nickname.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "description": "Minimal Subtraction model used for WebSocked messages and resource listings.",
+                                    "example": {
+                                        "default_source_types": [
+                                            "isolate",
+                                            "strain"
+                                        ],
+                                        "enable_api": true,
+                                        "enable_sentry": true,
+                                        "hmm_slug": "virtool/virtool-hmm",
+                                        "minimum_passsword_length": 8,
+                                        "sample_all_read": false,
+                                        "sample_all_write": true,
+                                        "sample_group": "force_choice",
+                                        "sample_group_read": true,
+                                        "sample_group_write": true,
+                                        "sample_unique_names": false
+                                    },
                                     "properties": {
-                                        "count": {
-                                            "title": "Count",
+                                        "default_source_types": {
+                                            "default": [
+                                                "isolate",
+                                                "strain"
+                                            ],
+                                            "items": {},
+                                            "title": "Default Source Types",
+                                            "type": "array"
+                                        },
+                                        "enable_api": {
+                                            "default": false,
+                                            "title": "Enable Api",
+                                            "type": "boolean"
+                                        },
+                                        "enable_sentry": {
+                                            "default": true,
+                                            "title": "Enable Sentry",
+                                            "type": "boolean"
+                                        },
+                                        "hmm_slug": {
+                                            "default": "virtool/virtool-hmm",
+                                            "title": "Hmm Slug",
+                                            "type": "string"
+                                        },
+                                        "minimum_password_length": {
+                                            "default": 8,
+                                            "title": "Minimum Password Length",
                                             "type": "integer"
                                         },
-                                        "created_at": {
-                                            "format": "date-time",
-                                            "title": "Created At",
-                                            "type": "string"
-                                        },
-                                        "file": {
-                                            "anyOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/UploadMinimal"
-                                                },
-                                                {
-                                                    "$ref": "#/components/schemas/SubtractionUpload"
-                                                }
-                                            ],
-                                            "title": "File"
-                                        },
-                                        "has_file": {
-                                            "title": "Has File",
+                                        "sample_all_read": {
+                                            "default": true,
+                                            "title": "Sample All Read",
                                             "type": "boolean"
                                         },
-                                        "id": {
-                                            "title": "Id",
-                                            "type": "string"
-                                        },
-                                        "name": {
-                                            "title": "Name",
-                                            "type": "string"
-                                        },
-                                        "nickname": {
-                                            "default": "",
-                                            "title": "Nickname",
-                                            "type": "string"
-                                        },
-                                        "ready": {
-                                            "title": "Ready",
+                                        "sample_all_write": {
+                                            "default": false,
+                                            "title": "Sample All Write",
                                             "type": "boolean"
                                         },
-                                        "user": {
-                                            "$ref": "#/components/schemas/UserMinimal"
+                                        "sample_group": {
+                                            "title": "Sample Group",
+                                            "type": "string"
+                                        },
+                                        "sample_group_read": {
+                                            "default": true,
+                                            "title": "Sample Group Read",
+                                            "type": "boolean"
+                                        },
+                                        "sample_group_write": {
+                                            "default": false,
+                                            "title": "Sample Group Write",
+                                            "type": "boolean"
+                                        },
+                                        "sample_unique_names": {
+                                            "default": true,
+                                            "title": "Sample Unique Names",
+                                            "type": "boolean"
                                         }
                                     },
-                                    "required": [
-                                        "id",
-                                        "name",
-                                        "created_at",
-                                        "file",
-                                        "has_file",
-                                        "ready",
-                                        "user"
-                                    ],
-                                    "title": "SubtractionMinimal",
+                                    "title": "GetSettingsResponse",
                                     "type": "object"
                                 }
                             }
                         },
                         "description": "Successful operation"
                     }
-                }
+                },
+                "summary": "Get a complete document of the application settings"
+            },
+            "patch": {
+                "description": "",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "default_source_types": {
+                                        "items": {},
+                                        "title": "Default Source Types",
+                                        "type": "array"
+                                    },
+                                    "enable_api": {
+                                        "default": false,
+                                        "title": "Enable Api",
+                                        "type": "boolean"
+                                    },
+                                    "enable_sentry": {
+                                        "default": true,
+                                        "title": "Enable Sentry",
+                                        "type": "boolean"
+                                    },
+                                    "hmm_slug": {
+                                        "default": "virtool/virtool-hmm",
+                                        "title": "Hmm Slug",
+                                        "type": "string"
+                                    },
+                                    "minimum_password_length": {
+                                        "default": 8,
+                                        "title": "Minimum Password Length",
+                                        "type": "integer"
+                                    },
+                                    "sample_all_read": {
+                                        "default": true,
+                                        "title": "Sample All Read",
+                                        "type": "boolean"
+                                    },
+                                    "sample_all_write": {
+                                        "default": false,
+                                        "title": "Sample All Write",
+                                        "type": "boolean"
+                                    },
+                                    "sample_group": {
+                                        "default": "none",
+                                        "title": "Sample Group",
+                                        "type": "string"
+                                    },
+                                    "sample_group_read": {
+                                        "default": true,
+                                        "title": "Sample Group Read",
+                                        "type": "boolean"
+                                    },
+                                    "sample_group_write": {
+                                        "default": false,
+                                        "title": "Sample Group Write",
+                                        "type": "boolean"
+                                    },
+                                    "sample_unique_names": {
+                                        "default": true,
+                                        "title": "Sample Unique Names",
+                                        "type": "boolean"
+                                    }
+                                },
+                                "title": "UpdateSettingsSchema",
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "default_source_types": [
+                                            "strain"
+                                        ],
+                                        "enable_api": true,
+                                        "enable_sentry": true,
+                                        "hmm_slug": "virtool/virtool-hmm",
+                                        "minimum_passsword_length": 12,
+                                        "sample_all_read": false,
+                                        "sample_unique_names": false
+                                    },
+                                    "properties": {
+                                        "default_source_types": {
+                                            "default": [
+                                                "isolate",
+                                                "strain"
+                                            ],
+                                            "items": {},
+                                            "title": "Default Source Types",
+                                            "type": "array"
+                                        },
+                                        "enable_api": {
+                                            "default": false,
+                                            "title": "Enable Api",
+                                            "type": "boolean"
+                                        },
+                                        "enable_sentry": {
+                                            "default": true,
+                                            "title": "Enable Sentry",
+                                            "type": "boolean"
+                                        },
+                                        "hmm_slug": {
+                                            "default": "virtool/virtool-hmm",
+                                            "title": "Hmm Slug",
+                                            "type": "string"
+                                        },
+                                        "minimum_password_length": {
+                                            "default": 8,
+                                            "title": "Minimum Password Length",
+                                            "type": "integer"
+                                        },
+                                        "sample_all_read": {
+                                            "default": true,
+                                            "title": "Sample All Read",
+                                            "type": "boolean"
+                                        },
+                                        "sample_all_write": {
+                                            "default": false,
+                                            "title": "Sample All Write",
+                                            "type": "boolean"
+                                        },
+                                        "sample_group": {
+                                            "title": "Sample Group",
+                                            "type": "string"
+                                        },
+                                        "sample_group_read": {
+                                            "default": true,
+                                            "title": "Sample Group Read",
+                                            "type": "boolean"
+                                        },
+                                        "sample_group_write": {
+                                            "default": false,
+                                            "title": "Sample Group Write",
+                                            "type": "boolean"
+                                        },
+                                        "sample_unique_names": {
+                                            "default": true,
+                                            "title": "Sample Unique Names",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "title": "UpdateSettingsResponse",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    }
+                },
+                "summary": "Update application settings based on request data"
+            }
+        },
+        "/subtractions": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "description": "Minimal Subtraction model used for WebSocked messages and resource listings.",
+                                        "example": [
+                                            {
+                                                "count": 9,
+                                                "created_at": "2021-12-21T23:52:13.185000Z",
+                                                "file": {
+                                                    "id": 58,
+                                                    "name": "arabidopsis_thaliana_+_plastids.fa.gz"
+                                                },
+                                                "has_file": true,
+                                                "id": "q0ek30si",
+                                                "name": "Arabidopsis thaliana",
+                                                "nickname": "",
+                                                "ready": true,
+                                                "user": {
+                                                    "administrator": true,
+                                                    "handle": "igboyes",
+                                                    "id": "igboyes"
+                                                }
+                                            }
+                                        ],
+                                        "properties": {
+                                            "count": {
+                                                "title": "Count",
+                                                "type": "integer"
+                                            },
+                                            "created_at": {
+                                                "format": "date-time",
+                                                "title": "Created At",
+                                                "type": "string"
+                                            },
+                                            "file": {
+                                                "anyOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/UploadMinimal"
+                                                    },
+                                                    {
+                                                        "$ref": "#/components/schemas/SubtractionUpload"
+                                                    }
+                                                ],
+                                                "title": "File"
+                                            },
+                                            "has_file": {
+                                                "title": "Has File",
+                                                "type": "boolean"
+                                            },
+                                            "id": {
+                                                "title": "Id",
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "title": "Name",
+                                                "type": "string"
+                                            },
+                                            "nickname": {
+                                                "default": "",
+                                                "title": "Nickname",
+                                                "type": "string"
+                                            },
+                                            "ready": {
+                                                "title": "Ready",
+                                                "type": "boolean"
+                                            },
+                                            "user": {
+                                                "$ref": "#/components/schemas/UserMinimal"
+                                            }
+                                        },
+                                        "required": [
+                                            "id",
+                                            "name",
+                                            "created_at",
+                                            "file",
+                                            "has_file",
+                                            "ready",
+                                            "user"
+                                        ],
+                                        "title": "GetSubtractionResponse",
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    }
+                },
+                "summary": "Find subtractions by id (name) or nickname"
             },
             "post": {
-                "description": "Add a new subtraction. Starts a 'CreateSubtraction' job process.",
+                "description": "",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
                                 "description": "Used for creating a new Subtraction.",
+                                "example": {
+                                    "name": "Foobar",
+                                    "nickname": "foo",
+                                    "upload_id": 1234
+                                },
                                 "properties": {
                                     "name": {
                                         "description": "A unique name for the host (eg. Arabidopsis)",
@@ -1591,6 +3801,26 @@
                             "application/json": {
                                 "schema": {
                                     "description": "Complete Subtraction model.",
+                                    "example": {
+                                        "created_at": "2015-10-06T20:00:00Z",
+                                        "deleted": false,
+                                        "file": {
+                                            "id": 1234,
+                                            "name": "test_upload"
+                                        },
+                                        "files": [],
+                                        "has_file": true,
+                                        "id": "abc123",
+                                        "linked_samples": [],
+                                        "name": "Foobar",
+                                        "nickname": "foo",
+                                        "ready": false,
+                                        "user": {
+                                            "administrator": false,
+                                            "handle": "bob",
+                                            "id": "test"
+                                        }
+                                    },
                                     "properties": {
                                         "count": {
                                             "title": "Count",
@@ -1670,7 +3900,7 @@
                                         "files",
                                         "linked_samples"
                                     ],
-                                    "title": "Subtraction",
+                                    "title": "CreateSubtractionResponse",
                                     "type": "object"
                                 }
                             }
@@ -1685,12 +3915,13 @@
                         "content": {},
                         "description": "Not permitted"
                     }
-                }
+                },
+                "summary": "Add a new subtraction. Starts a 'CreateSubtraction' job process"
             }
         },
         "/subtractions/{subtraction_id}": {
             "delete": {
-                "description": "Remove an existing subtraction.",
+                "description": "",
                 "responses": {
                     "204": {
                         "content": {},
@@ -1708,16 +3939,119 @@
                         "content": {},
                         "description": "Has linked samples"
                     }
-                }
+                },
+                "summary": "Remove an existing subtraction"
             },
             "get": {
-                "description": "Get a complete host document.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "description": "Complete Subtraction model.",
+                                    "example": {
+                                        "count": 9,
+                                        "created_at": "2021-12-21T23:52:13.185000Z",
+                                        "deleted": false,
+                                        "file": {
+                                            "id": 58,
+                                            "name": "arabidopsis_thaliana_+_plastids.fa.gz"
+                                        },
+                                        "files": [
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.1.bt2",
+                                                "id": 39,
+                                                "name": "subtraction.1.bt2",
+                                                "size": 44200803,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.2.bt2",
+                                                "id": 37,
+                                                "name": "subtraction.2.bt2",
+                                                "size": 30000964,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.3.bt2",
+                                                "id": 42,
+                                                "name": "subtraction.3.bt2",
+                                                "size": 3275,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.4.bt2",
+                                                "id": 40,
+                                                "name": "subtraction.4.bt2",
+                                                "size": 30000958,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.fa.gz",
+                                                "id": 36,
+                                                "name": "subtraction.fa.gz",
+                                                "size": 36160657,
+                                                "subtraction": "q0ek30si",
+                                                "type": "fasta"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.rev.1.bt2",
+                                                "id": 41,
+                                                "name": "subtraction.rev.1.bt2",
+                                                "size": 44200803,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.rev.2.bt2",
+                                                "id": 38,
+                                                "name": "subtraction.rev.2.bt2",
+                                                "size": 30000964,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            }
+                                        ],
+                                        "gc": {
+                                            "a": 0.319,
+                                            "c": 0.18,
+                                            "g": 0.18,
+                                            "n": 0.002,
+                                            "t": 0.319
+                                        },
+                                        "has_file": true,
+                                        "id": "q0ek30si",
+                                        "linked_samples": [
+                                            {
+                                                "id": "2izth91q",
+                                                "name": "21BP074"
+                                            },
+                                            {
+                                                "id": "noni4fpk",
+                                                "name": "21BP075"
+                                            },
+                                            {
+                                                "id": "o3ldvwpm",
+                                                "name": "22SP001-M"
+                                            },
+                                            {
+                                                "id": "gobtw98t",
+                                                "name": "22SP001-R"
+                                            }
+                                        ],
+                                        "name": "Arabidopsis thaliana",
+                                        "nickname": "",
+                                        "ready": true,
+                                        "user": {
+                                            "administrator": true,
+                                            "handle": "igboyes",
+                                            "id": "igboyes"
+                                        }
+                                    },
                                     "properties": {
                                         "count": {
                                             "title": "Count",
@@ -1797,7 +4131,7 @@
                                         "files",
                                         "linked_samples"
                                     ],
-                                    "title": "Subtraction",
+                                    "title": "SubtractionResponse",
                                     "type": "object"
                                 }
                             }
@@ -1808,15 +4142,20 @@
                         "content": {},
                         "description": "Not found"
                     }
-                }
+                },
+                "summary": "Get a complete host document"
             },
             "patch": {
-                "description": "Updates the nickname for an existing subtraction.",
+                "description": "",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
                                 "description": "Used when modifying a Subtraction",
+                                "example": {
+                                    "name": "Arabidopsis",
+                                    "nickname": "Thale cress"
+                                },
                                 "properties": {
                                     "name": {
                                         "description": "A unique name for the host (eg. Arabidopsis)",
@@ -1842,6 +4181,108 @@
                             "application/json": {
                                 "schema": {
                                     "description": "Complete Subtraction model.",
+                                    "example": {
+                                        "count": 9,
+                                        "created_at": "2021-12-21T23:52:13.185000Z",
+                                        "deleted": false,
+                                        "file": {
+                                            "id": 58,
+                                            "name": "arabidopsis_thaliana_+_plastids.fa.gz"
+                                        },
+                                        "files": [
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.1.bt2",
+                                                "id": 39,
+                                                "name": "subtraction.1.bt2",
+                                                "size": 44200803,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.2.bt2",
+                                                "id": 37,
+                                                "name": "subtraction.2.bt2",
+                                                "size": 30000964,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.3.bt2",
+                                                "id": 42,
+                                                "name": "subtraction.3.bt2",
+                                                "size": 3275,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.4.bt2",
+                                                "id": 40,
+                                                "name": "subtraction.4.bt2",
+                                                "size": 30000958,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.fa.gz",
+                                                "id": 36,
+                                                "name": "subtraction.fa.gz",
+                                                "size": 36160657,
+                                                "subtraction": "q0ek30si",
+                                                "type": "fasta"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.rev.1.bt2",
+                                                "id": 41,
+                                                "name": "subtraction.rev.1.bt2",
+                                                "size": 44200803,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            },
+                                            {
+                                                "download_url": "/subtractions/q0ek30si/files/subtraction.rev.2.bt2",
+                                                "id": 38,
+                                                "name": "subtraction.rev.2.bt2",
+                                                "size": 30000964,
+                                                "subtraction": "q0ek30si",
+                                                "type": "bowtie2"
+                                            }
+                                        ],
+                                        "gc": {
+                                            "a": 0.319,
+                                            "c": 0.18,
+                                            "g": 0.18,
+                                            "n": 0.002,
+                                            "t": 0.319
+                                        },
+                                        "has_file": true,
+                                        "id": "q0ek30si",
+                                        "linked_samples": [
+                                            {
+                                                "id": "2izth91q",
+                                                "name": "21BP074"
+                                            },
+                                            {
+                                                "id": "noni4fpk",
+                                                "name": "21BP075"
+                                            },
+                                            {
+                                                "id": "o3ldvwpm",
+                                                "name": "22SP001-M"
+                                            },
+                                            {
+                                                "id": "gobtw98t",
+                                                "name": "22SP001-R"
+                                            }
+                                        ],
+                                        "name": "Arabidopsis",
+                                        "nickname": "Thale cress",
+                                        "ready": true,
+                                        "user": {
+                                            "administrator": true,
+                                            "handle": "igboyes",
+                                            "id": "igboyes"
+                                        }
+                                    },
                                     "properties": {
                                         "count": {
                                             "title": "Count",
@@ -1921,7 +4362,7 @@
                                         "files",
                                         "linked_samples"
                                     ],
-                                    "title": "Subtraction",
+                                    "title": "SubtractionResponse",
                                     "type": "object"
                                 }
                             }
@@ -1940,12 +4381,13 @@
                         "content": {},
                         "description": "Not found"
                     }
-                }
+                },
+                "summary": "Updates the nickname for an existing subtraction"
             }
         },
         "/subtractions/{subtraction_id}/files/{filename}": {
             "get": {
-                "description": "Download a Bowtie2 index file or a FASTA file for the given subtraction.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {},
@@ -1959,18 +4401,34 @@
                         "content": {},
                         "description": "Not found"
                     }
-                }
+                },
+                "summary": "Download a Bowtie2 index file or a FASTA file for the given subtraction"
             }
         },
         "/tasks": {
             "get": {
-                "description": "Get a list of all task documents in the database.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "items": {
+                                        "example": [
+                                            {
+                                                "complete": true,
+                                                "context": {
+                                                    "user_id": "virtool"
+                                                },
+                                                "created_at": "2021-11-24T19:40:03.320000Z",
+                                                "error": null,
+                                                "file_size": null,
+                                                "id": 2,
+                                                "progress": 100,
+                                                "step": "remove_referenced_otus",
+                                                "type": "delete_reference"
+                                            }
+                                        ],
                                         "properties": {
                                             "complete": {
                                                 "title": "Complete",
@@ -2024,7 +4482,7 @@
                                             "step",
                                             "type"
                                         ],
-                                        "title": "Task",
+                                        "title": "GetTasksResponse",
                                         "type": "object"
                                     },
                                     "type": "array"
@@ -2033,17 +4491,31 @@
                         },
                         "description": "Successful operation"
                     }
-                }
+                },
+                "summary": "Get a list of all task documents in the database"
             }
         },
         "/tasks/{task_id}": {
             "get": {
-                "description": "Get a complete task document.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "example": {
+                                        "complete": true,
+                                        "context": {
+                                            "user_id": "virtool"
+                                        },
+                                        "created_at": "2021-11-24T19:40:03.320000Z",
+                                        "error": null,
+                                        "file_size": null,
+                                        "id": 2,
+                                        "progress": 100,
+                                        "step": "remove_referenced_otus",
+                                        "type": "delete_reference"
+                                    },
                                     "properties": {
                                         "complete": {
                                             "title": "Complete",
@@ -2097,7 +4569,7 @@
                                         "step",
                                         "type"
                                     ],
-                                    "title": "Task",
+                                    "title": "TaskResponse",
                                     "type": "object"
                                 }
                             }
@@ -2108,12 +4580,276 @@
                         "content": {},
                         "description": ""
                     }
-                }
+                },
+                "summary": "Get a complete task document"
+            }
+        },
+        "/uploads": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "description": "Model for user uploads.",
+                                        "example": [
+                                            {
+                                                "created_at": "2022-01-22T17:28:21.491000Z",
+                                                "id": 106,
+                                                "name": "MPI19_L3_2.fq.gz",
+                                                "name_on_disk": "106-MPI19_L3_2.fq.gz",
+                                                "ready": true,
+                                                "removed": false,
+                                                "removed_at": null,
+                                                "reserved": true,
+                                                "size": 3356803271,
+                                                "type": "reads",
+                                                "uploaded_at": "2022-01-22T17:31:59.801000Z",
+                                                "user": {
+                                                    "administrator": true,
+                                                    "handle": "mrott",
+                                                    "id": "ihvze2u9"
+                                                }
+                                            }
+                                        ],
+                                        "properties": {
+                                            "created_at": {
+                                                "format": "date-time",
+                                                "title": "Created At",
+                                                "type": "string"
+                                            },
+                                            "id": {
+                                                "title": "Id",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "title": "Name",
+                                                "type": "string"
+                                            },
+                                            "name_on_disk": {
+                                                "title": "Name On Disk",
+                                                "type": "string"
+                                            },
+                                            "ready": {
+                                                "title": "Ready",
+                                                "type": "boolean"
+                                            },
+                                            "removed": {
+                                                "title": "Removed",
+                                                "type": "boolean"
+                                            },
+                                            "removed_at": {
+                                                "format": "date-time",
+                                                "title": "Removed At",
+                                                "type": "string"
+                                            },
+                                            "reserved": {
+                                                "title": "Reserved",
+                                                "type": "boolean"
+                                            },
+                                            "size": {
+                                                "title": "Size",
+                                                "type": "integer"
+                                            },
+                                            "type": {
+                                                "title": "Type",
+                                                "type": "string"
+                                            },
+                                            "uploaded_at": {
+                                                "format": "date-time",
+                                                "title": "Uploaded At",
+                                                "type": "string"
+                                            },
+                                            "user": {
+                                                "$ref": "#/components/schemas/UserMinimal"
+                                            }
+                                        },
+                                        "required": [
+                                            "id",
+                                            "created_at",
+                                            "name",
+                                            "name_on_disk",
+                                            "ready",
+                                            "removed",
+                                            "reserved",
+                                            "size",
+                                            "type",
+                                            "uploaded_at",
+                                            "user"
+                                        ],
+                                        "title": "GetUploadsResponse",
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    }
+                },
+                "summary": "Get a list of upload documents from the `uploads` SQL table"
+            },
+            "post": {
+                "description": "",
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Model for user uploads.",
+                                    "example": {
+                                        "created_at": "2022-01-22T17:28:21.491000Z",
+                                        "id": 106,
+                                        "name": "MPI19_L3_2.fq.gz",
+                                        "name_on_disk": "106-MPI19_L3_2.fq.gz",
+                                        "ready": true,
+                                        "removed": false,
+                                        "removed_at": null,
+                                        "reserved": true,
+                                        "size": 3356803271,
+                                        "type": "reads",
+                                        "uploaded_at": "2022-01-22T17:31:59.801000Z",
+                                        "user": {
+                                            "administrator": true,
+                                            "handle": "mrott",
+                                            "id": "ihvze2u9"
+                                        }
+                                    },
+                                    "properties": {
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "title": "Name",
+                                            "type": "string"
+                                        },
+                                        "name_on_disk": {
+                                            "title": "Name On Disk",
+                                            "type": "string"
+                                        },
+                                        "ready": {
+                                            "title": "Ready",
+                                            "type": "boolean"
+                                        },
+                                        "removed": {
+                                            "title": "Removed",
+                                            "type": "boolean"
+                                        },
+                                        "removed_at": {
+                                            "format": "date-time",
+                                            "title": "Removed At",
+                                            "type": "string"
+                                        },
+                                        "reserved": {
+                                            "title": "Reserved",
+                                            "type": "boolean"
+                                        },
+                                        "size": {
+                                            "title": "Size",
+                                            "type": "integer"
+                                        },
+                                        "type": {
+                                            "title": "Type",
+                                            "type": "string"
+                                        },
+                                        "uploaded_at": {
+                                            "format": "date-time",
+                                            "title": "Uploaded At",
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserMinimal"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "created_at",
+                                        "name",
+                                        "name_on_disk",
+                                        "ready",
+                                        "removed",
+                                        "reserved",
+                                        "size",
+                                        "type",
+                                        "uploaded_at",
+                                        "user"
+                                    ],
+                                    "title": "CreateUploadResponse",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "content": {},
+                        "description": "Requires authorization"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                },
+                "summary": "Upload a new file and add it to the `uploads` SQL table"
+            }
+        },
+        "/uploads/{id}": {
+            "delete": {
+                "description": "delete its associated local file.",
+                "responses": {
+                    "204": {
+                        "content": {},
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "content": {},
+                        "description": "Requires authorization"
+                    },
+                    "403": {
+                        "content": {},
+                        "description": "Not permitted"
+                    },
+                    "404": {
+                        "content": {},
+                        "description": "Not found"
+                    }
+                },
+                "summary": "Set a row's `removed` and `removed_at` attribute in the `uploads` SQL table and"
+            },
+            "get": {
+                "description": " Status Codes:\n    200: Successful operation\n    404: Not found",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
+                        "content": {},
+                        "description": ""
+                    }
+                },
+                "summary": "Downloads a file that corresponds to a row `id` in the `uploads` SQL table"
             }
         },
         "/users": {
             "get": {
-                "description": "Get a list of all user documents in the database.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {},
@@ -2123,10 +4859,11 @@
                         "content": {},
                         "description": "Not permitted"
                     }
-                }
+                },
+                "summary": "Get a list of all user documents in the database"
             },
             "post": {
-                "description": "Add a new user to the user database.",
+                "description": "",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2246,12 +4983,13 @@
                         "content": {},
                         "description": "Not permitted"
                     }
-                }
+                },
+                "summary": "Add a new user to the user database"
             }
         },
         "/users/first": {
             "put": {
-                "description": "Creates the first user for the instance.\n\nThis endpoint will not work after the first is created. Authenticate as the\nfirst user and use those credentials to continue interacting with the API.",
+                "description": "This endpoint will not work after the first is created. Authenticate as the\nfirst user and use those credentials to continue interacting with the API.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2365,12 +5103,13 @@
                         "content": {},
                         "description": "Not permitted"
                     }
-                }
+                },
+                "summary": "Creates the first user for the instance"
             }
         },
         "/users/{user_id}": {
             "delete": {
-                "description": "Deletes a user.\n\nUsers cannot delete their own accounts.",
+                "description": "Users cannot delete their own accounts.",
                 "responses": {
                     "204": {
                         "content": {},
@@ -2388,10 +5127,11 @@
                         "content": {},
                         "description": "Not found"
                     }
-                }
+                },
+                "summary": "Deletes a user"
             },
             "get": {
-                "description": "Gets the details of a user.",
+                "description": "",
                 "responses": {
                     "200": {
                         "content": {
@@ -2476,10 +5216,11 @@
                         "content": {},
                         "description": "Not found"
                     }
-                }
+                },
+                "summary": "Gets the details of a user"
             },
             "patch": {
-                "description": "Updates the user with the passed parameters.\n\nUsers cannot modify their own administrative status.",
+                "description": "Users cannot modify their own administrative status.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2612,7 +5353,8 @@
                         "content": {},
                         "description": "User is not member of group"
                     }
-                }
+                },
+                "summary": "Updates the user with the passed parameters"
             }
         }
     }
