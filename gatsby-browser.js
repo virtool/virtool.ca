@@ -6,6 +6,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { Link } from "gatsby";
 import React from "react";
 import { Administrator } from "./src/components/Administrator";
+import { AdministratorOrOwner } from "./src/components/AdministratorOrOwner";
 import { Endpoint } from "./src/components/Endpoint";
 import * as Headings from "./src/components/Headings";
 import { PrimaryLayout } from "./src/components/Layout";
@@ -21,6 +22,7 @@ const components = {
   Link,
   Request,
   Administrator,
+  AdministratorOrOwner,
   Endpoint,
   Response,
   Warning,
