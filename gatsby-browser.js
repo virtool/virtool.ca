@@ -5,6 +5,7 @@ import "./src/styles/global.css";
 import { MDXProvider } from "@mdx-js/react";
 import { Link } from "gatsby";
 import React from "react";
+import { AdministratorOrOwner } from "./src/components/AdministratorOrOwner";
 import { Endpoint } from "./src/components/Endpoint";
 import * as Headings from "./src/components/Headings";
 import { PrimaryLayout } from "./src/components/Layout";
@@ -19,6 +20,7 @@ import { Warning } from "./src/components/Warning";
 const components = {
   Link,
   Request,
+  AdministratorOrOwner,
   Endpoint,
   Response,
   Warning,
