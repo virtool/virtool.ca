@@ -9,8 +9,6 @@ import { Table, Td, Th, Tr } from "./Table";
 const ApiEndpoint = ({ data, endpoint, method }) => {
   const pathMethod = data;
 
-  console.log(data);
-
   const successResponseCode = keysIn(pathMethod.responses)[0];
 
   const requestBodyPath =
