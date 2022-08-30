@@ -1,7 +1,7 @@
 import React from "react";
 import { Main } from "../components/Main";
 import { Nav } from "../components/Nav";
-import json from "../data/oas.json";
+import json from "../data/openapi.json";
 
 const Spec = () => {
   return (

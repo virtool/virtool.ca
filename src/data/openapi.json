@@ -69,11 +69,27 @@
                     "format",
                     "id",
                     "name",
-                    "name_on_disk",
-                    "size",
-                    "uploaded_at"
+                    "name_on_disk"
                 ],
                 "title": "AnalysisFile",
+                "type": "object"
+            },
+            "AnalysisReference": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "title": "AnalysisReference",
                 "type": "object"
             },
             "AnalysisSample": {
@@ -225,11 +241,11 @@
                         "title": "Id",
                         "type": "string"
                     },
-                    "name": {
+                    "names": {
                         "items": {
                             "type": "string"
                         },
-                        "title": "Name",
+                        "title": "Names",
                         "type": "array"
                     }
                 },
@@ -238,7 +254,7 @@
                     "cluster",
                     "count",
                     "families",
-                    "name"
+                    "names"
                 ],
                 "title": "HMMMinimal",
                 "type": "object"
@@ -333,37 +349,11 @@
                 "title": "HistoryOTU",
                 "type": "object"
             },
-            "IndexMinimal": {
+            "IndexNested": {
                 "properties": {
-                    "change_count": {
-                        "title": "Change Count",
-                        "type": "integer"
-                    },
-                    "created_at": {
-                        "format": "date-time",
-                        "title": "Created At",
-                        "type": "string"
-                    },
-                    "has_files": {
-                        "title": "Has Files",
-                        "type": "boolean"
-                    },
                     "id": {
                         "title": "Id",
                         "type": "string"
-                    },
-                    "job": {
-                        "$ref": "#/components/schemas/JobMinimal"
-                    },
-                    "modified_otu_count": {
-                        "title": "Modified Otu Count",
-                        "type": "integer"
-                    },
-                    "reference": {
-                        "$ref": "#/components/schemas/ReferenceMinimal"
-                    },
-                    "user": {
-                        "$ref": "#/components/schemas/UserMinimal"
                     },
                     "version": {
                         "title": "Version",
@@ -371,17 +361,10 @@
                     }
                 },
                 "required": [
-                    "change_count",
-                    "created_at",
-                    "has_files",
                     "id",
-                    "job",
-                    "modified_otu_count",
-                    "reference",
-                    "user",
                     "version"
                 ],
-                "title": "IndexMinimal",
+                "title": "IndexNested",
                 "type": "object"
             },
             "JobError": {
@@ -413,65 +396,17 @@
                 "title": "JobError",
                 "type": "object"
             },
-            "JobMinimal": {
+            "JobNested": {
                 "properties": {
-                    "archived": {
-                        "default": false,
-                        "title": "Archived",
-                        "type": "boolean"
-                    },
-                    "created_at": {
-                        "format": "date-time",
-                        "title": "Created At",
-                        "type": "string"
-                    },
                     "id": {
                         "title": "Id",
-                        "type": "string"
-                    },
-                    "progress": {
-                        "title": "Progress",
-                        "type": "integer"
-                    },
-                    "rights": {
-                        "title": "Rights",
-                        "type": "object"
-                    },
-                    "stage": {
-                        "title": "Stage",
-                        "type": "string"
-                    },
-                    "state": {
-                        "title": "State",
-                        "type": "string"
-                    },
-                    "status": {
-                        "items": {
-                            "$ref": "#/components/schemas/JobStatus"
-                        },
-                        "title": "Status",
-                        "type": "array"
-                    },
-                    "user": {
-                        "$ref": "#/components/schemas/UserMinimal"
-                    },
-                    "workflow": {
-                        "title": "Workflow",
                         "type": "string"
                     }
                 },
                 "required": [
-                    "created_at",
-                    "id",
-                    "progress",
-                    "rights",
-                    "stage",
-                    "state",
-                    "status",
-                    "user",
-                    "workflow"
+                    "id"
                 ],
-                "title": "JobMinimal",
+                "title": "JobNested",
                 "type": "object"
             },
             "JobStatus": {
@@ -751,8 +686,7 @@
                         "type": "integer"
                     },
                     "upload": {
-                        "title": "Upload",
-                        "type": "null"
+                        "$ref": "#/components/schemas/UploadMinimal"
                     },
                     "uploaded_at": {
                         "format": "date-time",
@@ -767,226 +701,9 @@
                     "name_on_disk",
                     "sample",
                     "size",
-                    "upload",
                     "uploaded_at"
                 ],
                 "title": "Read",
-                "type": "object"
-            },
-            "ReferenceBuild": {
-                "properties": {
-                    "created_at": {
-                        "format": "date-time",
-                        "title": "Created At",
-                        "type": "string"
-                    },
-                    "has_json": {
-                        "title": "Has Json",
-                        "type": "boolean"
-                    },
-                    "id": {
-                        "title": "Id",
-                        "type": "string"
-                    },
-                    "user": {
-                        "$ref": "#/components/schemas/UserMinimal"
-                    },
-                    "version": {
-                        "title": "Version",
-                        "type": "integer"
-                    }
-                },
-                "required": [
-                    "created_at",
-                    "id",
-                    "version",
-                    "user",
-                    "has_json"
-                ],
-                "title": "ReferenceBuild",
-                "type": "object"
-            },
-            "ReferenceClonedFrom": {
-                "properties": {
-                    "id": {
-                        "title": "Id",
-                        "type": "string"
-                    },
-                    "name": {
-                        "title": "Name",
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "id",
-                    "name"
-                ],
-                "title": "ReferenceClonedFrom",
-                "type": "object"
-            },
-            "ReferenceDataType": {
-                "description": "An enumeration.",
-                "enum": [
-                    "barcode",
-                    "genome"
-                ],
-                "title": "ReferenceDataType",
-                "type": "string"
-            },
-            "ReferenceInstalled": {
-                "properties": {
-                    "body": {
-                        "title": "Body",
-                        "type": "string"
-                    },
-                    "created_at": {
-                        "format": "date-time",
-                        "title": "Created At",
-                        "type": "string"
-                    },
-                    "filename": {
-                        "title": "Filename",
-                        "type": "string"
-                    },
-                    "html_url": {
-                        "title": "Html Url",
-                        "type": "string"
-                    },
-                    "id": {
-                        "title": "Id",
-                        "type": "integer"
-                    },
-                    "name": {
-                        "title": "Name",
-                        "type": "string"
-                    },
-                    "newer": {
-                        "title": "Newer",
-                        "type": "boolean"
-                    },
-                    "published_at": {
-                        "format": "date-time",
-                        "title": "Published At",
-                        "type": "string"
-                    },
-                    "ready": {
-                        "title": "Ready",
-                        "type": "boolean"
-                    },
-                    "size": {
-                        "title": "Size",
-                        "type": "integer"
-                    },
-                    "user": {
-                        "$ref": "#/components/schemas/UserMinimal"
-                    }
-                },
-                "required": [
-                    "body",
-                    "created_at",
-                    "filename",
-                    "html_url",
-                    "id",
-                    "name",
-                    "newer",
-                    "published_at",
-                    "ready",
-                    "size",
-                    "user"
-                ],
-                "title": "ReferenceInstalled",
-                "type": "object"
-            },
-            "ReferenceMinimal": {
-                "properties": {
-                    "cloned_from": {
-                        "$ref": "#/components/schemas/ReferenceClonedFrom"
-                    },
-                    "created_at": {
-                        "format": "date-time",
-                        "title": "Created At",
-                        "type": "string"
-                    },
-                    "data_type": {
-                        "$ref": "#/components/schemas/ReferenceDataType"
-                    },
-                    "groups": {
-                        "items": {
-                            "$ref": "#/components/schemas/ReferenceUser"
-                        },
-                        "title": "Groups",
-                        "type": "array"
-                    },
-                    "id": {
-                        "title": "Id",
-                        "type": "string"
-                    },
-                    "installed": {
-                        "$ref": "#/components/schemas/ReferenceInstalled"
-                    },
-                    "internal_control": {
-                        "title": "Internal Control",
-                        "type": "string"
-                    },
-                    "latest_build": {
-                        "$ref": "#/components/schemas/ReferenceBuild"
-                    },
-                    "name": {
-                        "title": "Name",
-                        "type": "string"
-                    },
-                    "organism": {
-                        "title": "Organism",
-                        "type": "string"
-                    },
-                    "otu_count": {
-                        "title": "Otu Count",
-                        "type": "integer"
-                    },
-                    "release": {
-                        "$ref": "#/components/schemas/ReferenceRelease"
-                    },
-                    "remotes_from": {
-                        "$ref": "#/components/schemas/ReferenceRemotesFrom"
-                    },
-                    "task": {
-                        "$ref": "#/components/schemas/Task"
-                    },
-                    "unbuilt_change_count": {
-                        "title": "Unbuilt Change Count",
-                        "type": "integer"
-                    },
-                    "updating": {
-                        "title": "Updating",
-                        "type": "boolean"
-                    },
-                    "user": {
-                        "$ref": "#/components/schemas/UserMinimal"
-                    },
-                    "users": {
-                        "items": {
-                            "$ref": "#/components/schemas/ReferenceUser"
-                        },
-                        "title": "Users",
-                        "type": "array"
-                    }
-                },
-                "required": [
-                    "id",
-                    "created_at",
-                    "data_type",
-                    "groups",
-                    "internal_control",
-                    "latest_build",
-                    "name",
-                    "organism",
-                    "otu_count",
-                    "task",
-                    "unbuilt_change_count",
-                    "user",
-                    "users"
-                ],
-                "title": "ReferenceMinimal",
                 "type": "object"
             },
             "ReferenceNested": {
@@ -1002,168 +719,6 @@
                 "title": "ReferenceNested",
                 "type": "object"
             },
-            "ReferenceRelease": {
-                "properties": {
-                    "body": {
-                        "title": "Body",
-                        "type": "string"
-                    },
-                    "content_type": {
-                        "title": "Content Type",
-                        "type": "string"
-                    },
-                    "download_url": {
-                        "title": "Download Url",
-                        "type": "string"
-                    },
-                    "etag": {
-                        "title": "Etag",
-                        "type": "string"
-                    },
-                    "filename": {
-                        "title": "Filename",
-                        "type": "string"
-                    },
-                    "html_url": {
-                        "title": "Html Url",
-                        "type": "string"
-                    },
-                    "id": {
-                        "title": "Id",
-                        "type": "integer"
-                    },
-                    "name": {
-                        "title": "Name",
-                        "type": "string"
-                    },
-                    "newer": {
-                        "title": "Newer",
-                        "type": "boolean"
-                    },
-                    "published_at": {
-                        "format": "date-time",
-                        "title": "Published At",
-                        "type": "string"
-                    },
-                    "retrieved_at": {
-                        "format": "date-time",
-                        "title": "Retrieved At",
-                        "type": "string"
-                    },
-                    "size": {
-                        "title": "Size",
-                        "type": "integer"
-                    }
-                },
-                "required": [
-                    "body",
-                    "content_type",
-                    "download_url",
-                    "etag",
-                    "filename",
-                    "html_url",
-                    "id",
-                    "name",
-                    "newer",
-                    "published_at",
-                    "retrieved_at",
-                    "size"
-                ],
-                "title": "ReferenceRelease",
-                "type": "object"
-            },
-            "ReferenceRemotesFrom": {
-                "properties": {
-                    "errors": {
-                        "items": {},
-                        "title": "Errors",
-                        "type": "array"
-                    },
-                    "slug": {
-                        "title": "Slug",
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "errors",
-                    "slug"
-                ],
-                "title": "ReferenceRemotesFrom",
-                "type": "object"
-            },
-            "ReferenceUser": {
-                "properties": {
-                    "administrator": {
-                        "title": "Administrator",
-                        "type": "boolean"
-                    },
-                    "b2c": {
-                        "$ref": "#/components/schemas/UserB2C"
-                    },
-                    "b2c_display_name": {
-                        "title": "B2C Display Name",
-                        "type": "string"
-                    },
-                    "b2c_family_name": {
-                        "title": "B2C Family Name",
-                        "type": "string"
-                    },
-                    "b2c_given_name": {
-                        "title": "B2C Given Name",
-                        "type": "string"
-                    },
-                    "b2c_oid": {
-                        "title": "B2C Oid",
-                        "type": "string"
-                    },
-                    "build": {
-                        "title": "Build",
-                        "type": "boolean"
-                    },
-                    "count": {
-                        "title": "Count",
-                        "type": "integer"
-                    },
-                    "created_at": {
-                        "format": "date-time",
-                        "title": "Created At",
-                        "type": "string"
-                    },
-                    "handle": {
-                        "title": "Handle",
-                        "type": "string"
-                    },
-                    "id": {
-                        "title": "Id",
-                        "type": "string"
-                    },
-                    "modify": {
-                        "title": "Modify",
-                        "type": "boolean"
-                    },
-                    "modify_otu": {
-                        "title": "Modify Otu",
-                        "type": "boolean"
-                    },
-                    "remove": {
-                        "title": "Remove",
-                        "type": "boolean"
-                    }
-                },
-                "required": [
-                    "id",
-                    "administrator",
-                    "handle",
-                    "count",
-                    "build",
-                    "created_at",
-                    "modify",
-                    "modify_otu",
-                    "remove"
-                ],
-                "title": "ReferenceUser",
-                "type": "object"
-            },
             "SampleID": {
                 "properties": {
                     "id": {
@@ -1175,6 +730,108 @@
                     "id"
                 ],
                 "title": "SampleID",
+                "type": "object"
+            },
+            "SampleMinimal": {
+                "properties": {
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "host": {
+                        "title": "Host",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "isolate": {
+                        "title": "Isolate",
+                        "type": "string"
+                    },
+                    "labels": {
+                        "items": {
+                            "$ref": "#/components/schemas/LabelNested"
+                        },
+                        "title": "Labels",
+                        "type": "array"
+                    },
+                    "library_type": {
+                        "$ref": "#/components/schemas/LibraryType"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "notes": {
+                        "title": "Notes",
+                        "type": "string"
+                    },
+                    "nuvs": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "title": "Nuvs"
+                    },
+                    "pathoscope": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "title": "Pathoscope"
+                    },
+                    "ready": {
+                        "title": "Ready",
+                        "type": "boolean"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserNested"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "created_at",
+                    "host",
+                    "isolate",
+                    "labels",
+                    "library_type",
+                    "notes",
+                    "nuvs",
+                    "pathoscope",
+                    "ready",
+                    "user"
+                ],
+                "title": "SampleMinimal",
+                "type": "object"
+            },
+            "SampleNested": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "title": "SampleNested",
                 "type": "object"
             },
             "SubtractionFile": {
@@ -1215,84 +872,6 @@
                 "title": "SubtractionFile",
                 "type": "object"
             },
-            "SubtractionLinkedSample": {
-                "properties": {
-                    "id": {
-                        "title": "Id",
-                        "type": "string"
-                    },
-                    "name": {
-                        "title": "Name",
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "id",
-                    "name"
-                ],
-                "title": "SubtractionLinkedSample",
-                "type": "object"
-            },
-            "SubtractionMinimal": {
-                "description": "Minimal Subtraction model used for WebSocked messages and resource listings.",
-                "properties": {
-                    "count": {
-                        "title": "Count",
-                        "type": "integer"
-                    },
-                    "created_at": {
-                        "format": "date-time",
-                        "title": "Created At",
-                        "type": "string"
-                    },
-                    "file": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/UploadMinimal"
-                            },
-                            {
-                                "$ref": "#/components/schemas/SubtractionUpload"
-                            }
-                        ],
-                        "title": "File"
-                    },
-                    "has_file": {
-                        "title": "Has File",
-                        "type": "boolean"
-                    },
-                    "id": {
-                        "title": "Id",
-                        "type": "string"
-                    },
-                    "name": {
-                        "title": "Name",
-                        "type": "string"
-                    },
-                    "nickname": {
-                        "default": "",
-                        "title": "Nickname",
-                        "type": "string"
-                    },
-                    "ready": {
-                        "title": "Ready",
-                        "type": "boolean"
-                    },
-                    "user": {
-                        "$ref": "#/components/schemas/UserMinimal"
-                    }
-                },
-                "required": [
-                    "id",
-                    "name",
-                    "created_at",
-                    "file",
-                    "has_file",
-                    "ready",
-                    "user"
-                ],
-                "title": "SubtractionMinimal",
-                "type": "object"
-            },
             "SubtractionNested": {
                 "properties": {
                     "id": {
@@ -1327,63 +906,6 @@
                     "name"
                 ],
                 "title": "SubtractionUpload",
-                "type": "object"
-            },
-            "Task": {
-                "properties": {
-                    "complete": {
-                        "title": "Complete",
-                        "type": "boolean"
-                    },
-                    "context": {
-                        "title": "Context",
-                        "type": "object"
-                    },
-                    "count": {
-                        "title": "Count",
-                        "type": "integer"
-                    },
-                    "created_at": {
-                        "format": "date-time",
-                        "title": "Created At",
-                        "type": "string"
-                    },
-                    "error": {
-                        "title": "Error",
-                        "type": "string"
-                    },
-                    "file_size": {
-                        "title": "File Size",
-                        "type": "integer"
-                    },
-                    "id": {
-                        "title": "Id",
-                        "type": "integer"
-                    },
-                    "progress": {
-                        "title": "Progress",
-                        "type": "integer"
-                    },
-                    "step": {
-                        "title": "Step",
-                        "type": "string"
-                    },
-                    "type": {
-                        "title": "Type",
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "complete",
-                    "context",
-                    "count",
-                    "created_at",
-                    "id",
-                    "progress",
-                    "step",
-                    "type"
-                ],
-                "title": "Task",
                 "type": "object"
             },
             "UploadMinimal": {
@@ -1521,6 +1043,29 @@
                     "handle"
                 ],
                 "title": "UserMinimal",
+                "type": "object"
+            },
+            "UserNested": {
+                "properties": {
+                    "administrator": {
+                        "title": "Administrator",
+                        "type": "boolean"
+                    },
+                    "handle": {
+                        "title": "Handle",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "administrator",
+                    "handle"
+                ],
+                "title": "UserNested",
                 "type": "object"
             }
         }
@@ -2351,70 +1896,101 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "items": {
-                                        "properties": {
-                                            "created_at": {
-                                                "format": "date-time",
-                                                "title": "Created At",
-                                                "type": "string"
-                                            },
-                                            "id": {
-                                                "title": "Id",
-                                                "type": "string"
-                                            },
+                                    "example": [
+                                        {
+                                            "created_at": "2022-08-15T17:42:35.979000Z",
+                                            "id": "ofv7rp4v",
                                             "index": {
-                                                "$ref": "#/components/schemas/IndexMinimal"
+                                                "id": "u3lm1rk8",
+                                                "version": 14
                                             },
                                             "job": {
-                                                "$ref": "#/components/schemas/JobMinimal"
+                                                "id": "us3toy8j"
                                             },
-                                            "ready": {
-                                                "title": "Ready",
-                                                "type": "boolean"
-                                            },
+                                            "ready": true,
                                             "reference": {
-                                                "$ref": "#/components/schemas/ReferenceMinimal"
+                                                "id": "d19exr83",
+                                                "name": "New Plant Viruses"
                                             },
                                             "sample": {
-                                                "$ref": "#/components/schemas/AnalysisSample"
+                                                "id": "7tu8c5m5"
                                             },
-                                            "subtractions": {
-                                                "items": {
-                                                    "$ref": "#/components/schemas/SubtractionMinimal"
-                                                },
-                                                "title": "Subtractions",
-                                                "type": "array"
-                                            },
-                                            "updated_at": {
-                                                "format": "date-time",
-                                                "title": "Updated At",
-                                                "type": "string"
-                                            },
+                                            "subtractions": [
+                                                {
+                                                    "id": "1sk885at",
+                                                    "name": "Vitis vinifera"
+                                                }
+                                            ],
+                                            "updated_at": "2022-08-15T17:42:35.979000Z",
                                             "user": {
-                                                "$ref": "#/components/schemas/UserMinimal"
+                                                "administrator": true,
+                                                "handle": "mrott",
+                                                "id": "ihvze2u9"
                                             },
-                                            "workflow": {
-                                                "title": "Workflow",
-                                                "type": "string"
-                                            }
+                                            "workflow": "pathoscope_bowtie"
+                                        }
+                                    ],
+                                    "properties": {
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
                                         },
-                                        "required": [
-                                            "created_at",
-                                            "id",
-                                            "index",
-                                            "job",
-                                            "ready",
-                                            "reference",
-                                            "sample",
-                                            "subtractions",
-                                            "updated_at",
-                                            "user",
-                                            "workflow"
-                                        ],
-                                        "title": "AnalysisMinimal",
-                                        "type": "object"
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "index": {
+                                            "$ref": "#/components/schemas/IndexNested"
+                                        },
+                                        "job": {
+                                            "$ref": "#/components/schemas/JobNested"
+                                        },
+                                        "ready": {
+                                            "title": "Ready",
+                                            "type": "boolean"
+                                        },
+                                        "reference": {
+                                            "$ref": "#/components/schemas/AnalysisReference"
+                                        },
+                                        "sample": {
+                                            "$ref": "#/components/schemas/AnalysisSample"
+                                        },
+                                        "subtractions": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/SubtractionNested"
+                                            },
+                                            "title": "Subtractions",
+                                            "type": "array"
+                                        },
+                                        "updated_at": {
+                                            "format": "date-time",
+                                            "title": "Updated At",
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserMinimal"
+                                        },
+                                        "workflow": {
+                                            "title": "Workflow",
+                                            "type": "string"
+                                        }
                                     },
-                                    "type": "array"
+                                    "required": [
+                                        "created_at",
+                                        "id",
+                                        "index",
+                                        "job",
+                                        "ready",
+                                        "reference",
+                                        "sample",
+                                        "subtractions",
+                                        "updated_at",
+                                        "user",
+                                        "workflow"
+                                    ],
+                                    "title": "GetAnalysisResponse",
+                                    "type": "object"
                                 }
                             }
                         },
@@ -2474,6 +2050,72 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "example": {
+                                        "created_at": "2022-08-15T17:42:35.979000Z",
+                                        "files": [
+                                            {
+                                                "analysis": "ofv7rp4v",
+                                                "description": null,
+                                                "format": "tsv",
+                                                "id": 3145,
+                                                "name": "report.tsv",
+                                                "name_on_disk": "3145-report.tsv",
+                                                "size": 4120,
+                                                "uploaded_at": "2022-08-15T17:48:02.467000Z"
+                                            }
+                                        ],
+                                        "id": "ofv7rp4v",
+                                        "index": {
+                                            "id": "u3lm1rk8",
+                                            "version": 14
+                                        },
+                                        "job": {
+                                            "id": "us3toy8j"
+                                        },
+                                        "ready": true,
+                                        "reference": {
+                                            "id": "d19exr83",
+                                            "name": "New Plant Viruses"
+                                        },
+                                        "results": {
+                                            "hits": [
+                                                {
+                                                    "abbreviation": "GLRaV3",
+                                                    "id": "6tli5mz3",
+                                                    "isolates": [
+                                                        {
+                                                            "default": false,
+                                                            "id": "qauxg1g9",
+                                                            "sequences": [],
+                                                            "source_name": "WA-MR",
+                                                            "source_type": "isolate"
+                                                        }
+                                                    ],
+                                                    "length": 18671,
+                                                    "name": "Grapevine leafroll-associated virus 3",
+                                                    "version": 30
+                                                }
+                                            ],
+                                            "read_count": 584,
+                                            "subtracted_count": 0
+                                        },
+                                        "sample": {
+                                            "id": "7tu8c5m5"
+                                        },
+                                        "subtractions": [
+                                            {
+                                                "id": "1sk885at",
+                                                "name": "Vitis vinifera"
+                                            }
+                                        ],
+                                        "updated_at": "2022-08-15T17:42:35.979000Z",
+                                        "user": {
+                                            "administrator": true,
+                                            "handle": "mrott",
+                                            "id": "ihvze2u9"
+                                        },
+                                        "workflow": "pathoscope_bowtie"
+                                    },
                                     "properties": {
                                         "created_at": {
                                             "format": "date-time",
@@ -2492,17 +2134,17 @@
                                             "type": "string"
                                         },
                                         "index": {
-                                            "$ref": "#/components/schemas/IndexMinimal"
+                                            "$ref": "#/components/schemas/IndexNested"
                                         },
                                         "job": {
-                                            "$ref": "#/components/schemas/JobMinimal"
+                                            "$ref": "#/components/schemas/JobNested"
                                         },
                                         "ready": {
                                             "title": "Ready",
                                             "type": "boolean"
                                         },
                                         "reference": {
-                                            "$ref": "#/components/schemas/ReferenceMinimal"
+                                            "$ref": "#/components/schemas/AnalysisReference"
                                         },
                                         "results": {
                                             "title": "Results",
@@ -2513,7 +2155,7 @@
                                         },
                                         "subtractions": {
                                             "items": {
-                                                "$ref": "#/components/schemas/SubtractionMinimal"
+                                                "$ref": "#/components/schemas/SubtractionNested"
                                             },
                                             "title": "Subtractions",
                                             "type": "array"
@@ -2545,7 +2187,7 @@
                                         "workflow",
                                         "files"
                                     ],
-                                    "title": "Analysis",
+                                    "title": "AnalysisResponse",
                                     "type": "object"
                                 }
                             }
@@ -3451,11 +3093,11 @@
                                             "title": "Mean Entropy",
                                             "type": "number"
                                         },
-                                        "name": {
+                                        "names": {
                                             "items": {
                                                 "type": "string"
                                             },
-                                            "title": "Name",
+                                            "title": "Names",
                                             "type": "array"
                                         },
                                         "total_entropy": {
@@ -3468,7 +3110,7 @@
                                         "cluster",
                                         "count",
                                         "families",
-                                        "name",
+                                        "names",
                                         "entries",
                                         "genera",
                                         "hidden",
@@ -3506,7 +3148,322 @@
                 "description": "Finds jobs on the instance.\n\nJobs can be filtered by their current ``state`` by providing desired states as\nquery parameters.\n\n**Archived jobs are not currently returned from the API**.",
                 "responses": {
                     "200": {
-                        "content": {},
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "example": [
+                                            {
+                                                "archived": false,
+                                                "created_at": "2022-07-08T18:37:44.936000Z",
+                                                "id": "splu0pq3",
+                                                "progress": 100,
+                                                "rights": {
+                                                    "analyses": {
+                                                        "modify": [
+                                                            "rr8iryfy"
+                                                        ],
+                                                        "read": [
+                                                            "rr8iryfy"
+                                                        ],
+                                                        "remove": [
+                                                            "rr8iryfy"
+                                                        ]
+                                                    },
+                                                    "indexes": {
+                                                        "read": [
+                                                            "u3lm1rk8"
+                                                        ]
+                                                    },
+                                                    "references": {
+                                                        "read": [
+                                                            "d19exr83"
+                                                        ]
+                                                    },
+                                                    "samples": {
+                                                        "read": [
+                                                            "4eynwmic"
+                                                        ]
+                                                    },
+                                                    "subtractions": {
+                                                        "read": [
+                                                            "0nhpi36p"
+                                                        ]
+                                                    }
+                                                },
+                                                "stage": "",
+                                                "state": "complete",
+                                                "status": [
+                                                    {
+                                                        "error": null,
+                                                        "progress": 0,
+                                                        "stage": null,
+                                                        "state": "waiting",
+                                                        "step_description": null,
+                                                        "step_name": null,
+                                                        "timestamp": "2022-07-08T18:37:44.936000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 3,
+                                                        "stage": null,
+                                                        "state": "preparing",
+                                                        "step_description": null,
+                                                        "step_name": null,
+                                                        "timestamp": "2022-07-08T18:41:20.647000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 16,
+                                                        "stage": "eliminate_otus",
+                                                        "state": "running",
+                                                        "step_description": "Map sample reads to reference OTUs and discard.",
+                                                        "step_name": "Eliminate Otus",
+                                                        "timestamp": "2022-07-08T18:48:11.287000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 33,
+                                                        "stage": "eliminate_subtraction",
+                                                        "state": "running",
+                                                        "step_description": "Map remaining reads to the subtraction and discard.",
+                                                        "step_name": "Eliminate Subtraction",
+                                                        "timestamp": "2022-07-08T19:00:24.291000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 50,
+                                                        "stage": "reunite_pairs",
+                                                        "state": "running",
+                                                        "step_description": "Reunite paired reads after elimination.",
+                                                        "step_name": "Reunite Pairs",
+                                                        "timestamp": "2022-07-08T19:02:53.618000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 66,
+                                                        "stage": "assemble",
+                                                        "state": "running",
+                                                        "step_description": "Assemble reads using SPAdes.",
+                                                        "step_name": "Assemble",
+                                                        "timestamp": "2022-07-08T19:02:53.644000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 83,
+                                                        "stage": "process_fasta",
+                                                        "state": "running",
+                                                        "step_description": "Find ORFs in the assembled contigs.",
+                                                        "step_name": "Process Fasta",
+                                                        "timestamp": "2022-07-08T19:07:22.352000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 100,
+                                                        "stage": "vfam",
+                                                        "state": "running",
+                                                        "step_description": "Search for viral motifs in ORF translations.",
+                                                        "step_name": "Vfam",
+                                                        "timestamp": "2022-07-08T19:07:44.531000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 100,
+                                                        "stage": "",
+                                                        "state": "complete",
+                                                        "step_description": null,
+                                                        "step_name": null,
+                                                        "timestamp": "2022-07-08T19:13:04.293000Z"
+                                                    }
+                                                ],
+                                                "user": {
+                                                    "administrator": false,
+                                                    "handle": "jonathan",
+                                                    "id": "88yksx67"
+                                                },
+                                                "workflow": "nuvs"
+                                            },
+                                            {
+                                                "archived": false,
+                                                "created_at": "2022-07-08T20:07:29.213000Z",
+                                                "id": "qs3d5bnp",
+                                                "progress": 100,
+                                                "rights": {
+                                                    "analyses": {
+                                                        "modify": [
+                                                            "z436i72k"
+                                                        ],
+                                                        "read": [
+                                                            "z436i72k"
+                                                        ],
+                                                        "remove": [
+                                                            "z436i72k"
+                                                        ]
+                                                    },
+                                                    "indexes": {
+                                                        "read": [
+                                                            "u3lm1rk8"
+                                                        ]
+                                                    },
+                                                    "references": {
+                                                        "read": [
+                                                            "d19exr83"
+                                                        ]
+                                                    },
+                                                    "samples": {
+                                                        "read": [
+                                                            "90xccap9"
+                                                        ]
+                                                    },
+                                                    "subtractions": {
+                                                        "read": [
+                                                            "0nhpi36p"
+                                                        ]
+                                                    }
+                                                },
+                                                "stage": "",
+                                                "state": "complete",
+                                                "status": [
+                                                    {
+                                                        "error": null,
+                                                        "progress": 0,
+                                                        "stage": null,
+                                                        "state": "waiting",
+                                                        "step_description": null,
+                                                        "step_name": null,
+                                                        "timestamp": "2022-07-08T20:07:29.213000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 3,
+                                                        "stage": null,
+                                                        "state": "preparing",
+                                                        "step_description": null,
+                                                        "step_name": null,
+                                                        "timestamp": "2022-07-08T20:11:22.187000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 16,
+                                                        "stage": "eliminate_otus",
+                                                        "state": "running",
+                                                        "step_description": "Map sample reads to reference OTUs and discard.",
+                                                        "step_name": "Eliminate Otus",
+                                                        "timestamp": "2022-07-08T20:16:11.688000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 33,
+                                                        "stage": "eliminate_subtraction",
+                                                        "state": "running",
+                                                        "step_description": "Map remaining reads to the subtraction and discard.",
+                                                        "step_name": "Eliminate Subtraction",
+                                                        "timestamp": "2022-07-08T20:22:29.872000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 50,
+                                                        "stage": "reunite_pairs",
+                                                        "state": "running",
+                                                        "step_description": "Reunite paired reads after elimination.",
+                                                        "step_name": "Reunite Pairs",
+                                                        "timestamp": "2022-07-08T20:23:59.985000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 66,
+                                                        "stage": "assemble",
+                                                        "state": "running",
+                                                        "step_description": "Assemble reads using SPAdes.",
+                                                        "step_name": "Assemble",
+                                                        "timestamp": "2022-07-08T20:24:00.127000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 83,
+                                                        "stage": "process_fasta",
+                                                        "state": "running",
+                                                        "step_description": "Find ORFs in the assembled contigs.",
+                                                        "step_name": "Process Fasta",
+                                                        "timestamp": "2022-07-08T20:30:17.383000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 100,
+                                                        "stage": "vfam",
+                                                        "state": "running",
+                                                        "step_description": "Search for viral motifs in ORF translations.",
+                                                        "step_name": "Vfam",
+                                                        "timestamp": "2022-07-08T20:30:36.530000Z"
+                                                    },
+                                                    {
+                                                        "error": null,
+                                                        "progress": 100,
+                                                        "stage": "",
+                                                        "state": "complete",
+                                                        "step_description": null,
+                                                        "step_name": null,
+                                                        "timestamp": "2022-07-08T20:39:54.874000Z"
+                                                    }
+                                                ],
+                                                "user": {
+                                                    "administrator": false,
+                                                    "handle": "jonathan",
+                                                    "id": "88yksx67"
+                                                },
+                                                "workflow": "nuvs"
+                                            }
+                                        ],
+                                        "properties": {
+                                            "archived": {
+                                                "title": "Archived",
+                                                "type": "boolean"
+                                            },
+                                            "created_at": {
+                                                "format": "date-time",
+                                                "title": "Created At",
+                                                "type": "string"
+                                            },
+                                            "id": {
+                                                "title": "Id",
+                                                "type": "string"
+                                            },
+                                            "progress": {
+                                                "title": "Progress",
+                                                "type": "integer"
+                                            },
+                                            "stage": {
+                                                "title": "Stage",
+                                                "type": "string"
+                                            },
+                                            "state": {
+                                                "title": "State",
+                                                "type": "string"
+                                            },
+                                            "user": {
+                                                "$ref": "#/components/schemas/UserNested"
+                                            },
+                                            "workflow": {
+                                                "title": "Workflow",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "id",
+                                            "archived",
+                                            "created_at",
+                                            "progress",
+                                            "state",
+                                            "user",
+                                            "workflow"
+                                        ],
+                                        "title": "GetJobResponse",
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
                         "description": "Successful operation"
                     },
                     "400": {
@@ -3544,7 +3501,221 @@
                 "description": "Retrieves the details for a job.",
                 "responses": {
                     "200": {
-                        "content": {},
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "acquired": true,
+                                        "archived": false,
+                                        "args": {
+                                            "analysis_id": "rr8iryfy",
+                                            "index_id": "u3lm1rk8",
+                                            "ref_id": "d19exr83",
+                                            "sample_id": "4eynwmic",
+                                            "sample_name": "21BP088",
+                                            "subtractions": [
+                                                "0nhpi36p"
+                                            ]
+                                        },
+                                        "created_at": "2022-07-08T18:37:44.936000Z",
+                                        "id": "splu0pq3",
+                                        "progress": 100,
+                                        "rights": {
+                                            "analyses": {
+                                                "modify": [
+                                                    "rr8iryfy"
+                                                ],
+                                                "read": [
+                                                    "rr8iryfy"
+                                                ],
+                                                "remove": [
+                                                    "rr8iryfy"
+                                                ]
+                                            },
+                                            "indexes": {
+                                                "read": [
+                                                    "u3lm1rk8"
+                                                ]
+                                            },
+                                            "references": {
+                                                "read": [
+                                                    "d19exr83"
+                                                ]
+                                            },
+                                            "samples": {
+                                                "read": [
+                                                    "4eynwmic"
+                                                ]
+                                            },
+                                            "subtractions": {
+                                                "read": [
+                                                    "0nhpi36p"
+                                                ]
+                                            }
+                                        },
+                                        "stage": "",
+                                        "state": "complete",
+                                        "status": [
+                                            {
+                                                "error": null,
+                                                "progress": 0,
+                                                "stage": null,
+                                                "state": "waiting",
+                                                "step_description": null,
+                                                "step_name": null,
+                                                "timestamp": "2022-07-08T18:37:44.936000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 3,
+                                                "stage": null,
+                                                "state": "preparing",
+                                                "step_description": null,
+                                                "step_name": null,
+                                                "timestamp": "2022-07-08T18:41:20.647000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 16,
+                                                "stage": "eliminate_otus",
+                                                "state": "running",
+                                                "step_description": "Map sample reads to reference OTUs and discard.",
+                                                "step_name": "Eliminate Otus",
+                                                "timestamp": "2022-07-08T18:48:11.287000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 33,
+                                                "stage": "eliminate_subtraction",
+                                                "state": "running",
+                                                "step_description": "Map remaining reads to the subtraction and discard.",
+                                                "step_name": "Eliminate Subtraction",
+                                                "timestamp": "2022-07-08T19:00:24.291000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 50,
+                                                "stage": "reunite_pairs",
+                                                "state": "running",
+                                                "step_description": "Reunite paired reads after elimination.",
+                                                "step_name": "Reunite Pairs",
+                                                "timestamp": "2022-07-08T19:02:53.618000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 66,
+                                                "stage": "assemble",
+                                                "state": "running",
+                                                "step_description": "Assemble reads using SPAdes.",
+                                                "step_name": "Assemble",
+                                                "timestamp": "2022-07-08T19:02:53.644000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 83,
+                                                "stage": "process_fasta",
+                                                "state": "running",
+                                                "step_description": "Find ORFs in the assembled contigs.",
+                                                "step_name": "Process Fasta",
+                                                "timestamp": "2022-07-08T19:07:22.352000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 100,
+                                                "stage": "vfam",
+                                                "state": "running",
+                                                "step_description": "Search for viral motifs in ORF translations.",
+                                                "step_name": "Vfam",
+                                                "timestamp": "2022-07-08T19:07:44.531000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 100,
+                                                "stage": "",
+                                                "state": "complete",
+                                                "step_description": null,
+                                                "step_name": null,
+                                                "timestamp": "2022-07-08T19:13:04.293000Z"
+                                            }
+                                        ],
+                                        "user": {
+                                            "administrator": false,
+                                            "handle": "jonathan",
+                                            "id": "88yksx67"
+                                        },
+                                        "workflow": "nuvs"
+                                    },
+                                    "properties": {
+                                        "acquired": {
+                                            "default": false,
+                                            "title": "Acquired",
+                                            "type": "boolean"
+                                        },
+                                        "archived": {
+                                            "title": "Archived",
+                                            "type": "boolean"
+                                        },
+                                        "args": {
+                                            "title": "Args",
+                                            "type": "object"
+                                        },
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "progress": {
+                                            "title": "Progress",
+                                            "type": "integer"
+                                        },
+                                        "rights": {
+                                            "title": "Rights",
+                                            "type": "object"
+                                        },
+                                        "stage": {
+                                            "title": "Stage",
+                                            "type": "string"
+                                        },
+                                        "state": {
+                                            "title": "State",
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/JobStatus"
+                                            },
+                                            "title": "Status",
+                                            "type": "array"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserNested"
+                                        },
+                                        "workflow": {
+                                            "title": "Workflow",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "archived",
+                                        "created_at",
+                                        "progress",
+                                        "state",
+                                        "user",
+                                        "workflow",
+                                        "args",
+                                        "rights",
+                                        "status"
+                                    ],
+                                    "title": "JobResponse",
+                                    "type": "object"
+                                }
+                            }
+                        },
                         "description": "Successful operation"
                     },
                     "404": {
@@ -3560,7 +3731,221 @@
                 "description": "",
                 "responses": {
                     "200": {
-                        "content": {},
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "acquired": true,
+                                        "archived": false,
+                                        "args": {
+                                            "analysis_id": "rr8iryfy",
+                                            "index_id": "u3lm1rk8",
+                                            "ref_id": "d19exr83",
+                                            "sample_id": "4eynwmic",
+                                            "sample_name": "21BP088",
+                                            "subtractions": [
+                                                "0nhpi36p"
+                                            ]
+                                        },
+                                        "created_at": "2022-07-08T18:37:44.936000Z",
+                                        "id": "splu0pq3",
+                                        "progress": 100,
+                                        "rights": {
+                                            "analyses": {
+                                                "modify": [
+                                                    "rr8iryfy"
+                                                ],
+                                                "read": [
+                                                    "rr8iryfy"
+                                                ],
+                                                "remove": [
+                                                    "rr8iryfy"
+                                                ]
+                                            },
+                                            "indexes": {
+                                                "read": [
+                                                    "u3lm1rk8"
+                                                ]
+                                            },
+                                            "references": {
+                                                "read": [
+                                                    "d19exr83"
+                                                ]
+                                            },
+                                            "samples": {
+                                                "read": [
+                                                    "4eynwmic"
+                                                ]
+                                            },
+                                            "subtractions": {
+                                                "read": [
+                                                    "0nhpi36p"
+                                                ]
+                                            }
+                                        },
+                                        "stage": "",
+                                        "state": "complete",
+                                        "status": [
+                                            {
+                                                "error": null,
+                                                "progress": 0,
+                                                "stage": null,
+                                                "state": "waiting",
+                                                "step_description": null,
+                                                "step_name": null,
+                                                "timestamp": "2022-07-08T18:37:44.936000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 3,
+                                                "stage": null,
+                                                "state": "preparing",
+                                                "step_description": null,
+                                                "step_name": null,
+                                                "timestamp": "2022-07-08T18:41:20.647000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 16,
+                                                "stage": "eliminate_otus",
+                                                "state": "running",
+                                                "step_description": "Map sample reads to reference OTUs and discard.",
+                                                "step_name": "Eliminate Otus",
+                                                "timestamp": "2022-07-08T18:48:11.287000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 33,
+                                                "stage": "eliminate_subtraction",
+                                                "state": "running",
+                                                "step_description": "Map remaining reads to the subtraction and discard.",
+                                                "step_name": "Eliminate Subtraction",
+                                                "timestamp": "2022-07-08T19:00:24.291000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 50,
+                                                "stage": "reunite_pairs",
+                                                "state": "running",
+                                                "step_description": "Reunite paired reads after elimination.",
+                                                "step_name": "Reunite Pairs",
+                                                "timestamp": "2022-07-08T19:02:53.618000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 66,
+                                                "stage": "assemble",
+                                                "state": "running",
+                                                "step_description": "Assemble reads using SPAdes.",
+                                                "step_name": "Assemble",
+                                                "timestamp": "2022-07-08T19:02:53.644000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 83,
+                                                "stage": "process_fasta",
+                                                "state": "running",
+                                                "step_description": "Find ORFs in the assembled contigs.",
+                                                "step_name": "Process Fasta",
+                                                "timestamp": "2022-07-08T19:07:22.352000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 100,
+                                                "stage": "vfam",
+                                                "state": "running",
+                                                "step_description": "Search for viral motifs in ORF translations.",
+                                                "step_name": "Vfam",
+                                                "timestamp": "2022-07-08T19:07:44.531000Z"
+                                            },
+                                            {
+                                                "error": null,
+                                                "progress": 100,
+                                                "stage": "",
+                                                "state": "complete",
+                                                "step_description": null,
+                                                "step_name": null,
+                                                "timestamp": "2022-07-08T19:13:04.293000Z"
+                                            }
+                                        ],
+                                        "user": {
+                                            "administrator": false,
+                                            "handle": "jonathan",
+                                            "id": "88yksx67"
+                                        },
+                                        "workflow": "nuvs"
+                                    },
+                                    "properties": {
+                                        "acquired": {
+                                            "default": false,
+                                            "title": "Acquired",
+                                            "type": "boolean"
+                                        },
+                                        "archived": {
+                                            "title": "Archived",
+                                            "type": "boolean"
+                                        },
+                                        "args": {
+                                            "title": "Args",
+                                            "type": "object"
+                                        },
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "progress": {
+                                            "title": "Progress",
+                                            "type": "integer"
+                                        },
+                                        "rights": {
+                                            "title": "Rights",
+                                            "type": "object"
+                                        },
+                                        "stage": {
+                                            "title": "Stage",
+                                            "type": "string"
+                                        },
+                                        "state": {
+                                            "title": "State",
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/JobStatus"
+                                            },
+                                            "title": "Status",
+                                            "type": "array"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserNested"
+                                        },
+                                        "workflow": {
+                                            "title": "Workflow",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "archived",
+                                        "created_at",
+                                        "progress",
+                                        "state",
+                                        "user",
+                                        "workflow",
+                                        "args",
+                                        "rights",
+                                        "status"
+                                    ],
+                                    "title": "JobResponse",
+                                    "type": "object"
+                                }
+                            }
+                        },
                         "description": "Successful operation"
                     },
                     "403": {
@@ -3913,113 +4298,109 @@
         "/samples": {
             "get": {
                 "description": "",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "find",
+                        "required": false,
+                        "schema": {
+                            "default": "",
+                            "title": "find",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "label",
+                        "required": false,
+                        "schema": {
+                            "items": {
+                                "type": "integer"
+                            },
+                            "title": "label",
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "schema": {
+                            "default": 1,
+                            "exclusiveMinimum": 0,
+                            "title": "page",
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "per_page",
+                        "required": false,
+                        "schema": {
+                            "default": 25,
+                            "maximum": 100,
+                            "minimum": 1,
+                            "title": "per_page",
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "workflows",
+                        "required": false,
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "title": "workflows",
+                            "type": "array"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "items": {
-                                        "example": [
-                                            {
-                                                "created_at": "2022-05-20T23:48:00.901000Z",
-                                                "host": "Malus domestica",
-                                                "id": "9zn468u9",
-                                                "isolate": "",
-                                                "labels": [],
-                                                "library_type": "normal",
-                                                "name": "HX8",
-                                                "notes": "",
-                                                "nuvs": false,
-                                                "pathoscope": true,
-                                                "ready": true,
-                                                "subtractions": [
-                                                    "0nhpi36p"
-                                                ],
-                                                "user": {
-                                                    "administrator": true,
-                                                    "handle": "mrott",
-                                                    "id": "ihvze2u9"
-                                                }
-                                            }
-                                        ],
-                                        "properties": {
-                                            "created_at": {
-                                                "format": "date-time",
-                                                "title": "Created At",
-                                                "type": "string"
+                                    "properties": {
+                                        "documents": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/SampleMinimal"
                                             },
-                                            "host": {
-                                                "title": "Host",
-                                                "type": "string"
-                                            },
-                                            "id": {
-                                                "title": "Id",
-                                                "type": "string"
-                                            },
-                                            "isolate": {
-                                                "title": "Isolate",
-                                                "type": "string"
-                                            },
-                                            "labels": {
-                                                "items": {
-                                                    "$ref": "#/components/schemas/LabelNested"
-                                                },
-                                                "title": "Labels",
-                                                "type": "array"
-                                            },
-                                            "library_type": {
-                                                "$ref": "#/components/schemas/LibraryType"
-                                            },
-                                            "name": {
-                                                "title": "Name",
-                                                "type": "string"
-                                            },
-                                            "notes": {
-                                                "title": "Notes",
-                                                "type": "string"
-                                            },
-                                            "nuvs": {
-                                                "title": "Nuvs",
-                                                "type": "boolean"
-                                            },
-                                            "pathoscope": {
-                                                "title": "Pathoscope",
-                                                "type": "boolean"
-                                            },
-                                            "ready": {
-                                                "title": "Ready",
-                                                "type": "boolean"
-                                            },
-                                            "subtractions": {
-                                                "items": {
-                                                    "$ref": "#/components/schemas/SubtractionNested"
-                                                },
-                                                "title": "Subtractions",
-                                                "type": "array"
-                                            },
-                                            "user": {
-                                                "$ref": "#/components/schemas/UserMinimal"
-                                            }
+                                            "title": "Documents",
+                                            "type": "array"
                                         },
-                                        "required": [
-                                            "id",
-                                            "created_at",
-                                            "host",
-                                            "isolate",
-                                            "labels",
-                                            "library_type",
-                                            "name",
-                                            "notes",
-                                            "nuvs",
-                                            "pathoscope",
-                                            "ready",
-                                            "subtractions",
-                                            "user"
-                                        ],
-                                        "title": "GetSamplesResponse",
-                                        "type": "object"
+                                        "found_count": {
+                                            "title": "Found Count",
+                                            "type": "integer"
+                                        },
+                                        "page": {
+                                            "title": "Page",
+                                            "type": "integer"
+                                        },
+                                        "page_count": {
+                                            "title": "Page Count",
+                                            "type": "integer"
+                                        },
+                                        "per_page": {
+                                            "title": "Per Page",
+                                            "type": "integer"
+                                        },
+                                        "total_count": {
+                                            "title": "Total Count",
+                                            "type": "integer"
+                                        }
                                     },
-                                    "type": "array"
+                                    "required": [
+                                        "found_count",
+                                        "page",
+                                        "page_count",
+                                        "per_page",
+                                        "total_count",
+                                        "documents"
+                                    ],
+                                    "title": "SampleSearchResult",
+                                    "type": "object"
                                 }
                             }
                         },
@@ -4308,16 +4689,30 @@
                                             "type": "string"
                                         },
                                         "nuvs": {
-                                            "title": "Nuvs",
-                                            "type": "boolean"
+                                            "anyOf": [
+                                                {
+                                                    "type": "boolean"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ],
+                                            "title": "Nuvs"
                                         },
                                         "paired": {
                                             "title": "Paired",
                                             "type": "boolean"
                                         },
                                         "pathoscope": {
-                                            "title": "Pathoscope",
-                                            "type": "boolean"
+                                            "anyOf": [
+                                                {
+                                                    "type": "boolean"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ],
+                                            "title": "Pathoscope"
                                         },
                                         "quality": {
                                             "$ref": "#/components/schemas/Quality"
@@ -4341,22 +4736,21 @@
                                             "type": "array"
                                         },
                                         "user": {
-                                            "$ref": "#/components/schemas/UserMinimal"
+                                            "$ref": "#/components/schemas/UserNested"
                                         }
                                     },
                                     "required": [
                                         "id",
+                                        "name",
                                         "created_at",
                                         "host",
                                         "isolate",
                                         "labels",
                                         "library_type",
-                                        "name",
                                         "notes",
                                         "nuvs",
                                         "pathoscope",
                                         "ready",
-                                        "subtractions",
                                         "user",
                                         "all_read",
                                         "all_write",
@@ -4370,8 +4764,8 @@
                                         "is_legacy",
                                         "locale",
                                         "paired",
-                                        "quality",
-                                        "reads"
+                                        "reads",
+                                        "subtractions"
                                     ],
                                     "title": "CreateSampleResponse",
                                     "type": "object"
@@ -4412,7 +4806,7 @@
                 "summary": "Remove a sample document and all associated analyses"
             },
             "get": {
-                "description": "",
+                "description": "Retrieve the details for a sample.",
                 "responses": {
                     "200": {
                         "content": {
@@ -4617,16 +5011,30 @@
                                             "type": "string"
                                         },
                                         "nuvs": {
-                                            "title": "Nuvs",
-                                            "type": "boolean"
+                                            "anyOf": [
+                                                {
+                                                    "type": "boolean"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ],
+                                            "title": "Nuvs"
                                         },
                                         "paired": {
                                             "title": "Paired",
                                             "type": "boolean"
                                         },
                                         "pathoscope": {
-                                            "title": "Pathoscope",
-                                            "type": "boolean"
+                                            "anyOf": [
+                                                {
+                                                    "type": "boolean"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ],
+                                            "title": "Pathoscope"
                                         },
                                         "quality": {
                                             "$ref": "#/components/schemas/Quality"
@@ -4650,22 +5058,21 @@
                                             "type": "array"
                                         },
                                         "user": {
-                                            "$ref": "#/components/schemas/UserMinimal"
+                                            "$ref": "#/components/schemas/UserNested"
                                         }
                                     },
                                     "required": [
                                         "id",
+                                        "name",
                                         "created_at",
                                         "host",
                                         "isolate",
                                         "labels",
                                         "library_type",
-                                        "name",
                                         "notes",
                                         "nuvs",
                                         "pathoscope",
                                         "ready",
-                                        "subtractions",
                                         "user",
                                         "all_read",
                                         "all_write",
@@ -4679,8 +5086,8 @@
                                         "is_legacy",
                                         "locale",
                                         "paired",
-                                        "quality",
-                                        "reads"
+                                        "reads",
+                                        "subtractions"
                                     ],
                                     "title": "GetSampleResponse",
                                     "type": "object"
@@ -4698,7 +5105,7 @@
                         "description": ""
                     }
                 },
-                "summary": "Get a complete sample document"
+                "summary": "Get a sample"
             },
             "patch": {
                 "description": "",
@@ -4962,16 +5369,30 @@
                                             "type": "string"
                                         },
                                         "nuvs": {
-                                            "title": "Nuvs",
-                                            "type": "boolean"
+                                            "anyOf": [
+                                                {
+                                                    "type": "boolean"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ],
+                                            "title": "Nuvs"
                                         },
                                         "paired": {
                                             "title": "Paired",
                                             "type": "boolean"
                                         },
                                         "pathoscope": {
-                                            "title": "Pathoscope",
-                                            "type": "boolean"
+                                            "anyOf": [
+                                                {
+                                                    "type": "boolean"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ],
+                                            "title": "Pathoscope"
                                         },
                                         "quality": {
                                             "$ref": "#/components/schemas/Quality"
@@ -4995,22 +5416,21 @@
                                             "type": "array"
                                         },
                                         "user": {
-                                            "$ref": "#/components/schemas/UserMinimal"
+                                            "$ref": "#/components/schemas/UserNested"
                                         }
                                     },
                                     "required": [
                                         "id",
+                                        "name",
                                         "created_at",
                                         "host",
                                         "isolate",
                                         "labels",
                                         "library_type",
-                                        "name",
                                         "notes",
                                         "nuvs",
                                         "pathoscope",
                                         "ready",
-                                        "subtractions",
                                         "user",
                                         "all_read",
                                         "all_write",
@@ -5024,8 +5444,8 @@
                                         "is_legacy",
                                         "locale",
                                         "paired",
-                                        "quality",
-                                        "reads"
+                                        "reads",
+                                        "subtractions"
                                     ],
                                     "title": "EditSampleResponse",
                                     "type": "object"
@@ -5047,7 +5467,7 @@
                         "description": "Not found"
                     }
                 },
-                "summary": "Update specific fields in the sample document"
+                "summary": "Update a sample"
             }
         },
         "/samples/{sample_id}/analyses": {
@@ -5104,24 +5524,24 @@
                                                 "type": "string"
                                             },
                                             "index": {
-                                                "$ref": "#/components/schemas/IndexMinimal"
+                                                "$ref": "#/components/schemas/IndexNested"
                                             },
                                             "job": {
-                                                "$ref": "#/components/schemas/JobMinimal"
+                                                "$ref": "#/components/schemas/JobNested"
                                             },
                                             "ready": {
                                                 "title": "Ready",
                                                 "type": "boolean"
                                             },
                                             "reference": {
-                                                "$ref": "#/components/schemas/ReferenceMinimal"
+                                                "$ref": "#/components/schemas/AnalysisReference"
                                             },
                                             "sample": {
                                                 "$ref": "#/components/schemas/AnalysisSample"
                                             },
                                             "subtractions": {
                                                 "items": {
-                                                    "$ref": "#/components/schemas/SubtractionMinimal"
+                                                    "$ref": "#/components/schemas/SubtractionNested"
                                                 },
                                                 "title": "Subtractions",
                                                 "type": "array"
@@ -5250,24 +5670,24 @@
                                             "type": "string"
                                         },
                                         "index": {
-                                            "$ref": "#/components/schemas/IndexMinimal"
+                                            "$ref": "#/components/schemas/IndexNested"
                                         },
                                         "job": {
-                                            "$ref": "#/components/schemas/JobMinimal"
+                                            "$ref": "#/components/schemas/JobNested"
                                         },
                                         "ready": {
                                             "title": "Ready",
                                             "type": "boolean"
                                         },
                                         "reference": {
-                                            "$ref": "#/components/schemas/ReferenceMinimal"
+                                            "$ref": "#/components/schemas/AnalysisReference"
                                         },
                                         "sample": {
                                             "$ref": "#/components/schemas/AnalysisSample"
                                         },
                                         "subtractions": {
                                             "items": {
-                                                "$ref": "#/components/schemas/SubtractionMinimal"
+                                                "$ref": "#/components/schemas/SubtractionNested"
                                             },
                                             "title": "Subtractions",
                                             "type": "array"
@@ -5569,16 +5989,30 @@
                                             "type": "string"
                                         },
                                         "nuvs": {
-                                            "title": "Nuvs",
-                                            "type": "boolean"
+                                            "anyOf": [
+                                                {
+                                                    "type": "boolean"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ],
+                                            "title": "Nuvs"
                                         },
                                         "paired": {
                                             "title": "Paired",
                                             "type": "boolean"
                                         },
                                         "pathoscope": {
-                                            "title": "Pathoscope",
-                                            "type": "boolean"
+                                            "anyOf": [
+                                                {
+                                                    "type": "boolean"
+                                                },
+                                                {
+                                                    "type": "string"
+                                                }
+                                            ],
+                                            "title": "Pathoscope"
                                         },
                                         "quality": {
                                             "$ref": "#/components/schemas/Quality"
@@ -5602,22 +6036,21 @@
                                             "type": "array"
                                         },
                                         "user": {
-                                            "$ref": "#/components/schemas/UserMinimal"
+                                            "$ref": "#/components/schemas/UserNested"
                                         }
                                     },
                                     "required": [
                                         "id",
+                                        "name",
                                         "created_at",
                                         "host",
                                         "isolate",
                                         "labels",
                                         "library_type",
-                                        "name",
                                         "notes",
                                         "nuvs",
                                         "pathoscope",
                                         "ready",
-                                        "subtractions",
                                         "user",
                                         "all_read",
                                         "all_write",
@@ -5631,8 +6064,8 @@
                                         "is_legacy",
                                         "locale",
                                         "paired",
-                                        "quality",
-                                        "reads"
+                                        "reads",
+                                        "subtractions"
                                     ],
                                     "title": "EditRightsResponse",
                                     "type": "object"
@@ -6120,7 +6553,7 @@
                                         },
                                         "linked_samples": {
                                             "items": {
-                                                "$ref": "#/components/schemas/SubtractionLinkedSample"
+                                                "$ref": "#/components/schemas/SampleNested"
                                             },
                                             "title": "Linked Samples",
                                             "type": "array"
@@ -6351,7 +6784,7 @@
                                         },
                                         "linked_samples": {
                                             "items": {
-                                                "$ref": "#/components/schemas/SubtractionLinkedSample"
+                                                "$ref": "#/components/schemas/SampleNested"
                                             },
                                             "title": "Linked Samples",
                                             "type": "array"
@@ -6582,7 +7015,7 @@
                                         },
                                         "linked_samples": {
                                             "items": {
-                                                "$ref": "#/components/schemas/SubtractionLinkedSample"
+                                                "$ref": "#/components/schemas/SampleNested"
                                             },
                                             "title": "Linked Samples",
                                             "type": "array"
@@ -7106,7 +7539,78 @@
                 "description": "Returns a paginated list of all users in the instance.",
                 "responses": {
                     "200": {
-                        "content": {},
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "administrator": {
+                                            "title": "Administrator",
+                                            "type": "boolean"
+                                        },
+                                        "b2c": {
+                                            "$ref": "#/components/schemas/UserB2C"
+                                        },
+                                        "b2c_display_name": {
+                                            "title": "B2C Display Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_family_name": {
+                                            "title": "B2C Family Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_given_name": {
+                                            "title": "B2C Given Name",
+                                            "type": "string"
+                                        },
+                                        "b2c_oid": {
+                                            "title": "B2C Oid",
+                                            "type": "string"
+                                        },
+                                        "force_reset": {
+                                            "title": "Force Reset",
+                                            "type": "boolean"
+                                        },
+                                        "groups": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/GroupMinimal"
+                                            },
+                                            "title": "Groups",
+                                            "type": "array"
+                                        },
+                                        "handle": {
+                                            "title": "Handle",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "string"
+                                        },
+                                        "last_password_change": {
+                                            "format": "date-time",
+                                            "title": "Last Password Change",
+                                            "type": "string"
+                                        },
+                                        "permissions": {
+                                            "$ref": "#/components/schemas/Permissions"
+                                        },
+                                        "primary_group": {
+                                            "$ref": "#/components/schemas/GroupMinimal"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "administrator",
+                                        "handle",
+                                        "force_reset",
+                                        "groups",
+                                        "last_password_change",
+                                        "permissions"
+                                    ],
+                                    "title": "User",
+                                    "type": "object"
+                                }
+                            }
+                        },
                         "description": "Successful operation"
                     },
                     "403": {
@@ -7362,28 +7866,6 @@
             }
         },
         "/users/{user_id}": {
-            "delete": {
-                "description": "Deletes an existing user. Users cannot delete their own accounts.",
-                "responses": {
-                    "204": {
-                        "content": {},
-                        "description": "No content"
-                    },
-                    "400": {
-                        "content": {},
-                        "description": "Bad request"
-                    },
-                    "403": {
-                        "content": {},
-                        "description": "Not permitted"
-                    },
-                    "404": {
-                        "content": {},
-                        "description": "Not found"
-                    }
-                },
-                "summary": "Delete a user"
-            },
             "get": {
                 "description": "Returns the details for a user.",
                 "responses": {

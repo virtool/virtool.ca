@@ -1,22 +1,22 @@
-import React from "react";
-import { Main } from "../../components/Main";
-import { Nav } from "../../components/Nav";
-import { Link } from "../../components/Link";
-import json from "../../data/oas.json";
 import {
+  capitalize,
+  isEqual,
   keysIn,
   map,
-  split,
-  capitalize,
-  unionWith,
-  isEqual,
   nth,
+  split,
+  unionWith,
 } from "lodash";
-import { H1 } from "../../components/Headings";
-import GenerateApi from "./GenerateSingleApiDoc";
+import React from "react";
+import ApiEndpoint from "../../components/ApiEndpoint";
+import { Link } from "../../components/Link";
+import { Main } from "../../components/Main";
+import { Nav } from "../../components/Nav";
+import json from "../../data/openapi.json";
 
 const API = () => {
   let apiLinkTitles = [];
+
   map(keysIn(json.paths), (endpoint) => {
     const formattedApiTitle = capitalize(nth(split(endpoint, "/"), 1));
     apiLinkTitles = unionWith(apiLinkTitles, [formattedApiTitle], isEqual);
@@ -25,19 +25,29 @@ const API = () => {
   const apiTitles = [...apiLinkTitles];
 
   const apiDocs = map(keysIn(json.paths), (endpoint) => {
+    console.log("endpoint", endpoint);
+
     const formattedEndpoint = capitalize(nth(split(endpoint, "/"), 1));
+
     return map(keysIn(json.paths[endpoint]), (method) => {
       return (
-        <section key={method} id={formattedEndpoint} className="pt-10">
+        <div>
           {formattedEndpoint === apiTitles[0] ? (
-            <H1>{apiTitles.shift()}</H1>
+            <h1 className="col-span-2 text-4xl font-bold mb-5">
+              {apiTitles.shift()}
+            </h1>
           ) : null}
-
-          <GenerateApi endpoint={endpoint} method={method} />
-        </section>
+          <ApiEndpoint
+            key={method + endpoint}
+            endpoint={endpoint}
+            method={method}
+            data={json.paths[endpoint][method]}
+          />
+        </div>
       );
     });
   });
+
   return (
     <Main>
       <Nav />
@@ -49,7 +59,7 @@ const API = () => {
             </div>
           ))}
         </div>
-        <div className="col-span-6 flex flex-col bg-neutral-50 font-sans">
+        <div className="col-span-8 bg-neutral-50 font-sans pt-10 divide-y-2 divide-dashed divide-slate-300">
           {apiDocs}
         </div>
       </div>
