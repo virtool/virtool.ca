@@ -1,16 +1,18 @@
+import { includes, keysIn, map, omit } from "lodash";
+import Highlight, { defaultProps } from "prism-react-renderer";
+import github from "prism-react-renderer/themes/github";
+
 import React from "react";
-import { Table, Tr, Td, Th } from "../../components/Table";
-import { keysIn, map, omit, includes } from "lodash";
-import { H2, H3 } from "../../components/Headings";
-import json from "../../data/oas.json";
-import { Request } from "../../components/Request";
 import { Endpoint } from "../../components/Endpoint";
-import { Response } from "../../components/Response";
+import { H2, H3 } from "../../components/Headings";
+import { Table, Td, Th, Tr } from "../../components/Table";
+import json from "../../data/oas.json";
 
 const GenerateApi = ({ endpoint, method }) => {
   const pathMethod = json.paths[endpoint][method];
 
   const successResponseCode = keysIn(pathMethod.responses)[0];
+
   const successResponseDescription =
     pathMethod.responses[successResponseCode].description;
 
@@ -34,7 +36,8 @@ const GenerateApi = ({ endpoint, method }) => {
     ? responsePath.items.example
     : responsePath?.example;
 
-  const jsonResponse = JSON.stringify(response, null, 2);
+  const responseJson = JSON.stringify(response, null, 2);
+
   const errors = omit(pathMethod.responses, successResponseCode);
 
   return (
@@ -75,16 +78,58 @@ const GenerateApi = ({ endpoint, method }) => {
       {requestExample && (
         <>
           <H3>Example</H3>
-          <Request>
-            <pre>{requestExample}</pre>
-          </Request>
+          {responseJson && (
+            <Highlight
+              {...defaultProps}
+              code={requestExample}
+              language="json"
+              theme={github}
+            >
+              {({ className, style, tokens, getLineProps, getTokenProps }) => (
+                <pre className={className} style={{ ...style }}>
+                  {tokens.map((line, index) => {
+                    const lineProps = getLineProps({ line, key: index });
+                    return (
+                      <div key={index} {...lineProps}>
+                        {line.map((token, key) => (
+                          <span key={key} {...getTokenProps({ token, key })} />
+                        ))}
+                      </div>
+                    );
+                  })}
+                </pre>
+              )}
+            </Highlight>
+          )}
         </>
       )}
 
       <H3>Response</H3>
-      <Response status={successResponseCode + " " + successResponseDescription}>
-        <pre className="overflow-hidden text-ellipsis mr-5">{jsonResponse}</pre>
-      </Response>
+
+      {responseJson && (
+        <Highlight
+          {...defaultProps}
+          code={responseJson}
+          language="json"
+          theme={github}
+        >
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={className} style={{ ...style }}>
+              {tokens.map((line, index) => {
+                const lineProps = getLineProps({ line, key: index });
+                return (
+                  <div key={index} {...lineProps}>
+                    {line.map((token, key) => (
+                      <span key={key} {...getTokenProps({ token, key })} />
+                    ))}
+                  </div>
+                );
+              })}
+            </pre>
+          )}
+        </Highlight>
+      )}
+
       <H3>Errors</H3>
       {keysIn(errors).length ? (
         <Table>
