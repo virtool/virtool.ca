@@ -43,29 +43,27 @@ const GenerateApi = ({ endpoint, method }) => {
       <Endpoint method={method} path={endpoint} />
       {inputKeys && (
         <>
-          <H3>Input</H3>
+          <H3>Parameters</H3>
 
           <Table>
             <thead>
               <Tr>
                 <Th>Name</Th>
                 <Th>Type</Th>
-                {requestBodyPath.required && <Th>Required</Th>}
+                <Th>Required</Th>
                 <Th>Description</Th>
               </Tr>
             </thead>
             <tbody>
               {map(inputKeys, (key) => (
                 <Tr key={key}>
-                  <Td>{key}</Td>
+                  <Td>
+                    <span className="font-mono font-bold">{key}</span>
+                  </Td>
                   <Td>{inputValues[key].type}</Td>
-                  {requestBodyPath.required && (
-                    <Td>
-                      {includes(requestBodyPath.required, key)
-                        ? "true"
-                        : "false"}
-                    </Td>
-                  )}
+                  <Td>
+                    {includes(requestBodyPath.required, key) ? "true" : "false"}
+                  </Td>
                   <Td>{inputValues[key].description}</Td>
                 </Tr>
               ))}
