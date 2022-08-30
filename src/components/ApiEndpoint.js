@@ -6,13 +6,13 @@ import { H2, H3 } from "./Headings";
 import { JsonContainer } from "./JsonContainer";
 import { Table, Td, Th, Tr } from "./Table";
 
-const ApiEndpoint = ({ data, endpoint, method }) => {
-  const pathMethod = data;
+const ApiEndpoint = ({ endpoint, path, method }) => {
+  console.log(endpoint);
 
-  const successResponseCode = keysIn(pathMethod.responses)[0];
+  const successResponseCode = keysIn(endpoint.responses)[0];
 
   const requestBodyPath =
-    pathMethod.requestBody?.content["application/json"].schema;
+    endpoint.requestBody?.content["application/json"].schema;
 
   const inputValues = requestBodyPath?.properties
     ? requestBodyPath.properties
@@ -25,8 +25,7 @@ const ApiEndpoint = ({ data, endpoint, method }) => {
     : null;
 
   const responsePath =
-    pathMethod.responses[successResponseCode].content["application/json"]
-      ?.schema;
+    endpoint.responses[successResponseCode].content["application/json"]?.schema;
 
   const response = responsePath?.items
     ? responsePath.items.example
@@ -34,22 +33,22 @@ const ApiEndpoint = ({ data, endpoint, method }) => {
 
   const responseJson = JSON.stringify(response, null, 2);
 
-  const errors = omit(pathMethod.responses, successResponseCode);
+  const errors = omit(endpoint.responses, successResponseCode);
 
   return (
     <div
-      id={(method + endpoint).replace("/", "-")}
+      id={(method + path).replace("/", "-")}
       className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 py-12 "
     >
       <div className="col-span-2">
-        <H2>{pathMethod.summary}</H2>
+        <H2>{endpoint.summary}</H2>
       </div>
 
       <div className="">
         <div
           className="prose mb-16"
           dangerouslySetInnerHTML={{
-            __html: micromark(pathMethod.description),
+            __html: micromark(endpoint.description),
           }}
         />
 
@@ -109,13 +108,11 @@ const ApiEndpoint = ({ data, endpoint, method }) => {
       </div>
 
       <div>
-        {requestExample && (
-          <>
-            <H3>Request</H3>
-            <Endpoint method={method} path={endpoint} />
-            {requestExample && <JsonContainer code={requestExample} />}
-          </>
-        )}
+        <>
+          <H3>Request</H3>
+          <Endpoint method={method} path={path} />
+          {requestExample && <JsonContainer code={requestExample} />}
+        </>
 
         <H3>Response</H3>
 
