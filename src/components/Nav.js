@@ -15,7 +15,6 @@ export const Nav = () => (
       </GatsbyLink>
       <NavLink to="/install">Install</NavLink>
       <NavLink to="/docs">Docs</NavLink>
-      <NavLink to="/spec">Spec</NavLink>
     </div>
   </nav>
 );
