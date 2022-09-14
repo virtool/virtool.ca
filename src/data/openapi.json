@@ -872,6 +872,52 @@
                 "title": "SubtractionFile",
                 "type": "object"
             },
+            "SubtractionMinimal": {
+                "description": "Minimal Subtraction model used for websocket messages and resource listings.",
+                "properties": {
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "format": "date-time",
+                        "title": "Created At",
+                        "type": "string"
+                    },
+                    "file": {
+                        "$ref": "#/components/schemas/SubtractionUpload"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "nickname": {
+                        "title": "Nickname",
+                        "type": "string"
+                    },
+                    "ready": {
+                        "title": "Ready",
+                        "type": "boolean"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserNested"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "created_at",
+                    "file",
+                    "nickname",
+                    "ready"
+                ],
+                "title": "SubtractionMinimal",
+                "type": "object"
+            },
             "SubtractionNested": {
                 "properties": {
                     "id": {
@@ -893,8 +939,15 @@
             "SubtractionUpload": {
                 "properties": {
                     "id": {
-                        "title": "Id",
-                        "type": "integer"
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "title": "Id"
                     },
                     "name": {
                         "title": "Name",
@@ -1078,7 +1131,7 @@
     "paths": {
         "/account": {
             "get": {
-                "description": "",
+                "description": "Retrieves the details for the account associated with the user agent.",
                 "responses": {
                     "200": {
                         "content": {
@@ -1133,7 +1186,6 @@
                                             "type": "string"
                                         },
                                         "email": {
-                                            "default": "",
                                             "title": "Email",
                                             "type": "string"
                                         },
@@ -1193,10 +1245,10 @@
                         "description": "Requires Authorization"
                     }
                 },
-                "summary": "Get complete user document"
+                "summary": "Get account"
             },
             "patch": {
-                "description": "Provide a ``password`` to update the account password. The ``old_password`` must\nalso be provided in the request.\n\nThe ``email`` address is not currently used, but will be in future releases.",
+                "description": "Updates the account associated with the user agent.\n\nProvide a ``password`` to update the account password. The ``old_password`` must\nalso be provided in the request.\n\nThe ``email`` address is not currently used, but will be in future releases.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1285,7 +1337,6 @@
                                             "type": "string"
                                         },
                                         "email": {
-                                            "default": "",
                                             "title": "Email",
                                             "type": "string"
                                         },
@@ -1349,12 +1400,12 @@
                         "description": "Requires Authorization"
                     }
                 },
-                "summary": "Update the account"
+                "summary": "Update account"
             }
         },
         "/account/keys": {
             "delete": {
-                "description": "",
+                "description": "Deletes all API keys registered for the account associated with the user agent.",
                 "responses": {
                     "204": {
                         "content": {},
@@ -1365,10 +1416,10 @@
                         "description": "Requires authorization"
                     }
                 },
-                "summary": "Remove all API keys for the account associated with the requesting session"
+                "summary": "Purge API keys"
             },
             "get": {
-                "description": "",
+                "description": "Lists all API keys registered on the account associated with the user agent.",
                 "responses": {
                     "200": {
                         "content": {
@@ -1396,10 +1447,10 @@
                         "description": "Requires authorization"
                     }
                 },
-                "summary": "List API keys associated with the authenticated user account"
+                "summary": "List API keys"
             },
             "post": {
-                "description": "The new key value is returned in the response. This is the only response\nfrom the server that will ever include the key.",
+                "description": "Creates a new API key on the account associated with the user agent.\n\nThe new key value is returned in the response. **This is the only response\nfrom the server that will ever include the key**.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1476,12 +1527,12 @@
                         "description": "Requires authorization"
                     }
                 },
-                "summary": "Create a new API key"
+                "summary": "Create an API key"
             }
         },
         "/account/keys/{key_id}": {
             "delete": {
-                "description": "",
+                "description": "Remove an API key by its ID.",
                 "responses": {
                     "204": {
                         "content": {},
@@ -1496,10 +1547,10 @@
                         "description": "Not found"
                     }
                 },
-                "summary": "Remove an API key by its ID"
+                "summary": "Delete"
             },
             "get": {
-                "description": "",
+                "description": "Retrieves the details for an API key registered on the account associated with\nthe user agent.",
                 "responses": {
                     "200": {
                         "content": {
@@ -1534,10 +1585,10 @@
                         "description": "Not found"
                     }
                 },
-                "summary": "Get the complete representation of the API key identified by the `key_id`"
+                "summary": "Get an API key"
             },
             "patch": {
-                "description": "",
+                "description": "Updates the permissions an existing API key registered on the account\nassociated with the user agent.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1606,12 +1657,12 @@
                         "description": "Not found"
                     }
                 },
-                "summary": "Change the permissions for an existing API key"
+                "summary": "Update an API key"
             }
         },
         "/account/login": {
             "post": {
-                "description": "",
+                "description": "Logs in using the passed credentials.\n\nThis creates a new session for the user with `username`. The session ID and\ntoken are returned in cookies.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1672,24 +1723,24 @@
                         "description": "Invalid input"
                     }
                 },
-                "summary": "Create a new session for the user with `username`"
+                "summary": "Login"
             }
         },
         "/account/logout": {
             "get": {
-                "description": "",
+                "description": "Logout the user by invalidating the session associated with the user agent. A\nnew unauthenticated session ID is returned in cookies.",
                 "responses": {
                     "204": {
                         "content": {},
                         "description": "Successful operation"
                     }
                 },
-                "summary": "Invalidates the requesting session, effectively logging out the user"
+                "summary": "Logout"
             }
         },
         "/account/reset": {
             "post": {
-                "description": "",
+                "description": "Reset the password for the account associated with the requesting session.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1740,12 +1791,12 @@
                         "description": "Invalid input"
                     }
                 },
-                "summary": "Handles `POST` requests for resetting the password for a session user"
+                "summary": "Reset password"
             }
         },
         "/account/settings": {
             "get": {
-                "description": "",
+                "description": "Retrieves the settings for the account associated with the user agent.",
                 "responses": {
                     "200": {
                         "content": {
@@ -1795,7 +1846,7 @@
                 "summary": "Get account settings"
             },
             "patch": {
-                "description": "",
+                "description": "Updates the settings of the account associated with the user agent.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1885,12 +1936,12 @@
                         "description": "Requires Authorization"
                     }
                 },
-                "summary": "Update account settings. All fields are optional"
+                "summary": "Update account settings"
             }
         },
         "/analyses": {
             "get": {
-                "description": "",
+                "description": "Finds analyses based on a search `term`.\n\nThe response will only list analyses on which the user agent has read rights.",
                 "responses": {
                     "200": {
                         "content": {
@@ -1997,12 +2048,12 @@
                         "description": "Successful operation"
                     }
                 },
-                "summary": "Find and list all analyses"
+                "summary": "Find analyses"
             }
         },
         "/analyses/documents/{analysis_id}.{extension}": {
             "get": {
-                "description": "",
+                "description": "Downloads analysis data in CSV or XSLX format. The returned format depends on\nthe extension included in the request path.",
                 "responses": {
                     "200": {
                         "content": {
@@ -2017,12 +2068,12 @@
                         "description": "Not found"
                     }
                 },
-                "summary": "Download an analysis in CSV or XSLX format"
+                "summary": "Download an analysis"
             }
         },
         "/analyses/{analysis_id}": {
             "delete": {
-                "description": "",
+                "description": "Permanently deletes and analysis.",
                 "responses": {
                     "204": {
                         "content": {},
@@ -2044,7 +2095,7 @@
                 "summary": "Delete an analysis"
             },
             "get": {
-                "description": "",
+                "description": "Retrieves the details of an analysis.",
                 "responses": {
                     "200": {
                         "content": {
@@ -2207,12 +2258,12 @@
                         "description": "Not found"
                     }
                 },
-                "summary": "Get the details of an analysis"
+                "summary": "Get analysis"
             }
         },
         "/analyses/{analysis_id}/files/{upload_id}": {
             "get": {
-                "description": "",
+                "description": "Downloads a file associated with an analysis. Some workflows retain key files\nafter the complete.",
                 "responses": {
                     "200": {
                         "content": {
@@ -2227,12 +2278,12 @@
                         "description": "Not found"
                     }
                 },
-                "summary": "Download a file generated during the analysis"
+                "summary": "Download a file"
             }
         },
         "/analyses/{analysis_id}/{sequence_index}/blast": {
             "put": {
-                "description": "BLAST data will be attached to that sequence.",
+                "description": "BLASTs a sequence that is part of a NuVs result record. The resulting BLAST data\nwill be attached to that sequence.",
                 "responses": {
                     "200": {
                         "content": {
@@ -2259,7 +2310,7 @@
                         "description": "Analysis is still running"
                     }
                 },
-                "summary": "BLAST a contig sequence that is part of a NuVs result record. The resulting"
+                "summary": "BLAST a NuVs contig"
             }
         },
         "/groups": {
@@ -2892,7 +2943,7 @@
         },
         "/hmms": {
             "delete": {
-                "description": "Delete all installed HMM data.\n\nThis is not recommended and is used in experimental instances or development. It\nwon't break analyses that reference the installed HMM data.",
+                "description": "Deletes all installed HMM data.\n\nThis is not recommended and is used in experimental instances or development. It\nwon't break analyses that reference the installed HMM data.",
                 "responses": {
                     "204": {
                         "content": {},
@@ -2967,7 +3018,7 @@
         },
         "/hmms/status": {
             "get": {
-                "description": "Returns the installation status of the HMM data. Contains the following fields:\n\n| Field      | Type          | Description                                               |\n| :--------- | :------------ | :-------------------------------------------------------- |\n| `errors`   | array[string] | An array of any errors in the HMM data                    |\n| `installed`| object        | A description of the currently installed HMM release      |\n| `task.id`  | integer       | The `id` the task responsible for installing the HMM data |\n| `release`  | object        | A description of the latest available release             |\n\n**Installed HMM data cannot currently be updated**.",
+                "description": "Retrieves the installation status of the HMM data. Contains the following\nfields:\n\n| Field      | Type          | Description                                               |\n| :--------- | :------------ | :-------------------------------------------------------- |\n| `errors`   | array[string] | An array of any errors in the HMM data                    |\n| `installed`| object        | A description of the currently installed HMM release      |\n| `task.id`  | integer       | The `id` the task responsible for installing the HMM data |\n| `release`  | object        | A description of the latest available release             |\n\n**Installed HMM data cannot currently be updated**.",
                 "responses": {
                     "200": {
                         "content": {
@@ -2978,12 +3029,12 @@
                         "description": "Successful operation"
                     }
                 },
-                "summary": "Get HMM data"
+                "summary": "Get HMM status"
             }
         },
         "/hmms/status/release": {
             "get": {
-                "description": "Get the latest release for the HMM data.",
+                "description": "Retrieves the latest release for the HMM data.",
                 "responses": {
                     "200": {
                         "content": {
@@ -3003,7 +3054,7 @@
         },
         "/hmms/status/updates": {
             "get": {
-                "description": "",
+                "description": "Lists all updates applied to the HMM collection.",
                 "responses": {
                     "200": {
                         "content": {
@@ -3014,15 +3065,78 @@
                         "description": "Successful operation"
                     }
                 },
-                "summary": "List all updates applied to the HMM collection"
+                "summary": "List updates"
             },
             "post": {
-                "description": "",
+                "description": "Installs the latest official HMM database from GitHub.",
                 "responses": {
                     "201": {
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "properties": {
+                                        "body": {
+                                            "title": "Body",
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "format": "date-time",
+                                            "title": "Created At",
+                                            "type": "string"
+                                        },
+                                        "filename": {
+                                            "title": "Filename",
+                                            "type": "string"
+                                        },
+                                        "html_url": {
+                                            "title": "Html Url",
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "title": "Id",
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "title": "Name",
+                                            "type": "string"
+                                        },
+                                        "newer": {
+                                            "title": "Newer",
+                                            "type": "boolean"
+                                        },
+                                        "published_at": {
+                                            "format": "date-time",
+                                            "title": "Published At",
+                                            "type": "string"
+                                        },
+                                        "ready": {
+                                            "title": "Ready",
+                                            "type": "boolean"
+                                        },
+                                        "size": {
+                                            "title": "Size",
+                                            "type": "integer"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserNested"
+                                        }
+                                    },
+                                    "required": [
+                                        "body",
+                                        "created_at",
+                                        "filename",
+                                        "html_url",
+                                        "id",
+                                        "name",
+                                        "newer",
+                                        "published_at",
+                                        "ready",
+                                        "size",
+                                        "user"
+                                    ],
+                                    "title": "HMMInstalled",
+                                    "type": "object"
+                                }
                             }
                         },
                         "description": "Successful operation"
@@ -3036,12 +3150,23 @@
                         "description": "Not permitted"
                     }
                 },
-                "summary": "Install the latest official HMM database from GitHub"
+                "summary": "Install HMMs"
             }
         },
         "/hmms/{hmm_id}": {
             "get": {
                 "description": "Retrieves the details for an HMM annotation.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "hmm_id",
+                        "required": true,
+                        "schema": {
+                            "title": "hmm_id",
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -3077,10 +3202,6 @@
                                             "title": "Genera",
                                             "type": "object"
                                         },
-                                        "hidden": {
-                                            "title": "Hidden",
-                                            "type": "boolean"
-                                        },
                                         "id": {
                                             "title": "Id",
                                             "type": "string"
@@ -3113,7 +3234,6 @@
                                         "names",
                                         "entries",
                                         "genera",
-                                        "hidden",
                                         "length",
                                         "mean_entropy",
                                         "total_entropy"
@@ -3966,7 +4086,7 @@
         },
         "/labels": {
             "get": {
-                "description": "Lists all sample labels on the instance. Pagination is not supported; all labels are\nincluded in the response.",
+                "description": "Lists all sample labels on the instance. Pagination is not supported; all labels\nare included in the response.",
                 "responses": {
                     "200": {
                         "content": {
@@ -4205,31 +4325,27 @@
                                 "description": "Label fields for editing an existing label.",
                                 "example": {
                                     "color": "#93C5FD",
-                                    "description": "Blueberry",
-                                    "name": "Blueberry"
+                                    "description": "Field samples from 2022 harvest",
+                                    "name": "Blueberry 2022"
                                 },
                                 "properties": {
                                     "color": {
+                                        "description": "A hexadecimal color for the label",
                                         "title": "Color",
                                         "type": "string"
                                     },
                                     "description": {
-                                        "description": "description of the existing label document",
+                                        "description": "A longer description for the label",
                                         "title": "Description",
                                         "type": "string"
                                     },
                                     "name": {
-                                        "description": "name of the existing label document",
+                                        "description": "A short display name",
                                         "title": "Name",
                                         "type": "string"
                                     }
                                 },
-                                "required": [
-                                    "name",
-                                    "color",
-                                    "description"
-                                ],
-                                "title": "EditLabelSchema",
+                                "title": "UpdateLabelSchema",
                                 "type": "object"
                             }
                         }
@@ -4243,9 +4359,9 @@
                                     "example": {
                                         "color": "#93C5FD",
                                         "count": 0,
-                                        "description": "Blueberry",
+                                        "description": "Field samples from 2022 harvest",
                                         "id": 22,
-                                        "name": "Blueberry"
+                                        "name": "Blueberry 2022"
                                     },
                                     "properties": {
                                         "color": {
@@ -6346,93 +6462,87 @@
         },
         "/subtractions": {
             "get": {
-                "description": "Find subtractions by their ``name`` or ``nickname`` by providing a ``term`` as a\nquery parameter. Partial matches are supported.\n\nThis endpoint returns paginated results by default.",
+                "description": "Finds subtractions by their `name` or `nickname` by providing a `term` as a\nquery parameter. Partial matches are supported.\n\nSupports pagination unless the `short` query parameter is set. In this case, an\narray of objects containing the `id` and `name` of every subtraction is\nreturned.",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "find",
+                        "required": true,
+                        "schema": {
+                            "title": "find",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "short",
+                        "required": false,
+                        "schema": {
+                            "default": false,
+                            "title": "short",
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "ready",
+                        "required": false,
+                        "schema": {
+                            "default": false,
+                            "title": "ready",
+                            "type": "boolean"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "items": {
-                                        "description": "Minimal Subtraction model used for WebSocked messages and resource listings.",
-                                        "example": [
-                                            {
-                                                "count": 9,
-                                                "created_at": "2021-12-21T23:52:13.185000Z",
-                                                "file": {
-                                                    "id": 58,
-                                                    "name": "arabidopsis_thaliana_+_plastids.fa.gz"
-                                                },
-                                                "has_file": true,
-                                                "id": "q0ek30si",
-                                                "name": "Arabidopsis thaliana",
-                                                "nickname": "",
-                                                "ready": true,
-                                                "user": {
-                                                    "administrator": true,
-                                                    "handle": "igboyes",
-                                                    "id": "igboyes"
-                                                }
-                                            }
-                                        ],
-                                        "properties": {
-                                            "count": {
-                                                "title": "Count",
-                                                "type": "integer"
+                                    "properties": {
+                                        "documents": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/SubtractionMinimal"
                                             },
-                                            "created_at": {
-                                                "format": "date-time",
-                                                "title": "Created At",
-                                                "type": "string"
-                                            },
-                                            "file": {
-                                                "anyOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/UploadMinimal"
-                                                    },
-                                                    {
-                                                        "$ref": "#/components/schemas/SubtractionUpload"
-                                                    }
-                                                ],
-                                                "title": "File"
-                                            },
-                                            "has_file": {
-                                                "title": "Has File",
-                                                "type": "boolean"
-                                            },
-                                            "id": {
-                                                "title": "Id",
-                                                "type": "string"
-                                            },
-                                            "name": {
-                                                "title": "Name",
-                                                "type": "string"
-                                            },
-                                            "nickname": {
-                                                "default": "",
-                                                "title": "Nickname",
-                                                "type": "string"
-                                            },
-                                            "ready": {
-                                                "title": "Ready",
-                                                "type": "boolean"
-                                            },
-                                            "user": {
-                                                "$ref": "#/components/schemas/UserMinimal"
-                                            }
+                                            "title": "Documents",
+                                            "type": "array"
                                         },
-                                        "required": [
-                                            "id",
-                                            "name",
-                                            "created_at",
-                                            "file",
-                                            "has_file",
-                                            "ready",
-                                            "user"
-                                        ],
-                                        "title": "GetSubtractionResponse",
-                                        "type": "object"
+                                        "found_count": {
+                                            "title": "Found Count",
+                                            "type": "integer"
+                                        },
+                                        "page": {
+                                            "title": "Page",
+                                            "type": "integer"
+                                        },
+                                        "page_count": {
+                                            "title": "Page Count",
+                                            "type": "integer"
+                                        },
+                                        "per_page": {
+                                            "title": "Per Page",
+                                            "type": "integer"
+                                        },
+                                        "ready_count": {
+                                            "title": "Ready Count",
+                                            "type": "integer"
+                                        },
+                                        "total_count": {
+                                            "title": "Total Count",
+                                            "type": "integer"
+                                        }
                                     },
-                                    "type": "array"
+                                    "required": [
+                                        "found_count",
+                                        "page",
+                                        "page_count",
+                                        "per_page",
+                                        "total_count",
+                                        "ready_count",
+                                        "documents"
+                                    ],
+                                    "title": "SubtractionSearchResult",
+                                    "type": "object"
                                 }
                             }
                         },
@@ -6442,7 +6552,7 @@
                 "summary": "Find subtractions"
             },
             "post": {
-                "description": "Creates a new subtraction. A job is started to build the data necessary to make\nthe subtraction usable in analyses. The subtraction is usable when the\n``ready`` property is ``true``.",
+                "description": "Creates a new subtraction.\n\nA job is started to build the data necessary to make the subtraction usable in\nanalyses. The subtraction is usable when the `ready` property is `true`.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -6518,20 +6628,8 @@
                                             "title": "Created At",
                                             "type": "string"
                                         },
-                                        "deleted": {
-                                            "title": "Deleted",
-                                            "type": "boolean"
-                                        },
                                         "file": {
-                                            "anyOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/UploadMinimal"
-                                                },
-                                                {
-                                                    "$ref": "#/components/schemas/SubtractionUpload"
-                                                }
-                                            ],
-                                            "title": "File"
+                                            "$ref": "#/components/schemas/SubtractionUpload"
                                         },
                                         "files": {
                                             "items": {
@@ -6542,10 +6640,6 @@
                                         },
                                         "gc": {
                                             "$ref": "#/components/schemas/NucleotideComposition"
-                                        },
-                                        "has_file": {
-                                            "title": "Has File",
-                                            "type": "boolean"
                                         },
                                         "id": {
                                             "title": "Id",
@@ -6563,7 +6657,6 @@
                                             "type": "string"
                                         },
                                         "nickname": {
-                                            "default": "",
                                             "title": "Nickname",
                                             "type": "string"
                                         },
@@ -6572,7 +6665,7 @@
                                             "type": "boolean"
                                         },
                                         "user": {
-                                            "$ref": "#/components/schemas/UserMinimal"
+                                            "$ref": "#/components/schemas/UserNested"
                                         }
                                     },
                                     "required": [
@@ -6580,10 +6673,8 @@
                                         "name",
                                         "created_at",
                                         "file",
-                                        "has_file",
+                                        "nickname",
                                         "ready",
-                                        "user",
-                                        "deleted",
                                         "files",
                                         "linked_samples"
                                     ],
@@ -6592,11 +6683,11 @@
                                 }
                             }
                         },
-                        "description": "Successful operation"
+                        "description": "Created"
                     },
                     "400": {
                         "content": {},
-                        "description": "Bad request"
+                        "description": "Upload does not exist"
                     },
                     "403": {
                         "content": {},
@@ -6609,6 +6700,17 @@
         "/subtractions/{subtraction_id}": {
             "delete": {
                 "description": "Deletes an existing subtraction.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "subtraction_id",
+                        "required": true,
+                        "schema": {
+                            "title": "subtraction_id",
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "204": {
                         "content": {},
@@ -6631,6 +6733,17 @@
             },
             "get": {
                 "description": "Retrieves the details of a subtraction.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "subtraction_id",
+                        "required": true,
+                        "schema": {
+                            "title": "subtraction_id",
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -6749,20 +6862,8 @@
                                             "title": "Created At",
                                             "type": "string"
                                         },
-                                        "deleted": {
-                                            "title": "Deleted",
-                                            "type": "boolean"
-                                        },
                                         "file": {
-                                            "anyOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/UploadMinimal"
-                                                },
-                                                {
-                                                    "$ref": "#/components/schemas/SubtractionUpload"
-                                                }
-                                            ],
-                                            "title": "File"
+                                            "$ref": "#/components/schemas/SubtractionUpload"
                                         },
                                         "files": {
                                             "items": {
@@ -6773,10 +6874,6 @@
                                         },
                                         "gc": {
                                             "$ref": "#/components/schemas/NucleotideComposition"
-                                        },
-                                        "has_file": {
-                                            "title": "Has File",
-                                            "type": "boolean"
                                         },
                                         "id": {
                                             "title": "Id",
@@ -6794,7 +6891,6 @@
                                             "type": "string"
                                         },
                                         "nickname": {
-                                            "default": "",
                                             "title": "Nickname",
                                             "type": "string"
                                         },
@@ -6803,7 +6899,7 @@
                                             "type": "boolean"
                                         },
                                         "user": {
-                                            "$ref": "#/components/schemas/UserMinimal"
+                                            "$ref": "#/components/schemas/UserNested"
                                         }
                                     },
                                     "required": [
@@ -6811,10 +6907,8 @@
                                         "name",
                                         "created_at",
                                         "file",
-                                        "has_file",
+                                        "nickname",
                                         "ready",
-                                        "user",
-                                        "deleted",
                                         "files",
                                         "linked_samples"
                                     ],
@@ -6834,6 +6928,17 @@
             },
             "patch": {
                 "description": "Updates the name or nickname of an existing subtraction.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "subtraction_id",
+                        "required": true,
+                        "schema": {
+                            "title": "subtraction_id",
+                            "type": "string"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -6845,13 +6950,13 @@
                                 },
                                 "properties": {
                                     "name": {
-                                        "description": "A unique name for the host (eg. Arabidopsis)",
+                                        "description": "A unique name for the host",
                                         "minLength": 1,
                                         "title": "Name",
                                         "type": "string"
                                     },
                                     "nickname": {
-                                        "description": "A nickname of the host",
+                                        "description": "A nickname for the host",
                                         "title": "Nickname",
                                         "type": "string"
                                     }
@@ -6980,20 +7085,8 @@
                                             "title": "Created At",
                                             "type": "string"
                                         },
-                                        "deleted": {
-                                            "title": "Deleted",
-                                            "type": "boolean"
-                                        },
                                         "file": {
-                                            "anyOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/UploadMinimal"
-                                                },
-                                                {
-                                                    "$ref": "#/components/schemas/SubtractionUpload"
-                                                }
-                                            ],
-                                            "title": "File"
+                                            "$ref": "#/components/schemas/SubtractionUpload"
                                         },
                                         "files": {
                                             "items": {
@@ -7004,10 +7097,6 @@
                                         },
                                         "gc": {
                                             "$ref": "#/components/schemas/NucleotideComposition"
-                                        },
-                                        "has_file": {
-                                            "title": "Has File",
-                                            "type": "boolean"
                                         },
                                         "id": {
                                             "title": "Id",
@@ -7025,7 +7114,6 @@
                                             "type": "string"
                                         },
                                         "nickname": {
-                                            "default": "",
                                             "title": "Nickname",
                                             "type": "string"
                                         },
@@ -7034,7 +7122,7 @@
                                             "type": "boolean"
                                         },
                                         "user": {
-                                            "$ref": "#/components/schemas/UserMinimal"
+                                            "$ref": "#/components/schemas/UserNested"
                                         }
                                     },
                                     "required": [
@@ -7042,10 +7130,8 @@
                                         "name",
                                         "created_at",
                                         "file",
-                                        "has_file",
+                                        "nickname",
                                         "ready",
-                                        "user",
-                                        "deleted",
                                         "files",
                                         "linked_samples"
                                     ],
@@ -7074,7 +7160,27 @@
         },
         "/subtractions/{subtraction_id}/files/{filename}": {
             "get": {
-                "description": "",
+                "description": "Downloads a Bowtie2 index or FASTA file for the given subtraction.\n\nFiles are attached to the subtraction as part of the creation job. They aren't\navailable for download until the job has completed and the `ready` field is\n`true`.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "subtraction_id",
+                        "required": true,
+                        "schema": {
+                            "title": "subtraction_id",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "filename",
+                        "required": true,
+                        "schema": {
+                            "title": "filename",
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "content": {},
@@ -7082,14 +7188,14 @@
                     },
                     "400": {
                         "content": {},
-                        "description": "Bad request"
+                        "description": ""
                     },
                     "404": {
                         "content": {},
                         "description": "Not found"
                     }
                 },
-                "summary": "Download a Bowtie2 index file or a FASTA file for the given subtraction"
+                "summary": "Download a file"
             }
         },
         "/tasks": {
