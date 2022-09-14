@@ -9,7 +9,7 @@ const Manual = ({ data }) => {
   return (
     <Main>
       <Nav />
-      <div className="lg:container mx-auto gap-2 grid grid-cols-9">
+      <div className="lg:container mx-auto gap-2 grid grid-cols-9 prose">
         <div className="col-span-2">
           {data.allMdx.nodes.map((node) => (
             <span>

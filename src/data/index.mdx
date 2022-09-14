@@ -6,7 +6,9 @@ title: Install
 
 ## Docker <Recommended />
 
-1. Write a `docker-compose.yml` similar to the following.
+1. [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and
+   [the compose plugin](https://docs.docker.com/compose/install/linux/#install-using-the-repository) on your Linux host.
+2. Write a `docker-compose.yml` similar to the following.
 
    This will run Virtool and MongoDB in containers and persist their data in volumes.
 
@@ -20,7 +22,7 @@ title: Install
          volumes:
             - mongo:/data/db
       virtool:
-         image: "virtool:legacy-1"
+         image: ghcr.io/virtool/virtool:4.3.1
          environment:
             VT_DATA_PATH: "/data"
             VT_HOST: "0.0.0.0"
@@ -30,11 +32,19 @@ title: Install
             - virtool:/data
    ```
 
-2. Start the
+3. Start the services with:
+
+   ```shell
+   docker compose -p virtool up -d
+   ```
+
+   Virtool should be available on your host machine at [http://localhost:9950](http://localhost:9950).
 
 ## Binary
 
-The legacy method for installing Virtool is to
+The legacy method for installing Virtool is unpack and run the binary on directly on your host instead of in a container.
+
+**This is no longer recommended**.
 
 1. Download the latest Virtool release from the [Virtool website](http://www.virtool.ca "Virtool Website") and unpack the downloaded archive
 

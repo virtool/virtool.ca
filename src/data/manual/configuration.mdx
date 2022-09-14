@@ -8,9 +8,9 @@ A Virtool process can be configured using command line arguments, a configuratio
 
 The order of precedence for resolving option values is:
 
--   Command line arguments (CLI)
--   Configuration file
--   Environmental variables
+- Command line arguments (CLI)
+- Configuration file
+- Environmental variables
 
 # Reference
 
@@ -79,9 +79,9 @@ python run.py --proxy "http://virtool:foobar@192.168.20.2:3128"
 
 ```json
 {
-    "host": "192.168.1.50",
-    "port": 9801,
-    "proxy": "http://virtool:foobar@192.168.20.2:3128"
+  "host": "192.168.1.50",
+  "port": 9801,
+  "proxy": "http://virtool:foobar@192.168.20.2:3128"
 }
 ```
 
@@ -120,8 +120,8 @@ python run.py --data-path "/mnt/array/virtool" --watch-path "/home/igb/Watch"
 
 ```json
 {
-    "data_path": "/mnt/array/virtool",
-    "watch_path": "/home/igb/Watch"
+  "data_path": "/mnt/array/virtool",
+  "watch_path": "/home/igb/Watch"
 }
 ```
 
@@ -183,12 +183,12 @@ python run.py --proc 12 --mem 24 --lg-proc 6 --lg-mem 12 --sm-proc 2 --sm-proc 4
 
 ```json
 {
-    "proc": 12,
-    "mem": 24,
-    "lg_proc": 6,
-    "lg_mem": 12,
-    "sm_proc": 2,
-    "sm_mem": 4
+  "proc": 12,
+  "mem": 24,
+  "lg_proc": 6,
+  "lg_mem": 12,
+  "sm_proc": 2,
+  "sm_mem": 4
 }
 ```
 
@@ -238,8 +238,8 @@ python run.py --force-version v2.2.2
 
 ```json
 {
-    "dev": true,
-    "force_version": "v2.2.2"
+  "dev": true,
+  "force_version": "v2.2.2"
 }
 ```
 
@@ -359,7 +359,7 @@ http {
 
 This configuration assumes that:
 
--   you are running the Virtool instance on the same host as NGINX
--   the Virtool instance is listening on the default `9950` port
--   you are using HTTPS
--   you have a fully-qualified domain name
+- you are running the Virtool instance on the same host as NGINX
+- the Virtool instance is listening on the default `9950` port
+- you are using HTTPS
+- you have a fully-qualified domain name
