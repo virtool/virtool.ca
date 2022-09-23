@@ -1,4 +1,5 @@
 ---
+slug: "errors"
 title: "Errors"
 description: "Learn the errors the API can return."
 ---
@@ -10,25 +11,23 @@ response, so make sure your JSON is formatted properly!
 
 ```json
 {
-    "id": "invalid_json",
-    "message": "Invalid JSON"
+  "id": "invalid_json",
+  "message": "Invalid JSON"
 }
 ```
-
 
 # Authorization Errors
 
 For some endpoints, an authorized session is required. Authorized sessions are obtained by logging in through the browser.
-Accessing user-specific endpoints like ``GET /api/account`` without an authorized session will result in the following
+Accessing user-specific endpoints like `GET /api/account` without an authorized session will result in the following
 error:
 
 ```json
 {
-    "id": "requires_login",
-    "message": "Requires login"
+  "id": "requires_login",
+  "message": "Requires login"
 }
 ```
-
 
 # Validation Errors
 
@@ -39,16 +38,16 @@ Cerberus error report. Refer to the [Cerberus documentation](http://docs.python-
 
 ```json
 {
-    "id": "invalid_input",
-    "message": "Invalid input",
-    "errors": {
-        "foo_bar": ["unknown field"],
-        "new_password": ["required field"],
-        "old_password": ["required field"]
-    }
+  "id": "invalid_input",
+  "message": "Invalid input",
+  "errors": {
+    "foo_bar": ["unknown field"],
+    "new_password": ["required field"],
+    "old_password": ["required field"]
+  }
 }
 ```
 
-In this example, the ``foo_bar`` field is not expected in the request. The required ``new_password`` and
-``old_password`` fields are missing from the request. Refer to the input definition tables for each endpoint in the
+In this example, the `foo_bar` field is not expected in the request. The required `new_password` and
+`old_password` fields are missing from the request. Refer to the input definition tables for each endpoint in the
 documentation to make sure your inputs are valid.

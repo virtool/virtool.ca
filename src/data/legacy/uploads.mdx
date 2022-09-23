@@ -1,9 +1,10 @@
 ---
+slug: "uploads"
 title: "Uploads"
 description: "Upload and manage bioinformatic data files."
 ---
 
-When uploads are required in Virtool, they should be targeted at ``/upload``. The available endpoints are:
+When uploads are required in Virtool, they should be targeted at `/upload`. The available endpoints are:
 
 | Situation                                  | Endpoint      |
 | ------------------------------------------ | ------------- |
@@ -16,7 +17,7 @@ When uploads are required in Virtool, they should be targeted at ``/upload``. Th
 
 <Permission name="upload_file" />
 
-Uploads a file into Virtool file manager. The file will given a unique ID composed of an 8-character random alphanumeric string and the supplied ``name`` query parameter separated by a dash.
+Uploads a file into Virtool file manager. The file will given a unique ID composed of an 8-character random alphanumeric string and the supplied `name` query parameter separated by a dash.
 
 <Endpoint method="POST" path="/upload/:file_type" />
 
@@ -36,15 +37,15 @@ Uploads a file into Virtool file manager. The file will given a unique ID compos
 
 ```json
 {
-	"name": "test.fq.gz",
-	"user": {
-		"id": "fred"
-	},
-	"uploaded_at": "2018-03-02T22:52:09.152000Z",
-	"type": "reads",
-	"ready": false,
-	"reserved": false,
-	"id": "juqleoir-test.fq.gz"
+  "name": "test.fq.gz",
+  "user": {
+    "id": "fred"
+  },
+  "uploaded_at": "2018-03-02T22:52:09.152000Z",
+  "type": "reads",
+  "ready": false,
+  "reserved": false,
+  "id": "juqleoir-test.fq.gz"
 }
 ```
 
@@ -58,7 +59,6 @@ Uploads a file into Virtool file manager. The file will given a unique ID compos
 | `403`  | Not permitted          | client doesn't have the `upload_file` permission                |
 | `404`  | Not found              | `file_type` does not exist                                      |
 
-
 # Delete File
 
 <Permission name="delete_file" />
@@ -68,6 +68,7 @@ Delete a previously uploaded file.
 <Endpoint method="DELETE" path="/api/files/:id" />
 
 ## Example
+
 <Request method="DELETE" path="/api/files/juqleoir-test.fq.gz" />
 
 ## Response

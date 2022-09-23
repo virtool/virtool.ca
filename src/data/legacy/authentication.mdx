@@ -1,4 +1,5 @@
 ---
+slug: "authentication"
 title: "Authentication"
 description: "Authenticate clients using API keys."
 ---
@@ -19,7 +20,7 @@ Using an API key for authentication is easy and should be familiar to developers
 curl -X GET -u igboyes:74e8b0d15ded4c538c66fce3922d415a https://demo.virtool.ca/api/account
 ```
 
-## Python ``requests``
+## Python `requests`
 
 ```python
 import requests
@@ -30,7 +31,7 @@ basic_auth = HTTPBasicAuth("igboyes", "74e8b0d15ded4c538c66fce3922d415a")
 requests.get("http://localhost:9950/api/account", auth=basic_auth)
 ```
 
-## Javascript ``fetch``
+## Javascript `fetch`
 
 ```javascript
 let headers = new Headers();

@@ -28,7 +28,7 @@ const DocsIndex = () => (
           </div>
           <div>
             <h3>
-              <Link to="/docs/legacy">Legacy API Reference</Link>
+              <Link to="/docs/manual">Legacy API Reference</Link>
             </h3>
             <p>API Reference for Virtool 4.</p>
           </div>

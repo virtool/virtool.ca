@@ -1,4 +1,5 @@
 ---
+slug: "samples"
 title: "Samples"
 description: "Query, create, edit, and analyze samples."
 ---
@@ -27,27 +28,27 @@ Find samples based on the sample name or creator username.
 
 ```json
 {
-    "documents": [
-        {
-            "name": "Test 1",
-            "isolate": "",
-            "host": "",
-            "nuvs": true,
-            "pathoscope": true,
-            "created_at": "2018-02-01T00:29:44.867000Z",
-            "imported": false,
-            "archived": false,
-            "user": {
-                "id": "igboyes"
-            },
-            "id": "htosefxu"
-        }
-    ],
-    "total_count": 1,
-    "found_count": 1,
-    "page_count": 1,
-    "per_page": 15,
-    "page": 1
+  "documents": [
+    {
+      "name": "Test 1",
+      "isolate": "",
+      "host": "",
+      "nuvs": true,
+      "pathoscope": true,
+      "created_at": "2018-02-01T00:29:44.867000Z",
+      "imported": false,
+      "archived": false,
+      "user": {
+        "id": "igboyes"
+      },
+      "id": "htosefxu"
+    }
+  ],
+  "total_count": 1,
+  "found_count": 1,
+  "page_count": 1,
+  "per_page": 15,
+  "page": 1
 }
 ```
 
@@ -161,12 +162,12 @@ The array of files must contain **only one or two items**. Samples with arrays c
 
 ```json
 {
-    "name": "Test A",
-    "host": "Tree",
-    "isolate": "Isolate A-1",
-    "locale": "Earth",
-    "subtraction": "Arabidopsis",
-    "files": ["sibvzhqc-S00196E_AGTCAA_L007_R1.fq"]
+  "name": "Test A",
+  "host": "Tree",
+  "isolate": "Isolate A-1",
+  "locale": "Earth",
+  "subtraction": "Arabidopsis",
+  "files": ["sibvzhqc-S00196E_AGTCAA_L007_R1.fq"]
 }
 ```
 
@@ -178,32 +179,32 @@ The array of files must contain **only one or two items**. Samples with arrays c
 
 ```json
 {
-    "name": "Test A",
-    "host": "Tree",
-    "isolate": "Isolate A-1",
-    "locale": "Earth",
-    "subtraction": {
-        "id": "Arabidopsis"
-    },
-    "files": ["sibvzhqc-S00196E_AGTCAA_L007_R1.fq"],
-    "group": "none",
-    "nuvs": false,
-    "pathoscope": false,
-    "created_at": "2018-02-07T00:25:53.786000Z",
-    "format": "fastq",
-    "imported": "ip",
-    "quality": null,
-    "analyzed": false,
-    "hold": true,
-    "archived": false,
-    "group_read": true,
-    "group_write": false,
-    "all_read": true,
-    "all_write": false,
-    "user": {
-        "id": "igboyes"
-    },
-    "id": "oggjipxw"
+  "name": "Test A",
+  "host": "Tree",
+  "isolate": "Isolate A-1",
+  "locale": "Earth",
+  "subtraction": {
+    "id": "Arabidopsis"
+  },
+  "files": ["sibvzhqc-S00196E_AGTCAA_L007_R1.fq"],
+  "group": "none",
+  "nuvs": false,
+  "pathoscope": false,
+  "created_at": "2018-02-07T00:25:53.786000Z",
+  "format": "fastq",
+  "imported": "ip",
+  "quality": null,
+  "analyzed": false,
+  "hold": true,
+  "archived": false,
+  "group_read": true,
+  "group_write": false,
+  "all_read": true,
+  "all_write": false,
+  "user": {
+    "id": "igboyes"
+  },
+  "id": "oggjipxw"
 }
 ```
 
@@ -244,10 +245,10 @@ Update modifiable fields of a sample.
 
 ```json
 {
-    "name": "Test A",
-    "host": "Vine",
-    "isolate": "Isolate A1",
-    "locale": ""
+  "name": "Test A",
+  "host": "Vine",
+  "isolate": "Isolate A1",
+  "locale": ""
 }
 ```
 
@@ -259,18 +260,18 @@ Update modifiable fields of a sample.
 
 ```json
 {
-    "name": "Test A",
-    "host": "Vine",
-    "isolate": "Isolate A1",
-    "nuvs": false,
-    "pathoscope": false,
-    "created_at": "2018-02-07T00:25:53.786000Z",
-    "imported": false,
-    "archived": false,
-    "user": {
-        "id": "igboyes"
-    },
-    "id": "oggjipxw"
+  "name": "Test A",
+  "host": "Vine",
+  "isolate": "Isolate A1",
+  "nuvs": false,
+  "pathoscope": false,
+  "created_at": "2018-02-07T00:25:53.786000Z",
+  "imported": false,
+  "archived": false,
+  "user": {
+    "id": "igboyes"
+  },
+  "id": "oggjipxw"
 }
 ```
 
@@ -309,9 +310,9 @@ Edit the access rights for a sample.
 
 ```json
 {
-    "group": "administrator",
-    "group_read": true,
-    "group_write": true
+  "group": "administrator",
+  "group_read": true,
+  "group_write": true
 }
 ```
 
@@ -323,11 +324,11 @@ Edit the access rights for a sample.
 
 ```json
 {
-    "group": "administrator",
-    "group_read": true,
-    "group_write": true,
-    "all_read": true,
-    "all_write": false
+  "group": "administrator",
+  "group_read": true,
+  "group_write": true,
+  "all_read": true,
+  "all_write": false
 }
 ```
 
@@ -391,49 +392,49 @@ Returned documents do not include diagnostic data. Use the [analyses](/docs/deve
 
 ```json
 {
-    "total_count": 2,
-    "documents": [
-        {
-            "ready": true,
-            "created_at": "2018-02-06T19:32:59.533000Z",
-            "job": {
-                "id": "khjhwnlf"
-            },
-            "algorithm": "nuvs",
-            "sample": {
-                "id": "htosefxu",
-                "name": "Test 1"
-            },
-            "index": {
-                "id": "jiwncaqr",
-                "version": 0
-            },
-            "user": {
-                "id": "igboyes"
-            },
-            "id": "yzgqgbld"
-        },
-        {
-            "ready": true,
-            "created_at": "2018-02-06T22:15:37.411000Z",
-            "job": {
-                "id": "dqswirty"
-            },
-            "algorithm": "pathoscope_bowtie",
-            "sample": {
-                "id": "htosefxu",
-                "name": "Test 1"
-            },
-            "index": {
-                "id": "bznqwjsa",
-                "version": 1
-            },
-            "user": {
-                "id": "igboyes"
-            },
-            "id": "xfvpxvwi"
-        }
-    ]
+  "total_count": 2,
+  "documents": [
+    {
+      "ready": true,
+      "created_at": "2018-02-06T19:32:59.533000Z",
+      "job": {
+        "id": "khjhwnlf"
+      },
+      "algorithm": "nuvs",
+      "sample": {
+        "id": "htosefxu",
+        "name": "Test 1"
+      },
+      "index": {
+        "id": "jiwncaqr",
+        "version": 0
+      },
+      "user": {
+        "id": "igboyes"
+      },
+      "id": "yzgqgbld"
+    },
+    {
+      "ready": true,
+      "created_at": "2018-02-06T22:15:37.411000Z",
+      "job": {
+        "id": "dqswirty"
+      },
+      "algorithm": "pathoscope_bowtie",
+      "sample": {
+        "id": "htosefxu",
+        "name": "Test 1"
+      },
+      "index": {
+        "id": "bznqwjsa",
+        "version": 1
+      },
+      "user": {
+        "id": "igboyes"
+      },
+      "id": "xfvpxvwi"
+    }
+  ]
 }
 ```
 
@@ -467,8 +468,8 @@ Immediately create and placeholder analysis record for a sample and start an ana
 
 ```json
 {
-    "algorithm": "pathoscope_bowtie",
-    "ref_id": "foo"
+  "algorithm": "pathoscope_bowtie",
+  "ref_id": "foo"
 }
 ```
 
@@ -480,23 +481,23 @@ Immediately create and placeholder analysis record for a sample and start an ana
 
 ```json
 {
-    "ready": false,
-    "created_at": "2018-02-07T17:50:44.508000Z",
-    "job": {
-        "id": "kizfvroe"
-    },
-    "algorithm": "pathoscope_bowtie",
-    "sample": {
-        "id": "htosefxu"
-    },
-    "index": {
-        "id": "bznqwjsa",
-        "version": 1
-    },
-    "user": {
-        "id": "igboyes"
-    },
-    "id": "fbzypgva"
+  "ready": false,
+  "created_at": "2018-02-07T17:50:44.508000Z",
+  "job": {
+    "id": "kizfvroe"
+  },
+  "algorithm": "pathoscope_bowtie",
+  "sample": {
+    "id": "htosefxu"
+  },
+  "index": {
+    "id": "bznqwjsa",
+    "version": 1
+  },
+  "user": {
+    "id": "igboyes"
+  },
+  "id": "fbzypgva"
 }
 ```
 

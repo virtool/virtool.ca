@@ -1,4 +1,5 @@
 ---
+slug: "otus"
 title: "OTUs"
 description: "Query, create, edit, and remove OTUs."
 ---
@@ -30,42 +31,42 @@ Find OTUs by their name or abbreviation
 
 ```json
 {
-    "documents": [
-        {
-            "abbreviation": "ETBTV",
-            "name": "Ethiopian tobacco bushy top virus",
-            "verified": true,
-            "version": 0,
-            "id": "fc27c728"
-        },
-        {
-            "abbreviation": "ETBTVsatRNA",
-            "name": "Ethiopian tobacco bushy top virus satellite RNA",
-            "verified": true,
-            "version": 0,
-            "id": "3f5cf77e"
-        },
-        {
-            "abbreviation": "",
-            "name": "Tobacco bushy top virus",
-            "verified": true,
-            "version": 0,
-            "id": "ff09c3a3"
-        },
-        {
-            "abbreviation": "",
-            "name": "Tobacco bushy top virus satellite-like RNA",
-            "verified": true,
-            "version": 0,
-            "id": "7cddf58b"
-        }
-    ],
-    "total_count": 1418,
-    "found_count": 40,
-    "page_count": 10,
-    "per_page": 4,
-    "page": 1,
-    "modified_count": 2
+  "documents": [
+    {
+      "abbreviation": "ETBTV",
+      "name": "Ethiopian tobacco bushy top virus",
+      "verified": true,
+      "version": 0,
+      "id": "fc27c728"
+    },
+    {
+      "abbreviation": "ETBTVsatRNA",
+      "name": "Ethiopian tobacco bushy top virus satellite RNA",
+      "verified": true,
+      "version": 0,
+      "id": "3f5cf77e"
+    },
+    {
+      "abbreviation": "",
+      "name": "Tobacco bushy top virus",
+      "verified": true,
+      "version": 0,
+      "id": "ff09c3a3"
+    },
+    {
+      "abbreviation": "",
+      "name": "Tobacco bushy top virus satellite-like RNA",
+      "verified": true,
+      "version": 0,
+      "id": "7cddf58b"
+    }
+  ],
+  "total_count": 1418,
+  "found_count": 40,
+  "page_count": 10,
+  "per_page": 4,
+  "page": 1,
+  "modified_count": 2
 }
 ```
 
@@ -89,46 +90,46 @@ Get the complete representation of a virus.
 
 ```json
 {
-    "abbreviation": "ALV",
-    "name": "Alfalfa latent virus",
-    "isolates": [
+  "abbreviation": "ALV",
+  "name": "Alfalfa latent virus",
+  "isolates": [
+    {
+      "source_type": "isolate",
+      "id": "0jrrxdxh",
+      "source_name": "13SL1177",
+      "default": false,
+      "sequences": [
         {
-            "source_type": "isolate",
-            "id": "0jrrxdxh",
-            "source_name": "13SL1177",
-            "default": false,
-            "sequences": [
-                {
-                    "definition": "Alfalfa latent virus, complete genome",
-                    "host": "",
-                    "sequence": "ATAAACAACCATATATATAA...",
-                    "id": "13SL1177_ALV"
-                }
-            ]
-        },
-        {
-            "source_type": "isolate",
-            "id": "gs2tu43d",
-            "source_name": "ATCC PV-264",
-            "default": true,
-            "sequences": [
-                {
-                    "definition": "Alfalfa latent virus isolate ATCC PV-264 RNA-dependent RNA polymerase, TGB1, TGB2, TGB3, and coat protein genes, complete cds.",
-                    "host": "Medicago sativa",
-                    "sequence": "ATAAACAACCAACACCCCCT...",
-                    "id": "NC_026616"
-                }
-            ]
+          "definition": "Alfalfa latent virus, complete genome",
+          "host": "",
+          "sequence": "ATAAACAACCATATATATAA...",
+          "id": "13SL1177_ALV"
         }
-    ],
-    "last_indexed_version": 0,
-    "created_at": "2018-02-01T00:28:28.346000Z",
-    "verified": true,
-    "version": 0,
-    "schema": [],
-    "id": "a15f9837",
-    "most_recent_change": null,
-    "issues": null
+      ]
+    },
+    {
+      "source_type": "isolate",
+      "id": "gs2tu43d",
+      "source_name": "ATCC PV-264",
+      "default": true,
+      "sequences": [
+        {
+          "definition": "Alfalfa latent virus isolate ATCC PV-264 RNA-dependent RNA polymerase, TGB1, TGB2, TGB3, and coat protein genes, complete cds.",
+          "host": "Medicago sativa",
+          "sequence": "ATAAACAACCAACACCCCCT...",
+          "id": "NC_026616"
+        }
+      ]
+    }
+  ],
+  "last_indexed_version": 0,
+  "created_at": "2018-02-01T00:28:28.346000Z",
+  "verified": true,
+  "version": 0,
+  "schema": [],
+  "id": "a15f9837",
+  "most_recent_change": null,
+  "issues": null
 }
 ```
 
@@ -163,8 +164,8 @@ OTU names and abbreviations must be unique within the database. Uniqueness tests
 
 ```json
 {
-    "name": "Foobar",
-    "abbreviation": "FBR"
+  "name": "Foobar",
+  "abbreviation": "FBR"
 }
 ```
 
@@ -176,34 +177,34 @@ OTU names and abbreviations must be unique within the database. Uniqueness tests
 
 ```json
 {
-    "name": "Foobar",
-    "abbreviation": "FBR",
-    "schema": [],
-    "last_indexed_version": null,
-    "verified": false,
-    "isolates": [],
-    "version": 0,
-    "id": "uxusjtcl",
-    "most_recent_change": {
-        "method_name": "create",
-        "description": "Created Foobar (FBR)",
-        "created_at": "2018-02-07T18:54:33.348000Z",
-        "virus": {
-            "id": "uxusjtcl",
-            "name": "Foobar",
-            "version": 0
-        },
-        "user": {
-            "id": "igboyes"
-        },
-        "change_id": "uxusjtcl.0"
+  "name": "Foobar",
+  "abbreviation": "FBR",
+  "schema": [],
+  "last_indexed_version": null,
+  "verified": false,
+  "isolates": [],
+  "version": 0,
+  "id": "uxusjtcl",
+  "most_recent_change": {
+    "method_name": "create",
+    "description": "Created Foobar (FBR)",
+    "created_at": "2018-02-07T18:54:33.348000Z",
+    "virus": {
+      "id": "uxusjtcl",
+      "name": "Foobar",
+      "version": 0
     },
-    "issues": {
-        "empty_virus": true,
-        "empty_isolate": false,
-        "empty_sequence": false,
-        "isolate_inconsistency": false
-    }
+    "user": {
+      "id": "igboyes"
+    },
+    "change_id": "uxusjtcl.0"
+  },
+  "issues": {
+    "empty_virus": true,
+    "empty_isolate": false,
+    "empty_sequence": false,
+    "isolate_inconsistency": false
+  }
 }
 ```
 
@@ -244,7 +245,7 @@ Virus names and abbreviations must be unique within the database. Requesting a n
 
 ```json
 {
-    "abbreviation": "FB"
+  "abbreviation": "FB"
 }
 ```
 
@@ -256,34 +257,34 @@ Virus names and abbreviations must be unique within the database. Requesting a n
 
 ```json
 {
-    "name": "Foobar",
-    "abbreviation": "FB",
-    "schema": [],
-    "last_indexed_version": null,
-    "verified": false,
-    "isolates": [],
-    "version": 1,
-    "id": "uxusjtcl",
-    "most_recent_change": {
-        "method_name": "edit",
-        "description": "Changed abbreviation to FB",
-        "created_at": "2018-02-07T18:55:33.605000Z",
-        "virus": {
-            "id": "uxusjtcl",
-            "name": "Foobar",
-            "version": 1
-        },
-        "user": {
-            "id": "igboyes"
-        },
-        "change_id": "uxusjtcl.1"
+  "name": "Foobar",
+  "abbreviation": "FB",
+  "schema": [],
+  "last_indexed_version": null,
+  "verified": false,
+  "isolates": [],
+  "version": 1,
+  "id": "uxusjtcl",
+  "most_recent_change": {
+    "method_name": "edit",
+    "description": "Changed abbreviation to FB",
+    "created_at": "2018-02-07T18:55:33.605000Z",
+    "virus": {
+      "id": "uxusjtcl",
+      "name": "Foobar",
+      "version": 1
     },
-    "issues": {
-        "empty_virus": true,
-        "empty_isolate": false,
-        "empty_sequence": false,
-        "isolate_inconsistency": false
-    }
+    "user": {
+      "id": "igboyes"
+    },
+    "change_id": "uxusjtcl.1"
+  },
+  "issues": {
+    "empty_virus": true,
+    "empty_isolate": false,
+    "empty_sequence": false,
+    "isolate_inconsistency": false
+  }
 }
 ```
 
@@ -341,34 +342,34 @@ List the isolates for a given virus.
 
 ```json
 [
-    {
-        "source_type": "isolate",
-        "id": "0jrrxdxh",
-        "source_name": "13SL1177",
-        "default": false,
-        "sequences": [
-            {
-                "definition": "Alfalfa latent virus, complete genome",
-                "host": "",
-                "sequence": "ATAAACAACCAACTCCCCCCCTATCTTTTT...",
-                "id": "13SL1177_ALV"
-            }
-        ]
-    },
-    {
-        "source_type": "isolate",
-        "id": "gs2tu43d",
-        "source_name": "ATCC PV-264",
-        "default": true,
-        "sequences": [
-            {
-                "definition": "Alfalfa latent virus isolate ATCC PV-264 RNA-dependent RNA polymerase, TGB1, TGB2, TGB3, and coat protein genes, complete cds.",
-                "host": "Medicago sativa",
-                "sequence": "ATAAACAACCAACACCCCCTCAATCTTTTT...",
-                "id": "NC_026616"
-            }
-        ]
-    }
+  {
+    "source_type": "isolate",
+    "id": "0jrrxdxh",
+    "source_name": "13SL1177",
+    "default": false,
+    "sequences": [
+      {
+        "definition": "Alfalfa latent virus, complete genome",
+        "host": "",
+        "sequence": "ATAAACAACCAACTCCCCCCCTATCTTTTT...",
+        "id": "13SL1177_ALV"
+      }
+    ]
+  },
+  {
+    "source_type": "isolate",
+    "id": "gs2tu43d",
+    "source_name": "ATCC PV-264",
+    "default": true,
+    "sequences": [
+      {
+        "definition": "Alfalfa latent virus isolate ATCC PV-264 RNA-dependent RNA polymerase, TGB1, TGB2, TGB3, and coat protein genes, complete cds.",
+        "host": "Medicago sativa",
+        "sequence": "ATAAACAACCAACACCCCCTCAATCTTTTT...",
+        "id": "NC_026616"
+      }
+    ]
+  }
 ]
 ```
 
@@ -398,18 +399,18 @@ Get the complete representation of a single isolate.
 
 ```json
 {
-    "source_type": "isolate",
-    "id": "0jrrxdxh",
-    "source_name": "13SL1177",
-    "default": false,
-    "sequences": [
-        {
-            "definition": "Alfalfa latent virus, complete genome",
-            "host": "",
-            "sequence": "ATAAACAACCAACTCCCCCCCTATCTTTTTG...",
-            "id": "13SL1177_ALV"
-        }
-    ]
+  "source_type": "isolate",
+  "id": "0jrrxdxh",
+  "source_name": "13SL1177",
+  "default": false,
+  "sequences": [
+    {
+      "definition": "Alfalfa latent virus, complete genome",
+      "host": "",
+      "sequence": "ATAAACAACCAACTCCCCCCCTATCTTTTTG...",
+      "id": "13SL1177_ALV"
+    }
+  ]
 }
 ```
 
@@ -445,8 +446,8 @@ Setting the isolate to default will steal default status from any existing defau
 
 ```json
 {
-    "source_type": "isolate",
-    "source_name": "a"
+  "source_type": "isolate",
+  "source_name": "a"
 }
 ```
 
@@ -458,11 +459,11 @@ Setting the isolate to default will steal default status from any existing defau
 
 ```json
 {
-    "source_type": "isolate",
-    "source_name": "a",
-    "default": false,
-    "id": "utcvsgwz",
-    "sequences": []
+  "source_type": "isolate",
+  "source_name": "a",
+  "default": false,
+  "id": "utcvsgwz",
+  "sequences": []
 }
 ```
 
@@ -498,7 +499,7 @@ Edit an existing isolate.
 
 ```json
 {
-    "source_name": "b"
+  "source_name": "b"
 }
 ```
 
@@ -510,11 +511,11 @@ Edit an existing isolate.
 
 ```json
 {
-    "source_type": "isolate",
-    "source_name": "b",
-    "default": false,
-    "id": "utcvsgwz",
-    "sequences": []
+  "source_type": "isolate",
+  "source_name": "b",
+  "default": false,
+  "id": "utcvsgwz",
+  "sequences": []
 }
 ```
 
@@ -549,11 +550,11 @@ Takes no input.
 
 ```json
 {
-    "source_type": "isolate",
-    "source_name": "b",
-    "default": true,
-    "id": "utcvsgwz",
-    "sequences": []
+  "source_type": "isolate",
+  "source_name": "b",
+  "default": true,
+  "id": "utcvsgwz",
+  "sequences": []
 }
 ```
 
@@ -576,7 +577,10 @@ Removes an isolate and its sequences. If it is the default isolate, the first is
 
 ## Example
 
-<Request method="DELETE" path="/api/viruses/a15f9837/isolates/utcvsgwz/default" />
+<Request
+  method="DELETE"
+  path="/api/viruses/a15f9837/isolates/utcvsgwz/default"
+/>
 
 ## Response
 
@@ -619,9 +623,9 @@ Values provided for `sequence` must be plain text, **not** FASTA formatted. Sequ
 
 ```json
 {
-    "id": "foobar",
-    "definition": "A sequence for demo purposes",
-    "sequence": "ATGACTAGCGGACTTACA"
+  "id": "foobar",
+  "definition": "A sequence for demo purposes",
+  "sequence": "ATGACTAGCGGACTTACA"
 }
 ```
 
@@ -633,13 +637,13 @@ Values provided for `sequence` must be plain text, **not** FASTA formatted. Sequ
 
 ```json
 {
-    "definition": "A sequence for demo purposes",
-    "sequence": "ATGACTAGCGGACTTACA",
-    "virus_id": "a15f9837",
-    "isolate_id": "utcvsgwz",
-    "host": "",
-    "segment": null,
-    "id": "foobar"
+  "definition": "A sequence for demo purposes",
+  "sequence": "ATGACTAGCGGACTTACA",
+  "virus_id": "a15f9837",
+  "isolate_id": "utcvsgwz",
+  "host": "",
+  "segment": null,
+  "id": "foobar"
 }
 ```
 
@@ -665,7 +669,10 @@ Providing a value for `segment` will have no effect unless the parent virus has 
 
 Values provided for `sequence` must be plain text, **not** FASTA formatted. Sequences are automatically stripped of whitespace.
 
-<Endpoint method="PATCH" path="/api/otus/:id/isolates/:isolate_id/sequences/:sequence_id" />
+<Endpoint
+  method="PATCH"
+  path="/api/otus/:id/isolates/:isolate_id/sequences/:sequence_id"
+/>
 
 ## Input
 
@@ -682,8 +689,8 @@ Values provided for `sequence` must be plain text, **not** FASTA formatted. Sequ
 
 ```json
 {
-    "host": "Plant",
-    "sequence": "TACGTGTCGATCGATCGTAGTCGTACG"
+  "host": "Plant",
+  "sequence": "TACGTGTCGATCGATCGTAGTCGTACG"
 }
 ```
 
@@ -695,13 +702,13 @@ Values provided for `sequence` must be plain text, **not** FASTA formatted. Sequ
 
 ```json
 {
-    "definition": "A sequence for demo purposes",
-    "sequence": "TACGTGTCGATCGATCGTAGTCGTACG",
-    "virus_id": "a15f9837",
-    "isolate_id": "utcvsgwz",
-    "host": "Plant",
-    "segment": null,
-    "id": "foobar"
+  "definition": "A sequence for demo purposes",
+  "sequence": "TACGTGTCGATCGATCGTAGTCGTACG",
+  "virus_id": "a15f9837",
+  "isolate_id": "utcvsgwz",
+  "host": "Plant",
+  "segment": null,
+  "id": "foobar"
 }
 ```
 
@@ -722,11 +729,17 @@ Values provided for `sequence` must be plain text, **not** FASTA formatted. Sequ
 
 Remove an existing sequence from an isolate.
 
-<Endpoint method="DELETE" path="/api/otus/:id/isolates/:isolate_id/sequences/:sequence_id" />
+<Endpoint
+  method="DELETE"
+  path="/api/otus/:id/isolates/:isolate_id/sequences/:sequence_id"
+/>
 
 ## Example
 
-<Request method="DELETE" path="/api/viruses/a15f9837/isolates/utcvsgwz/sequences/foobar" />
+<Request
+  method="DELETE"
+  path="/api/viruses/a15f9837/isolates/utcvsgwz/sequences/foobar"
+/>
 
 ## Response
 
@@ -759,151 +772,151 @@ See [history endpoints](/docs/developer/api/history/) for more advanced querying
 
 ```json
 [
-    {
-        "_id": "a15f9837.0",
-        "method_name": "create",
-        "description": "Created Alfalfa latent virus",
-        "created_at": "2018-02-01T00:28:28.437000Z",
-        "virus": {
-            "id": "a15f9837",
-            "name": "Alfalfa latent virus",
-            "version": 0
+  {
+    "_id": "a15f9837.0",
+    "method_name": "create",
+    "description": "Created Alfalfa latent virus",
+    "created_at": "2018-02-01T00:28:28.437000Z",
+    "virus": {
+      "id": "a15f9837",
+      "name": "Alfalfa latent virus",
+      "version": 0
+    },
+    "index": {
+      "id": "jiwncaqr",
+      "version": 0
+    },
+    "user": {
+      "id": "igboyes"
+    },
+    "diff": {
+      "_id": "a15f9837",
+      "abbreviation": "ALV",
+      "name": "Alfalfa latent virus",
+      "lower_name": "alfalfa latent virus",
+      "isolates": [
+        {
+          "source_type": "isolate",
+          "id": "0jrrxdxh",
+          "source_name": "13SL1177",
+          "default": false,
+          "sequences": [
+            {
+              "_id": "13SL1177_ALV",
+              "definition": "Alfalfa latent virus, complete genome",
+              "virus_id": "a15f9837",
+              "isolate_id": "0jrrxdxh",
+              "host": "",
+              "sequence": "ATAAACAACCAACTCCCCCCCTATCTTTTT..."
+            }
+          ]
         },
-        "index": {
-            "id": "jiwncaqr",
-            "version": 0
-        },
-        "user": {
-            "id": "igboyes"
-        },
-        "diff": {
-            "_id": "a15f9837",
-            "abbreviation": "ALV",
-            "name": "Alfalfa latent virus",
-            "lower_name": "alfalfa latent virus",
-            "isolates": [
-                {
-                    "source_type": "isolate",
-                    "id": "0jrrxdxh",
-                    "source_name": "13SL1177",
-                    "default": false,
-                    "sequences": [
-                        {
-                            "_id": "13SL1177_ALV",
-                            "definition": "Alfalfa latent virus, complete genome",
-                            "virus_id": "a15f9837",
-                            "isolate_id": "0jrrxdxh",
-                            "host": "",
-                            "sequence": "ATAAACAACCAACTCCCCCCCTATCTTTTT..."
-                        }
-                    ]
-                },
-                {
-                    "source_type": "isolate",
-                    "id": "gs2tu43d",
-                    "source_name": "ATCC PV-264",
-                    "default": true,
-                    "sequences": [
-                        {
-                            "_id": "NC_026616",
-                            "definition": "Alfalfa latent virus isolate ATCC PV-264 ...",
-                            "virus_id": "a15f9837",
-                            "isolate_id": "gs2tu43d",
-                            "host": "Medicago sativa",
-                            "sequence": "ATAAACAACCAACACCCCCTCAATCTTTTT..."
-                        }
-                    ]
-                }
-            ],
-            "last_indexed_version": null,
-            "created_at": "2018-02-01T00:28:28.346000Z",
-            "verified": true,
-            "version": 0
+        {
+          "source_type": "isolate",
+          "id": "gs2tu43d",
+          "source_name": "ATCC PV-264",
+          "default": true,
+          "sequences": [
+            {
+              "_id": "NC_026616",
+              "definition": "Alfalfa latent virus isolate ATCC PV-264 ...",
+              "virus_id": "a15f9837",
+              "isolate_id": "gs2tu43d",
+              "host": "Medicago sativa",
+              "sequence": "ATAAACAACCAACACCCCCTCAATCTTTTT..."
+            }
+          ]
         }
-    },
-    {
-        "_id": "a15f9837.1",
-        "method_name": "add_isolate",
-        "description": "Added Isolate a",
-        "created_at": "2018-02-07T19:16:59.740000Z",
-        "virus": {
-            "id": "a15f9837",
-            "name": "Alfalfa latent virus",
-            "version": 1
-        },
-        "index": {
-            "id": "unbuilt",
-            "version": "unbuilt"
-        },
-        "user": {
-            "id": "igboyes"
-        },
-        "diff": [
-            [
-                "add",
-                "isolates",
-                [
-                    [
-                        2,
-                        {
-                            "source_type": "isolate",
-                            "source_name": "a",
-                            "default": false,
-                            "id": "utcvsgwz",
-                            "sequences": []
-                        }
-                    ]
-                ]
-            ],
-            ["change", "verified", [true, false]],
-            ["change", "version", [0, 1]]
-        ]
-    },
-    {
-        "_id": "a15f9837.2",
-        "method_name": "edit_isolate",
-        "description": "Renamed Isolate a to Isolate b",
-        "created_at": "2018-02-07T19:19:08.153000Z",
-        "virus": {
-            "id": "a15f9837",
-            "name": "Alfalfa latent virus",
-            "version": 2
-        },
-        "index": {
-            "id": "unbuilt",
-            "version": "unbuilt"
-        },
-        "user": {
-            "id": "igboyes"
-        },
-        "diff": [
-            ["change", ["isolates", 2, "source_name"], ["a", "b"]],
-            ["change", "version", [1, 2]]
-        ]
-    },
-    {
-        "_id": "a15f9837.3",
-        "method_name": "set_as_default",
-        "description": "Set Isolate b as default",
-        "created_at": "2018-02-07T19:19:59.757000Z",
-        "virus": {
-            "id": "a15f9837",
-            "name": "Alfalfa latent virus",
-            "version": 3
-        },
-        "index": {
-            "id": "unbuilt",
-            "version": "unbuilt"
-        },
-        "user": {
-            "id": "igboyes"
-        },
-        "diff": [
-            ["change", ["isolates", 1, "default"], [true, false]],
-            ["change", ["isolates", 2, "default"], [false, true]],
-            ["change", "version", [2, 3]]
-        ]
+      ],
+      "last_indexed_version": null,
+      "created_at": "2018-02-01T00:28:28.346000Z",
+      "verified": true,
+      "version": 0
     }
+  },
+  {
+    "_id": "a15f9837.1",
+    "method_name": "add_isolate",
+    "description": "Added Isolate a",
+    "created_at": "2018-02-07T19:16:59.740000Z",
+    "virus": {
+      "id": "a15f9837",
+      "name": "Alfalfa latent virus",
+      "version": 1
+    },
+    "index": {
+      "id": "unbuilt",
+      "version": "unbuilt"
+    },
+    "user": {
+      "id": "igboyes"
+    },
+    "diff": [
+      [
+        "add",
+        "isolates",
+        [
+          [
+            2,
+            {
+              "source_type": "isolate",
+              "source_name": "a",
+              "default": false,
+              "id": "utcvsgwz",
+              "sequences": []
+            }
+          ]
+        ]
+      ],
+      ["change", "verified", [true, false]],
+      ["change", "version", [0, 1]]
+    ]
+  },
+  {
+    "_id": "a15f9837.2",
+    "method_name": "edit_isolate",
+    "description": "Renamed Isolate a to Isolate b",
+    "created_at": "2018-02-07T19:19:08.153000Z",
+    "virus": {
+      "id": "a15f9837",
+      "name": "Alfalfa latent virus",
+      "version": 2
+    },
+    "index": {
+      "id": "unbuilt",
+      "version": "unbuilt"
+    },
+    "user": {
+      "id": "igboyes"
+    },
+    "diff": [
+      ["change", ["isolates", 2, "source_name"], ["a", "b"]],
+      ["change", "version", [1, 2]]
+    ]
+  },
+  {
+    "_id": "a15f9837.3",
+    "method_name": "set_as_default",
+    "description": "Set Isolate b as default",
+    "created_at": "2018-02-07T19:19:59.757000Z",
+    "virus": {
+      "id": "a15f9837",
+      "name": "Alfalfa latent virus",
+      "version": 3
+    },
+    "index": {
+      "id": "unbuilt",
+      "version": "unbuilt"
+    },
+    "user": {
+      "id": "igboyes"
+    },
+    "diff": [
+      ["change", ["isolates", 1, "default"], [true, false]],
+      ["change", ["isolates", 2, "default"], [false, true]],
+      ["change", "version", [2, 3]]
+    ]
+  }
 ]
 ```
 
