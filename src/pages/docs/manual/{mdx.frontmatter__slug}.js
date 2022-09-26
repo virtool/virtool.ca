@@ -9,10 +9,13 @@ import {
 } from "../../../components/LegacyComponents";
 
 const LegacySection = ({ data, location }) => {
-  const ending = trimEnd(replace(location.pathname, "/docs/manual/", ""), "/");
+  const urlEnding = trimEnd(
+    replace(location.pathname, "/docs/manual/", ""),
+    "/"
+  );
 
   const filteredData = find(data.allMdx.nodes, {
-    frontmatter: { slug: ending },
+    frontmatter: { slug: urlEnding },
   });
 
   return (
@@ -20,7 +23,7 @@ const LegacySection = ({ data, location }) => {
       <Nav />
       <div className="lg:container mx-auto gap-2 grid grid-cols-9">
         <LegacySideBar data={data} />
-        {ending !== "null" && (
+        {urlEnding !== "null" && (
           <div className="col-span-6 flex flex-col bg-neutral-50 font-sans relative ">
             <LegacyBody node={filteredData} />
           </div>

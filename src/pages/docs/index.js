@@ -13,7 +13,7 @@ const DocsIndex = () => (
           <h2>User Manual</h2>
           <p>For users of Virtool</p>
           <h3>
-            <Link to="/docs/manual">Legacy Manual</Link>
+            <Link to="/docs/config">Legacy Manual</Link>
           </h3>
           <p>User manual for Virtool 4.</p>
         </section>
