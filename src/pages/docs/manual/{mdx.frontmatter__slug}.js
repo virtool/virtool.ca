@@ -20,9 +20,11 @@ const LegacySection = ({ data, location }) => {
       <Nav />
       <div className="lg:container mx-auto gap-2 grid grid-cols-9">
         <LegacySideBar data={data} />
-        <div className="col-span-6 flex flex-col bg-neutral-50 font-sans relative ">
-          <LegacyBody node={filteredData} />
-        </div>
+        {ending !== "null" && (
+          <div className="col-span-6 flex flex-col bg-neutral-50 font-sans relative ">
+            <LegacyBody node={filteredData} />
+          </div>
+        )}
       </div>
     </Main>
   );
