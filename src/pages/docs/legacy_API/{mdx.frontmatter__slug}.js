@@ -10,7 +10,7 @@ import {
 
 const LegacySection = ({ data, location }) => {
   const urlEnding = trimEnd(
-    replace(location.pathname, "/docs/manual/", ""),
+    replace(location.pathname, "/docs/legacy_API/", ""),
     "/"
   );
 
