@@ -2,8 +2,8 @@
 title: "Analyses"
 description: "Create, view, and manage analyses."
 menu:
-    manual:
-        parent: "User Guide"
+  manual:
+    parent: "User Guide"
 ---
 
 # Overview
@@ -44,42 +44,42 @@ Subtractions are sets of host or non-pest sequence data used to eliminate non-pa
 
 You can read more about creating and managing subtractions from the links below:
 
--   [Subtraction Creation Tutorial](/docs/manual/tutorials/subtraction)
--   [Subtraction User Guide](/docs/manual/guide/subtraction)
+- [Subtraction Creation Tutorial](/docs/manual/tutorials/subtraction)
+- [Subtraction User Guide](/docs/manual/guide/subtraction)
 
 # View Analyses
 
 1. Navigate to a sample and click the **Analyses** tab
 
-    ![Sample of Interest](tab.png)
+   ![Sample of Interest](tab.png)
 
 2. View the list of analyses
 
-    This page will list all the analyses that have been created or currently running on your sample. The following image shows that one analysis has been completed.
+   This page will list all the analyses that have been created or currently running on your sample. The following image shows that one analysis has been completed.
 
-    ![List of Analysis](list_one.png)
+   ![List of Analysis](list_one.png)
 
 # Create an Analysis
 
 1. Navigate to the analyses list for a sample
 
-    ![Analyses](list_empty.png)
+   ![Analyses](list_empty.png)
 
 2. Click on the {{< button icon="plus-square" >}} button to open the analyze dialog
 
-    ![Dialog Box](create.png)
+   ![Dialog Box](create.png)
 
 3. Enter the analysis parameters
 
-    Choose the analysis algorithm (PathoscopeBowtie or NuVs), the subtraction, and the reference you want to use to analyze your sample.
+   Choose the analysis algorithm (PathoscopeBowtie or NuVs), the subtraction, and the reference you want to use to analyze your sample.
 
-    ![Filled Dialog Box](create_filled.png)
+   ![Filled Dialog Box](create_filled.png)
 
 4. Click the {{< button icon="play" label="Start" >}} button to start the analysis
 
-    Once the analysis is running, you can view its progress under the **Jobs** tab.
+   Once the analysis is running, you can view its progress under the **Jobs** tab.
 
-    ![Jobs](create_job.png)
+   ![Jobs](create_job.png)
 
 Multiple samples can be analyzed at once using the quick analysis feature. [Read more about quick analyses](/docs/manual/guide/samples).
 
@@ -91,13 +91,13 @@ Multiple samples can be analyzed at once using the quick analysis feature. [Read
 
 1. Navigate to the analysis list for the sample whose analysis you want to delete
 
-    ![Analysis](list_one.png)
+   ![Analysis](list_one.png)
 
 2. Click on the {{< icon "trash" "red" >}} icon on the analysis
 
-    The analysis record will be removed from the list.
+   The analysis record will be removed from the list.
 
-    ![Analyses](list_empty.png)
+   ![Analyses](list_empty.png)
 
 # Interpret Pathoscope
 
@@ -169,10 +169,10 @@ Additionally when we take a look at the isolate coverage charts we see that the 
 
 NuVs is a novel workflow used for discovering potential novel viral sequences in a sample library. The steps in the workflow are:
 
--   Eliminate known viral and subtraction reads
--   Assemble sample reads into long sequences called _contigs_
--   Predict open reading frames (ORFs) in the contigs
--   Scan the translated ORFs for viral protein motifs using a collection of profile hidden Markov models (HMMs)
+- Eliminate known viral and subtraction reads
+- Assemble sample reads into long sequences called _contigs_
+- Predict open reading frames (ORFs) in the contigs
+- Scan the translated ORFs for viral protein motifs using a collection of profile hidden Markov models (HMMs)
 
 Under the **Analysis** tab click on the NuVs analysis you would like to view. You will see a result viewer like the one shown below.
 ![NuVs analysis page](nuvs.png)

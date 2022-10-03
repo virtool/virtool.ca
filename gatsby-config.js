@@ -4,6 +4,7 @@ module.exports = {
     siteUrl: `https://www.virtool.ca`,
   },
   plugins: [
+    "gatsby-plugin-slug",
     "gatsby-plugin-image",
     {
       resolve: "gatsby-plugin-mdx",

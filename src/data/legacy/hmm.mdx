@@ -1,4 +1,5 @@
 ---
+slug: "hmm"
 title: "HMM"
 description: "Manage and query HMM annotations and files."
 ---
@@ -29,70 +30,70 @@ The response data also includes information about the installation state of the 
 
 ```json
 {
-    "documents": [
-        {
-            "names": ["P3 protein", "coat protein", "P1 protein"],
-            "families": {
-                "Asfarviridae": 1,
-                "Potyviridae": 179
-            },
-            "cluster": 1,
-            "count": 185,
-            "id": "7sisu7e2"
-        },
-        {
-            "names": [
-                "replication-associated protein",
-                "replication associated protein",
-                "Rep"
-            ],
-            "families": {
-                "Geminiviridae": 235,
-                "None": 2
-            },
-            "cluster": 2,
-            "count": 253,
-            "id": "ladu789k"
-        }
-    ],
-    "total_count": 5585,
-    "found_count": 5585,
-    "page_count": 2793,
-    "per_page": 2,
-    "page": 1,
-    "status": {
-        "installed": {
-            "id": 8460302,
-            "name": "v0.2.0",
-            "body": "- the first release using TravisCI for building and testing\r\n- merge annotations and profiles into one archive",
-            "filename": "vthmm.tar.gz",
-            "size": 86059385,
-            "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.0",
-            "published_at": "2017-11-10T00:27:20Z",
-            "ready": true,
-            "user": {
-                "id": "igboyes"
-            }
-        },
-        "process": {
-            "id": "bzfk2t76"
-        },
-        "release": {
-            "id": 8472569,
-            "name": "v0.2.1",
-            "body": "- remove some annotations that didn't have corresponding profiles",
-            "etag": "W/\"81fc9c9b3e02ff03c8cc1163e8031ee3\"",
-            "filename": "vthmm.tar.gz",
-            "size": 85904451,
-            "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.1",
-            "download_url": "https://github.com/virtool/virtool-hmm/releases/download/v0.2.1/vthmm.tar.gz",
-            "published_at": "2017-11-10T19:12:43Z",
-            "content_type": "application/gzip",
-            "newer": true
-        },
-        "id": "hmm",
-        "updating": false
+  "documents": [
+    {
+      "names": ["P3 protein", "coat protein", "P1 protein"],
+      "families": {
+        "Asfarviridae": 1,
+        "Potyviridae": 179
+      },
+      "cluster": 1,
+      "count": 185,
+      "id": "7sisu7e2"
+    },
+    {
+      "names": [
+        "replication-associated protein",
+        "replication associated protein",
+        "Rep"
+      ],
+      "families": {
+        "Geminiviridae": 235,
+        "None": 2
+      },
+      "cluster": 2,
+      "count": 253,
+      "id": "ladu789k"
     }
+  ],
+  "total_count": 5585,
+  "found_count": 5585,
+  "page_count": 2793,
+  "per_page": 2,
+  "page": 1,
+  "status": {
+    "installed": {
+      "id": 8460302,
+      "name": "v0.2.0",
+      "body": "- the first release using TravisCI for building and testing\r\n- merge annotations and profiles into one archive",
+      "filename": "vthmm.tar.gz",
+      "size": 86059385,
+      "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.0",
+      "published_at": "2017-11-10T00:27:20Z",
+      "ready": true,
+      "user": {
+        "id": "igboyes"
+      }
+    },
+    "process": {
+      "id": "bzfk2t76"
+    },
+    "release": {
+      "id": 8472569,
+      "name": "v0.2.1",
+      "body": "- remove some annotations that didn't have corresponding profiles",
+      "etag": "W/\"81fc9c9b3e02ff03c8cc1163e8031ee3\"",
+      "filename": "vthmm.tar.gz",
+      "size": 85904451,
+      "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.1",
+      "download_url": "https://github.com/virtool/virtool-hmm/releases/download/v0.2.1/vthmm.tar.gz",
+      "published_at": "2017-11-10T19:12:43Z",
+      "content_type": "application/gzip",
+      "newer": true
+    },
+    "id": "hmm",
+    "updating": false
+  }
 }
 ```
 
@@ -114,38 +115,38 @@ Get the complete representation of a single HMM annotation.
 
 ```json
 {
-    "families": {
-        "None": 1,
-        "Geminiviridae": 203
+  "families": {
+    "None": 1,
+    "Geminiviridae": 203
+  },
+  "total_entropy": 72.08,
+  "length": 136,
+  "cluster": 3,
+  "entries": [
+    {
+      "accession": "NP_040323.1",
+      "gi": "9626084",
+      "organism": "Pepper huasteco yellow vein virus",
+      "name": "AL2 protein"
     },
-    "total_entropy": 72.08,
-    "length": 136,
-    "cluster": 3,
-    "entries": [
-        {
-            "accession": "NP_040323.1",
-            "gi": "9626084",
-            "organism": "Pepper huasteco yellow vein virus",
-            "name": "AL2 protein"
-        },
-        {
-            "accession": "NP_044924.1",
-            "gi": "9629639",
-            "organism": "Tomato mottle Taino virus",
-            "name": "transactivator protein"
-        }
-    ],
-    "genera": {
-        "Begomovirus": 197,
-        "Topocuvirus": 1,
-        "None": 2,
-        "Curtovirus": 4
-    },
-    "mean_entropy": 0.53,
-    "count": 216,
-    "names": ["AC2 protein", "C2 protein", "AC2"],
-    "hidden": false,
-    "id": "zltnktou"
+    {
+      "accession": "NP_044924.1",
+      "gi": "9629639",
+      "organism": "Tomato mottle Taino virus",
+      "name": "transactivator protein"
+    }
+  ],
+  "genera": {
+    "Begomovirus": 197,
+    "Topocuvirus": 1,
+    "None": 2,
+    "Curtovirus": 4
+  },
+  "mean_entropy": 0.53,
+  "count": 216,
+  "names": ["AC2 protein", "C2 protein", "AC2"],
+  "hidden": false,
+  "id": "zltnktou"
 }
 ```
 
@@ -181,37 +182,37 @@ The `process.id` describes the [process document](/docs/developer/api/processes)
 
 ```json
 {
-    "installed": {
-        "id": 8460302,
-        "name": "v0.2.0",
-        "body": "- the first release using TravisCI for building and testing\r\n- merge annotations and profiles into one archive",
-        "filename": "vthmm.tar.gz",
-        "size": 86059385,
-        "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.0",
-        "published_at": "2017-11-10T00:27:20Z",
-        "ready": true,
-        "user": {
-            "id": "igboyes"
-        }
-    },
-    "process": {
-        "id": "bzfk2t76"
-    },
-    "release": {
-        "id": 8472569,
-        "name": "v0.2.1",
-        "body": "- remove some annotations that didn't have corresponding profiles",
-        "etag": "W/\"81fc9c9b3e02ff03c8cc1163e8031ee3\"",
-        "filename": "vthmm.tar.gz",
-        "size": 85904451,
-        "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.1",
-        "download_url": "https://github.com/virtool/virtool-hmm/releases/download/v0.2.1/vthmm.tar.gz",
-        "published_at": "2017-11-10T19:12:43Z",
-        "content_type": "application/gzip",
-        "newer": true
-    },
-    "id": "hmm",
-    "updating": false
+  "installed": {
+    "id": 8460302,
+    "name": "v0.2.0",
+    "body": "- the first release using TravisCI for building and testing\r\n- merge annotations and profiles into one archive",
+    "filename": "vthmm.tar.gz",
+    "size": 86059385,
+    "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.0",
+    "published_at": "2017-11-10T00:27:20Z",
+    "ready": true,
+    "user": {
+      "id": "igboyes"
+    }
+  },
+  "process": {
+    "id": "bzfk2t76"
+  },
+  "release": {
+    "id": 8472569,
+    "name": "v0.2.1",
+    "body": "- remove some annotations that didn't have corresponding profiles",
+    "etag": "W/\"81fc9c9b3e02ff03c8cc1163e8031ee3\"",
+    "filename": "vthmm.tar.gz",
+    "size": 85904451,
+    "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.1",
+    "download_url": "https://github.com/virtool/virtool-hmm/releases/download/v0.2.1/vthmm.tar.gz",
+    "published_at": "2017-11-10T19:12:43Z",
+    "content_type": "application/gzip",
+    "newer": true
+  },
+  "id": "hmm",
+  "updating": false
 }
 ```
 
@@ -235,17 +236,17 @@ This is the only method for updating the available release information. When the
 
 ```json
 {
-    "id": 8472569,
-    "name": "v0.2.1",
-    "body": "- remove some annotations that didn't have corresponding profiles",
-    "etag": "W/\"81fc9c9b3e02ff03c8cc1163e8031ee3\"",
-    "filename": "vthmm.tar.gz",
-    "size": 85904451,
-    "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.1",
-    "download_url": "https://github.com/virtool/virtool-hmm/releases/download/v0.2.1/vthmm.tar.gz",
-    "published_at": "2017-11-10T19:12:43Z",
-    "content_type": "application/gzip",
-    "newer": true
+  "id": 8472569,
+  "name": "v0.2.1",
+  "body": "- remove some annotations that didn't have corresponding profiles",
+  "etag": "W/\"81fc9c9b3e02ff03c8cc1163e8031ee3\"",
+  "filename": "vthmm.tar.gz",
+  "size": 85904451,
+  "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.1",
+  "download_url": "https://github.com/virtool/virtool-hmm/releases/download/v0.2.1/vthmm.tar.gz",
+  "published_at": "2017-11-10T19:12:43Z",
+  "content_type": "application/gzip",
+  "newer": true
 }
 ```
 
@@ -276,19 +277,19 @@ Most recently applied updates are first in returned the array. Updates that are 
 
 ```json
 [
-    {
-        "id": 8460302,
-        "name": "v0.2.0",
-        "body": "- the first release using TravisCI for building and testing\r\n- merge annotations and profiles into one archive",
-        "filename": "vthmm.tar.gz",
-        "size": 86059385,
-        "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.0",
-        "published_at": "2017-11-10T00:27:20Z",
-        "ready": true,
-        "user": {
-            "id": "igboyes"
-        }
+  {
+    "id": 8460302,
+    "name": "v0.2.0",
+    "body": "- the first release using TravisCI for building and testing\r\n- merge annotations and profiles into one archive",
+    "filename": "vthmm.tar.gz",
+    "size": 86059385,
+    "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.0",
+    "published_at": "2017-11-10T00:27:20Z",
+    "ready": true,
+    "user": {
+      "id": "igboyes"
     }
+  }
 ]
 ```
 
@@ -314,18 +315,18 @@ Installing when a previous release has already been installed will remove all HM
 
 ```json
 {
-    "id": 8460302,
-    "name": "v0.2.0",
-    "body": "- the first release using TravisCI for building and testing\r\n- merge annotations and profiles into one archive",
-    "filename": "vthmm.tar.gz",
-    "size": 86059385,
-    "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.0",
-    "published_at": "2017-11-10T00:27:20Z",
-    "created_at": "2018-06-15T18:26:30.787000Z",
-    "ready": false,
-    "user": {
-        "id": "igboyes"
-    }
+  "id": 8460302,
+  "name": "v0.2.0",
+  "body": "- the first release using TravisCI for building and testing\r\n- merge annotations and profiles into one archive",
+  "filename": "vthmm.tar.gz",
+  "size": 86059385,
+  "html_url": "https://github.com/virtool/virtool-hmm/releases/tag/v0.2.0",
+  "published_at": "2017-11-10T00:27:20Z",
+  "created_at": "2018-06-15T18:26:30.787000Z",
+  "ready": false,
+  "user": {
+    "id": "igboyes"
+  }
 }
 ```
 
