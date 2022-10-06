@@ -22,7 +22,7 @@ const DocsIndex = () => (
           <p>For API users and customizers</p>
           <div>
             <h3>
-              <Link to="/docs/api">API Reference</Link>
+              <Link to="/docs/api/">API Reference</Link>
             </h3>
             <p>API Reference for Virtool.</p>
           </div>
