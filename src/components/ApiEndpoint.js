@@ -6,9 +6,7 @@ import { H2, H3 } from "./Headings";
 import { JsonContainer } from "./JsonContainer";
 import { Table, Td, Th, Tr } from "./Table";
 
-const ApiEndpoint = ({ endpoint, path, method }) => {
-  console.log(endpoint);
-
+export const ApiEndpoint = ({ endpoint, path, method }) => {
   const successResponseCode = keysIn(endpoint.responses)[0];
 
   const requestBodyPath =
