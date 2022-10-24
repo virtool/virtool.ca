@@ -2,15 +2,13 @@ import { graphql } from "gatsby";
 import React from "react";
 import { Main } from "../../../components/Main";
 import { Nav } from "../../../components/Nav";
-import { replace, find, trimEnd } from "lodash";
-import {
-  LegacySideBar,
-  LegacyBody,
-} from "../../../components/LegacyComponents";
+import { find, replace, sortBy, trimEnd } from "lodash";
+import { LegacyBody } from "../../../components/LegacyBody";
+import { Sidebar } from "../../../components/Sidebar";
 
 const LegacySection = ({ data, location }) => {
   const urlEnding = trimEnd(
-    replace(location.pathname, "/docs/legacy_API/", ""),
+    replace(location.pathname, "/docs/legacy_api/", ""),
     "/"
   );
 
@@ -18,13 +16,20 @@ const LegacySection = ({ data, location }) => {
     frontmatter: { slug: urlEnding },
   });
 
+  const sortedData = sortBy(data.allMdx.nodes, "frontmatter.slug");
+
+  const links = sortedData.map((node) => ({
+    title: node.frontmatter.title,
+    slug: node.frontmatter.slug,
+  }));
+
   return (
     <Main>
       <Nav />
       <div className="lg:container mx-auto gap-2 grid grid-cols-9">
-        <LegacySideBar data={data} />
+        <Sidebar path="/docs/legacy_api" links={links} />
         {urlEnding !== "null" && (
-          <div className="col-span-6 flex flex-col bg-neutral-50 font-sans relative ">
+          <div className="col-span-6 flex flex-col font-sans relative ">
             <LegacyBody node={filteredData} />
           </div>
         )}

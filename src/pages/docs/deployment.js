@@ -17,7 +17,7 @@ const Deployment = ({ data }) => {
             </span>
           ))}
         </div>
-        <div className="col-span-7 flex flex-col bg-neutral-50 font-sans relative ">
+        <div className="col-span-7 flex flex-col font-sans relative ">
           {data.allMdx.nodes.map((node) => (
             <div>
               <h1>{node.frontmatter.title}</h1>

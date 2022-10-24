@@ -6,7 +6,7 @@ import { Nav } from "../../components/Nav";
 const DocsIndex = () => (
   <Main>
     <Nav />
-    <div className="lg:container mx-auto prose">
+    <div className="lg:container mt-10 mx-auto prose">
       <h1>Documentation</h1>
       <div className="grid grid-cols-2">
         <section>
@@ -28,7 +28,7 @@ const DocsIndex = () => (
           </div>
           <div>
             <h3>
-              <Link to="/docs/legacy_API">Legacy API Reference</Link>
+              <Link to="/docs/legacy_api">Legacy API Reference</Link>
             </h3>
             <p>API Reference for Virtool 4.</p>
           </div>

@@ -1,9 +1,9 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { API } from "../../../components/APIComponents";
+import { Api } from "../../../components/Api";
 
 const SingleAPIDoc = ({ data, location }) => (
-  <API data={data} location={location} />
+  <Api data={data} location={location} />
 );
 
 export const query = graphql`

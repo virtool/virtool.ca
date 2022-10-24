@@ -7,7 +7,7 @@ import { Nav } from "../components/Nav";
 const Install = ({ data }) => (
   <Main>
     <Nav />
-    <div className="lg:container mx-auto prose">
+    <div className="lg:container mt-5 mx-auto prose">
       <MDXRenderer>{data.mdx.body}</MDXRenderer>
     </div>
   </Main>
