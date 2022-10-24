@@ -7,7 +7,7 @@ exports.sourceNodes = async ({
   createContentDigest,
 }) => {
   const response = await axios.get(
-    "https://api.github.com/repos/virtool/virtool/releases/assets/77080168",
+    "https://github.com/virtool/virtool/releases/latest/download/openapi.json",
     {
       headers: {
         accept: "application/octet-stream",

@@ -1,4 +1,7 @@
-node_modules/
-.cache/
+.cache
+.idea
+.vscode
+node_modules
 public
-.vscode/
+
+

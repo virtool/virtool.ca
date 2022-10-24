@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      "mono": ["'Source Code Pro'", "Menlo", "monospace"],
+      "sans": ['Inter', 'apple-system', 'Ubuntu', 'Roboto', 'Oxygen', 'sans-serif']
+    }
   },
   plugins: [require("@tailwindcss/typography")],
 };
