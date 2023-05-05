@@ -1,0 +1,57 @@
+---
+import { getCollection } from "astro:content";
+import Card from "../../components/Card.astro";
+import CardTitle from "../../components/CardTitle.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getApiSpecification } from "../../utils/api";
+
+const manualEntries = await getCollection(
+  "manual",
+  ({ id }) => id.startsWith("guide") && id.endsWith("mdx")
+);
+
+const firstManualEntry = manualEntries[0];
+
+const firstApiSectionTitle = (await getApiSpecification()).sectionTitles[0];
+---
+
+<Layout title="Docs">
+  <header class="prose">
+    <h1>Docs</h1>
+  </header>
+  <section class="grid grid-cols-2 mt-20">
+    <Card>
+      <CardTitle>For Users</CardTitle>
+      <p
+        class="p-2 border-2 border-solid border-amber-500 bg-amber-200 text-amber-800 rounded-md"
+      >
+        <span class="font-medium">User Manual 19.0.0</span>
+        <br />
+        The updated user manual is coming soon.
+      </p>
+      <p class="p-2">
+        <a href={`/docs/manual/${firstManualEntry.slug}`}>User Manual 4.3.2</a>
+        <br />
+        For the legacy standalone version of Virtool.
+      </p>
+    </Card>
+    <Card>
+      <CardTitle>For Developers</CardTitle>
+
+      <p class="p-2">
+        <a href={`/docs/api/${firstApiSectionTitle}`}
+          >API Documentation 19.0.0</a
+        >
+        <br />
+        For the current cloud-native version of Virtool.
+      </p>
+
+      <p class="p-2">
+        <a href={`/docs/api/${firstApiSectionTitle}`}>API Documentation 4.3.2</a
+        >
+        <br />
+        For the legacy standalone version of Virtool.
+      </p>
+    </Card>
+  </section>
+</Layout>

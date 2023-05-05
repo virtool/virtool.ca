@@ -1,0 +1,113 @@
+---
+import { micromark } from "micromark";
+import { gfm, gfmHtml } from "micromark-extension-gfm";
+import ApiEndpoint from "../../../components/ApiEndpoint.astro";
+import ApiErrors from "../../../components/ApiErrors.astro";
+import ApiExample from "../../../components/ApiExample.astro";
+import ApiParameters from "../../../components/ApiParameters.astro";
+import ApiResponse from "../../../components/ApiResponse.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { getApiSpecification } from "../../../utils/api";
+
+export async function getStaticPaths() {
+  const oas = await getApiSpecification();
+
+  return oas.sections.map((section) => {
+    return {
+      params: {
+        title: section.title,
+      },
+    };
+  });
+}
+
+const { title } = Astro.params;
+
+const oas = await getApiSpecification();
+
+let section;
+
+oas.sections.forEach((s) => {
+  if (s.title === title) {
+    section = s;
+    return;
+  }
+});
+---
+
+<Layout title="API">
+  <div class="gap-2 grid grid-cols-12">
+    <div class="col-span-2 self-start sticky top-20">
+      <ul class="list-none">
+        {
+          oas.sectionTitles.map((title) => (
+            <li>
+              <a
+                class="font-medium text-lg text-blue-600 hover:text-blue-800"
+                href={`/docs/api/${title}`}
+              >
+                {title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="col-span-10">
+      <div class="prose">
+        <h1>{section.title}</h1>
+      </div>
+      <div class="divide-y-2 divide-dashed divide-slate-300 mt-10">
+        {
+          section.endpoints.map(
+            ({
+              description,
+              method,
+              parameters,
+              path,
+              errors,
+              example,
+              response,
+              title,
+            }) => {
+              return (
+                <section class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 py-12">
+                  <div class="col-span-2 prose">
+                    <h2>{title}</h2>
+                  </div>
+                  <div class="prose">
+                    <div
+                      set:html={micromark(description, {
+                        allowDangerousHtml: true,
+                        extensions: [gfm()],
+                        htmlExtensions: [gfmHtml()],
+                      })}
+                    />
+
+                    {parameters.length > 0 && (
+                      <ApiParameters parameters={parameters} />
+                    )}
+
+                    {errors.length > 0 && <ApiErrors errors={errors} />}
+                  </div>
+                  <div>
+                    <header class="prose">
+                      <h3>Request</h3>
+                    </header>
+
+                    <ApiEndpoint path={path} method={method} />
+                    {example && <ApiExample example={example} />}
+                    <ApiResponse
+                      data={response.example}
+                      status={response.status}
+                    />
+                  </div>
+                </section>
+              );
+            }
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

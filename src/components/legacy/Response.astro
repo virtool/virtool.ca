@@ -1,0 +1,8 @@
+---
+const { status } = Astro.props;
+---
+
+<div class="border-solid border-2 border-stone-700">
+  <p class="p-4 text-md">Status: {status}</p>
+  <pre id="json"><slot /></pre>
+</div>
