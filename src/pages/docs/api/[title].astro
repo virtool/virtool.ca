@@ -97,10 +97,9 @@ oas.sections.forEach((s) => {
 
                     <ApiEndpoint path={path} method={method} />
                     {example && <ApiExample example={example} />}
-                    <ApiResponse
-                      data={response.example}
-                      status={response.status}
-                    />
+                    {response && (
+                      <ApiResponse data={response} status={response.status} />
+                    )}
                   </div>
                 </section>
               );
