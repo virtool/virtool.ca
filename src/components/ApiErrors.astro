@@ -1,0 +1,24 @@
+---
+const { errors } = Astro.props;
+---
+
+<div class="prose mt-10">
+  <h3>Errors</h3>
+  <table>
+    <thead>
+      <tr><th>Status</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      {
+        errors.map(({ status, description }) => (
+          <tr>
+            <>
+              <td>{status}</td>
+              <td>{description}</td>
+            </>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

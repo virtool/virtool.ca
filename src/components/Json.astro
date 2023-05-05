@@ -1,0 +1,17 @@
+---
+import Prism from "prismjs";
+import "prismjs/components/prism-json";
+
+const { code } = Astro.props;
+---
+
+<div>
+  <pre
+    class="language-json">
+    <code set:html={Prism.highlight(
+      JSON.stringify(code, null, 2),
+      Prism.languages.json,
+      "json"
+    )} />
+  </pre>
+</div>
