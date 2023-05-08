@@ -61,7 +61,7 @@ async function fetchOasJson() {
   const cached = await cache.get("oas");
 
   // Update the cache if it doesn't exist or it's older than an hour.
-  if (!cached || date - Date.parse(cached.timestamp) > 1000 * 60 * 60) {
+  if (!cached || date - cached.timestamp > 100 * 60 * 60) {
     const response = await fetch(
       "https://github.com/virtool/virtool/releases/latest/download/openapi.json"
     );
@@ -69,7 +69,7 @@ async function fetchOasJson() {
     const data = await response.json();
 
     await cache.set("oas", {
-      data: await response.json(),
+      data,
       timestamp: date,
     });
 
