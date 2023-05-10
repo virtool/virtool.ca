@@ -21,7 +21,10 @@ Higher CPU clock speeds and core counts will allow more operations to be run in 
 
 Docker Compose is the only supported method for installing Virtool 4.3.2.
 
-1. Create a `docker-compose.yml` file to create a Virtool instance and MongoDB
+1. [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and
+   [the compose plugin](https://docs.docker.com/compose/install/linux/#install-using-the-repository) on your Linux host.
+
+2. Create a `docker-compose.yml` file to create a Virtool instance and MongoDB
    server.
 
    <CodeFile name="docker-compose.yml">
@@ -51,7 +54,7 @@ Docker Compose is the only supported method for installing Virtool 4.3.2.
 
    </CodeFile>
 
-2. Start the services with:
+3. Start the services with:
 
    ```shell
    docker compose -p virtool up -d
