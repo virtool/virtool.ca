@@ -3,28 +3,28 @@ title: "Samples"
 description: "Create, assess, and manage samples."
 ---
 
-import Aside from "../../../components/Aside.astro";
-import DummyButton from "../../../components/DummyButton.astro";
-import DummySaveButton from "../../../components/DummySaveButton.astro";
-import Icon from "../../../components/Icon.astro";
-
 ## Overview
 
-Selecting **Samples** on the top menu brings up the main sample management view. Here, samples can be created, viewed,edited, analyzed, and removed.
+Selecting **Samples** on the top menu brings up the main sample management view. Here,
+samples can be created, viewed,edited, analyzed, and removed.
 
 ![The samples view](/images/samples/samples.png)
 
 ### What happens during sample creation?
 
-Sample FASTQ files are copied into a new sample directory. The files will be compressed if necessary. Files associated with the sample can be viewed and downloaded under the sample detail tab.
+Sample FASTQ files are copied into a new sample directory. The files will be compressed
+if necessary. Files associated with the sample can be viewed and downloaded under the
+sample detail tab.
 
-Quality information is calculated from the library using [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) and committed to Virtool's database.
+Quality information is calculated from the library using [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+and committed to Virtool's database.
 
 The FASTQ files and quality data are used for further analyses triggered by the user.
 
 ## Browse Samples
 
-Once you have imported one or more samples, they can be browsed in the main sample management view.
+Once you have imported one or more samples, they can be browsed in the main sample
+management view.
 
 1. Navigate to the **Samples** view
 
@@ -61,8 +61,8 @@ Quick analyses allows you to start analysis jobs for multiple samples at once.
    An **Analyze** dialog box will appear.
    ![Samples Selected](/images/samples/selected.png)
 
-2. Choose the workflow(s) (PathoscopeBowtie or NuVs), subtraction, and reference(s) you want to
-   use to analyze your sample(s).
+2. Choose the workflow(s) (PathoscopeBowtie or NuVs), subtraction, and reference(s) you
+   want to use to analyze your sample(s).
 
    Selecting multiple references will start a separate job for each sample-reference
    combination.
@@ -112,37 +112,40 @@ Quick analyses allows you to start analysis jobs for multiple samples at once.
    ![Create sample dialog with non-file fields populated](/images/samples/create_filled.png)
 
    <Aside title="Paired and Unpaired FASTQ Data">
-      Paired or unpaired FASTQ data can be used to create a sample.
 
-      Samples created from only one file are assumed to be unpaired. Paired samples must
-      comprise two paired FASTQ files. **Interleaved FASTQ files are not currently supported**.
+   Paired or unpaired FASTQ data can be used to create a sample.
 
-      For paired data, make sure the file orientation labels (left and right) are correct
-      before you create a sample. You can use the 
-      <DummyButton color="grey" icon="retweet" /> button to swap orientations.
+   Samples created from only one file are assumed to be unpaired. Paired samples must
+   comprise two paired FASTQ files. **Interleaved FASTQ files are not currently supported**.
 
-      <video
-         src="/images/samples/create_orientation.mp4"
-         alt="Swap sample read orientation"
-         autoplay
-      />
+   For paired data, make sure the file orientation labels (left and right) are correct
+   before you create a sample. You can use the <DummyButton color="grey" icon="retweet" /> button to swap orientations.
+
+   <video
+     src="/images/samples/create_orientation.mp4"
+     alt="Swap sample read orientation"
+     autoplay
+   />
+
    </Aside>
 
    <Aside title="Default Subtraction">
-      The default subtraction for a sample will be pre-selected as whenever you create an
-      analysis for that sample. You can find the default subtraction for a given sample at
-      the bottom of its detail view.
 
-      For Banana bunchy top virus below, the default subtraction is **Banana**. This was
-      the same subtraction that was selected when first creating this sample. Once a
-      default subtraction has been made for a sample, you cannot change it.
+   The default subtraction for a sample will be pre-selected as whenever you create an
+   analysis for that sample. You can find the default subtraction for a given sample at
+   the bottom of its detail view.
 
-      ![Default Subtraction](/images/samples/default_subtraction.png)
+   For Banana bunchy top virus below, the default subtraction is **Banana**. This was
+   the same subtraction that was selected when first creating this sample. Once a
+   default subtraction has been made for a sample, you cannot change it.
 
-      When you open an analysis creation dialog for the sample, the default subtraction
-      (**Banana**) will already be pre-selected.
+   ![Default Subtraction](/images/samples/default_subtraction.png)
 
-      ![Default Subtraction Dialog](/images/samples/default_subtraction_dialog.png)
+   When you open an analysis creation dialog for the sample, the default subtraction
+   (**Banana**) will already be pre-selected.
+
+   ![Default Subtraction Dialog](/images/samples/default_subtraction_dialog.png)
+
    </Aside>
 
 5. Click <DummySaveButton /> to create the sample and start the sample creation job.
