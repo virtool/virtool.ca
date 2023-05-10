@@ -1,5 +1,5 @@
 import { Cache } from "./cache";
-import { assign, each, map, union } from "lodash";
+import { assign, each, map, union } from "lodash-es";
 
 const RELEASE_KEYS = [
   "id",
