@@ -1,0 +1,62 @@
+---
+import { getCollection } from "astro:content";
+import Note from "../../../../components/Note.astro";
+import Layout from "../../../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("legacy", ({ id }) => {
+    return id.endsWith("mdx");
+  });
+
+  return entries.map((entry) => {
+    console.log(entry.data.title);
+    return {
+      params: { slug: entry.slug },
+      props: { entry },
+    };
+  });
+}
+
+const entries = await getCollection("legacy", ({ id }) => {
+  return id.endsWith("mdx");
+});
+
+const menu = entries.map((entry) => {
+  return {
+    title: entry.data.title,
+    slug: entry.slug,
+  };
+});
+
+const { entry } = Astro.props;
+const { title } = entry.data.title;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <div class="grid grid-cols-8">
+    <div class="col-span-1">
+      <ul>
+        {
+          menu.map(({ slug, title }) => (
+            <li>
+              <a href={`/docs/legacy/api/${slug}`}>{title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="col-span-7 prose max-w-4xl">
+      <div class="mb-10">
+        <Note color="yellow">
+          <strong>Legacy API Docs.</strong>
+          These docs are for Virtool 4.3.2.
+        </Note>
+      </div>
+      <h1>{entry.data.title}</h1>
+      <div class="prose max-w-4xl">
+        <Content />
+      </div>
+    </div>
+  </div>
+</Layout>
