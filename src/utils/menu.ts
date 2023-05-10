@@ -33,14 +33,9 @@ export async function getMenu() {
     return menu;
   }, new Map());
 
-  const flattened = [menu.get("start")];
+  menu.get("start").items.sort((a, b) => a.order - b.order);
+  menu.get("guide").items.sort((a, b) => a.order - b.order);
+  menu.get("science").items.sort((a, b) => a.order - b.order);
 
-  if (menu.has("tutorials")) {
-    flattened.push(menu.get("tutorials"));
-  }
-
-  flattened.push(menu.get("guide"));
-  flattened.push(menu.get("science"));
-
-  return flattened;
+  return [menu.get("start"), menu.get("guide"), menu.get("science")];
 }
