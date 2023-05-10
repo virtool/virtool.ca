@@ -11,7 +11,7 @@ import Note from "../components/Note.astro";
 
 <Note color="blue">
 
-This method replaces the manual installation method based on downloading and unpacking
+This replaces the original installation method based on downloading and unpacking
 `virtool.tar.gz`.
 
 </Note>
@@ -25,21 +25,22 @@ This method replaces the manual installation method based on downloading and unp
    ```yaml
    version: "3.1"
    services:
-      mongo:
-        image: mongo:3.6
-         ports:
-            - "27017:27017"
-         volumes:
-            - mongo:/data/db
-      virtool:
-         image: ghcr.io/virtool/virtool:4.3.2
-         environment:
-            VT_DATA_PATH: "/data"
-            VT_HOST: "0.0.0.0"
-         ports:
-            - "9950:9950"
-         volumes:
-            - virtool:/data
+     mongo:
+       image: mongo:4.0
+       volumes:
+         - mongo:/data/db
+     virtool:
+       image: ghcr.io/virtool/virtool:4.3.2
+       environment:
+         VT_DATA_PATH: "/data"
+         VT_HOST: "0.0.0.0"
+       ports:
+         - "9950:9950"
+       volumes:
+         - virtool:/data
+   volumes:
+     mongo:
+     virtool:
    ```
 
 3. Start the services with:
@@ -49,9 +50,3 @@ This method replaces the manual installation method based on downloading and unp
    ```
 
    Virtool should be available on your host machine at [http://localhost:9950](http://localhost:9950).
-
-## Cloud Preview
-
-Virtool is being reimplemented as a Kubernetes-native application.
-
-All versions of Virtool from 5.0.0 forward are cloud native.
