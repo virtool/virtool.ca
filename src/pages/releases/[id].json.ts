@@ -10,7 +10,7 @@ export async function get({ params }): Promise<object> {
   const data = await getResourceReleases(repo);
 
   return {
-    body: JSON.stringify({ repo: data }),
+    body: JSON.stringify({ [repo]: data }),
   };
 }
 
