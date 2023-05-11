@@ -64,7 +64,7 @@ Find samples based on the sample name or creator username.
 
 | Status | Message       | Reason                             |
 | :----- | :------------ | :--------------------------------- |
-| `422`  | Invalid query | invalid URL query fields or values |
+| 422  | Invalid query | invalid URL query fields or values |
 
 ## Get
 
@@ -138,8 +138,8 @@ Get the complete representation of a sample.
 
 | Status | Message             | Reason                                                      |
 | :----- | :------------------ | :---------------------------------------------------------- |
-| `403`  | Insufficient rights | client does not have the required rights to read the sample |
-| `404`  | Not found           | `sample_id` in URL does not exist                           |
+| 403  | Insufficient rights | client does not have the required rights to read the sample |
+| 404  | Not found           | `sample_id` in URL does not exist                           |
 
 ## Create
 
@@ -220,13 +220,13 @@ The array of files must contain **only one or two items**. Samples with arrays c
 
 | Status | Message                                  | Reason                                                                       |
 | :----- | :--------------------------------------- | :--------------------------------------------------------------------------- |
-| `400`  | File does not exist                      | the provided `file_id` does not exist                                        |
-| `400`  | Group does not exist                     | `group` in POST body does not exist                                          |
-| `400`  | Group value required for sample creation | the server is configured to required group assignment of samples on creation |
-| `400`  | Sample name is already in use            | the provided `name` is already assigned to an existing sample                |
-| `400`  | Subtraction does not exist               | `subtraction` in POST body does not exist                                    |
-| `403`  | Not permitted                            | client does not have the `create_sample` permission                          |
-| `422`  | Invalid input                            | JSON request body is invalid                                                 |
+| 400  | File does not exist                      | the provided `file_id` does not exist                                        |
+| 400  | Group does not exist                     | `group` in POST body does not exist                                          |
+| 400  | Group value required for sample creation | the server is configured to required group assignment of samples on creation |
+| 400  | Sample name is already in use            | the provided `name` is already assigned to an existing sample                |
+| 400  | Subtraction does not exist               | `subtraction` in POST body does not exist                                    |
+| 403  | Not permitted                            | client does not have the `create_sample` permission                          |
+| 422  | Invalid input                            | JSON request body is invalid                                                 |
 
 ## Edit
 
@@ -287,10 +287,10 @@ Update modifiable fields of a sample.
 
 | Status | Message                       | Reason                                                        |
 | :----- | :---------------------------- | :------------------------------------------------------------ |
-| `400`  | Sample name is already in use | the provided `name` is already assigned to an existing sample |
-| `403`  | Insufficient rights           | client does not have the required rights to edit the sample   |
-| `404`  | Not found                     | `sample_id` in URL does not exist                             |
-| `422`  | Invalid input                 | request body JSON failed validation                           |
+| 400  | Sample name is already in use | the provided `name` is already assigned to an existing sample |
+| 403  | Insufficient rights           | client does not have the required rights to edit the sample   |
+| 404  | Not found                     | `sample_id` in URL does not exist                             |
+| 422  | Invalid input                 | request body JSON failed validation                           |
 
 ## Edit Rights
 
@@ -344,10 +344,10 @@ Edit the access rights for a sample.
 
 | Status | Message                               | Reason                                                |
 | :----- | :------------------------------------ | :---------------------------------------------------- |
-| `400`  | Group does not exist                  | user group does not exist in instance                 |
-| `403`  | Must be administrator or sample owner | user is neither the sample owner nor an administrator |
-| `404`  | Not found                             | `sample_id` in URL does not exist                     |
-| `422`  | Invalid input                         | request body JSON failed validation                   |
+| 400  | Group does not exist                  | user group does not exist in instance                 |
+| 403  | Must be administrator or sample owner | user is neither the sample owner nor an administrator |
+| 404  | Not found                             | `sample_id` in URL does not exist                     |
+| 422  | Invalid input                         | request body JSON failed validation                   |
 
 ## Replace Files
 
@@ -375,8 +375,8 @@ Remove an existing sample record and its associated data files.
 
 | Status | Message             | Reason                                                        |
 | :----- | :------------------ | :------------------------------------------------------------ |
-| `403`  | Insufficient rights | client does not have the required rights to remove the sample |
-| `404`  | Not found           | `sample_id` in URL does not exist                             |
+| 403  | Insufficient rights | client does not have the required rights to remove the sample |
+| 404  | Not found           | `sample_id` in URL does not exist                             |
 
 ## List Analyses
 
@@ -450,8 +450,8 @@ Returned documents do not include diagnostic data. Use the [analyses](/docs/deve
 
 | Status | Message             | Reason                                                               |
 | :----- | :------------------ | :------------------------------------------------------------------- |
-| `403`  | Insufficient rights | client does not have the required rights to view the sample analyses |
-| `404`  | Not found           | `sample_id` in URL does not exist                                    |
+| 403  | Insufficient rights | client does not have the required rights to view the sample analyses |
+| 404  | Not found           | `sample_id` in URL does not exist                                    |
 
 ## Analyze
 
@@ -513,8 +513,8 @@ Immediately create and placeholder analysis record for a sample and start an ana
 
 | Status | Message                             | Reason                                                                           |
 | :----- | :---------------------------------- | :------------------------------------------------------------------------------- |
-| `400`  | Reference does not exist            | specified `ref_id` not found                                                     |
-| `400`  | No index is ready for the reference | the reference doesn't have a built index ready for analysis                      |
-| `403`  | Insufficient rights                 | client does not have the required rights to create a new analysis for the sample |
-| `404`  | Not found                           | `sample_id` in URL does not exist                                                |
-| `422`  | Invalid input                       | the JSON request body is invalid                                                 |
+| 400  | Reference does not exist            | specified `ref_id` not found                                                     |
+| 400  | No index is ready for the reference | the reference doesn't have a built index ready for analysis                      |
+| 403  | Insufficient rights                 | client does not have the required rights to create a new analysis for the sample |
+| 404  | Not found                           | `sample_id` in URL does not exist                                                |
+| 422  | Invalid input                       | the JSON request body is invalid                                                 |

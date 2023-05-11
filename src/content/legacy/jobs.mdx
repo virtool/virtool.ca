@@ -75,7 +75,7 @@ Find jobs by task name or the originating username.
 
 | Status | Message       | Reason                                    |
 | :----- | :------------ | :---------------------------------------- |
-| `422`  | Invalid query | validation error for URL query parameters |
+| 422  | Invalid query | validation error for URL query parameters |
 
 ## Get
 
@@ -143,7 +143,7 @@ Get the complete representation for a single job.
 
 | Status | Message   | Reason                         |
 | :----- | :-------- | :----------------------------- |
-| `404`  | Not found | `job_id` in URL does not exist |
+| 404  | Not found | `job_id` in URL does not exist |
 
 ## Cancel
 
@@ -228,8 +228,8 @@ Attempting to cancel a job more than once or cancel a finished job will result i
 
 | Status | Message         | Reason                                           |
 | :----- | :-------------- | :----------------------------------------------- |
-| `403`  | Not permitted   | client does not have the `cancel_job` permission |
-| `404`  | Not found       | `job_id` in URL does not exist                   |
+| 403  | Not permitted   | client does not have the `cancel_job` permission |
+| 404  | Not found       | `job_id` in URL does not exist                   |
 | `409`  | Not cancellable | job is already finished                          |
 
 ## Remove
@@ -253,9 +253,9 @@ Remove a job that is complete, cancelled, or errored. If the requested job is ru
 
 | Status | Message                                         | Reason                                              |
 | :----- | :---------------------------------------------- | :-------------------------------------------------- |
-| `403`  | Not permitted                                   | client does not have the `remove_sample` permission |
+| 403  | Not permitted                                   | client does not have the `remove_sample` permission |
 | `409`  | Job is running or waiting and cannot be removed | job must finish before it can be removed            |
-| `404`  | Not found                                       | `job_id` in URL does not exist                      |
+| 404  | Not found                                       | `job_id` in URL does not exist                      |
 
 ## Clear
 

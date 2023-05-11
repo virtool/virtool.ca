@@ -160,7 +160,7 @@ Get the complete representation of a single HMM annotation.
 
 | Status | Message   | Reason                        |
 | :----- | :-------- | :---------------------------- |
-| `404`  | Not found | HMM annotation does not exist |
+| 404  | Not found | HMM annotation does not exist |
 
 ## Get Status
 
@@ -260,8 +260,8 @@ This is the only method for updating the available release information. When the
 
 | Status | Message                   | Reason                                                             |
 | :----- | :------------------------ | :----------------------------------------------------------------- |
-| `502`  | Repository does not exist | the GitHub repository set in the `hmm_slug` setting does not exist |
-| `502`  | Could not reach GitHub    | the server could not connect to GitHub                             |
+| 502  | Repository does not exist | the GitHub repository set in the `hmm_slug` setting does not exist |
+| 502  | Could not reach GitHub    | the server could not connect to GitHub                             |
 
 ## List Updates
 
@@ -340,8 +340,8 @@ Installing when a previous release has already been installed will remove all HM
 
 | Status | Message                       | Reason                                                         |
 | :----- | :---------------------------- | :------------------------------------------------------------- |
-| `400`  | Target release does not exist | no release information has been fetched and cached from GitHub |
-| `403`  | Not permitted                 | user does not have `modify_hmm` permission                     |
+| 400  | Target release does not exist | no release information has been fetched and cached from GitHub |
+| 403  | Not permitted                 | user does not have `modify_hmm` permission                     |
 
 ## Purge
 
@@ -363,4 +363,4 @@ HMMs that are referenced in NuVs analysis records will be soft-deleted. They wil
 
 | Status | Message       | Reason                                     |
 | :----- | :------------ | :----------------------------------------- |
-| `403`  | Not permitted | user does not have `modify_hmm` permission |
+| 403  | Not permitted | user does not have `modify_hmm` permission |
