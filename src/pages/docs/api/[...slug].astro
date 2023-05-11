@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import ApiView from "../../../components/api/ApiView.astro";
+import ApiGuide from "../../../components/api/ApiGuide.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { getApiSpecification } from "../../../utils/api";
+import { getMenuSectionsFromCollection } from "../../../utils/menu";
+import Menu from "../../../components/menu/Menu.astro";
+
+export async function getStaticPaths() {
+  const overviewCollection = await getCollection(
+    "api",
+    ({ id }) => id.endsWith("mdx") || id.endsWith("md")
+  );
+
+  const overviewSections = overviewCollection.map((section) => ({
+    params: { slug: section.slug },
+    props: { section, type: "mdx" },
+  }));
+
+  const oas = await getApiSpecification();
+
+  const oasSections = oas.sections.map((section) => ({
+    params: {
+      slug: section.title.toLowerCase(),
+    },
+    props: { section, type: "oas" },
+  }));
+
+  return [...oasSections, ...overviewSections];
+}
+
+const sections = getMenuSectionsFromCollection(
+  await getCollection(
+    "api",
+    ({ id }) => id.endsWith("mdx") || id.endsWith("md")
+  )
+);
+
+const { sectionTitles } = await getApiSpecification();
+
+sections.push({
+  title: "API",
+  items: sectionTitles.map((title) => ({
+    title,
+    slug: `${title.toLowerCase()}`,
+  })),
+});
+
+const { title } = Astro.params;
+const { section, type } = Astro.props;
+---
+
+<Layout title="API">
+  <div class="gap-2 grid grid-cols-12">
+    <div class="col-span-2 self-start sticky top-20">
+      <Menu sections={sections} baseUrl="/docs/api" />
+    </div>
+    <div class="col-span-10">
+      <div class="divide-y-2 divide-dashed divide-slate-300 mt-10">
+        {
+          type === "oas" ? (
+            <ApiView section={section} />
+          ) : (
+            <ApiGuide section={section} />
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

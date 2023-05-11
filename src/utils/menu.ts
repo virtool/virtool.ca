@@ -1,41 +1,41 @@
-import { getCollection } from "astro:content";
+import { CollectionEntry } from "astro:content";
+import { forEach, pick, map } from "lodash-es";
 
-export async function getMenu() {
-  const entries = await getCollection(
-    "manual",
-    ({ id }) => id.endsWith("mdx") || id.endsWith("md")
-  );
-
-  const menu = entries.reduce((menu, entry) => {
+export function getMenuSectionsFromCollection(
+  collection: CollectionEntry<any>,
+  sections?: string[]
+) {
+  let menu = collection.reduce((menu, entry) => {
     const key = entry.slug.split("/")[0];
 
-    if (menu.has(key)) {
-      const section = menu.get(key);
+    let section = menu[key];
 
-      section.items.push({
-        slug: entry.slug,
-        title: entry.data.title,
-        order: entry.data.order,
-      });
-    } else {
-      menu.set(key, {
+    if (!section) {
+      section = {
         title: key,
-        items: [
-          {
-            slug: entry.slug,
-            title: entry.data.title,
-            order: entry.data.order,
-          },
-        ],
-      });
+        items: [],
+      };
+      menu[key] = section;
     }
 
+    section.items.push({
+      title: entry.data.title,
+      slug: entry.slug,
+      order: entry.data.order,
+    });
+
     return menu;
-  }, new Map());
+  }, {});
 
-  menu.get("start").items.sort((a, b) => a.order - b.order);
-  menu.get("guide").items.sort((a, b) => a.order - b.order);
-  menu.get("science").items.sort((a, b) => a.order - b.order);
+  if (sections) {
+    menu = pick(menu, sections);
+  }
 
-  return [menu.get("start"), menu.get("guide"), menu.get("science")];
+  const flattened = map(menu, (section) => section);
+
+  forEach(flattened, (section) => {
+    section.items.sort((a, b) => a.order - b.order);
+  });
+
+  return flattened;
 }
