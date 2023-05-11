@@ -1,0 +1,8 @@
+---
+import { getLatestApiVersion, getRepoReleases } from "../utils/releases";
+
+const releases = await getRepoReleases("virtool");
+const version = getLatestApiVersion(releases);
+---
+
+{version}

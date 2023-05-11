@@ -5,6 +5,7 @@ order: 1
 ---
 
 import CodeFile from "../../../components/CodeFile.astro";
+import LegacyVersion from "../../../components/LegacyVersion.astro";
 
 ## System Requirements
 
@@ -19,7 +20,7 @@ Higher CPU clock speeds and core counts will allow more operations to be run in 
 
 ## Docker Compose
 
-Docker Compose is the only supported method for installing Virtool 4.3.2.
+Docker Compose is the only supported method for installing Virtool <LegacyVersion />.
 
 1. [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and
    [the compose plugin](https://docs.docker.com/compose/install/linux/#install-using-the-repository) on your Linux host.
@@ -39,7 +40,7 @@ Docker Compose is the only supported method for installing Virtool 4.3.2.
          volumes:
            - mongo:/data/db
      virtool:
-       image: ghcr.io/virtool/virtool:4.3.2
+       image: ghcr.io/virtool/virtool:LEGACY_VERSION
        environment:
          VT_DATA_PATH: "/data"
          VT_HOST: "0.0.0.0"

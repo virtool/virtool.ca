@@ -1,13 +1,15 @@
-import { getResourceReleases } from "../../utils/releases";
+import { getRepoReleases } from "../../utils/releases";
 
-enum Resources {
-  references = "ref-plant-viruses",
+enum Repos {
   hmms = "virtool-hmm",
+  references = "ref-plant-viruses",
+  virtool = "virtool",
 }
 
 export async function get({ params }): Promise<object> {
-  const repo = Resources[params.id];
-  const data = await getResourceReleases(repo);
+  const repo = Repos[params.id];
+
+  const data = await getRepoReleases(repo);
 
   return {
     body: JSON.stringify({ [repo]: data }),
@@ -15,5 +17,9 @@ export async function get({ params }): Promise<object> {
 }
 
 export function getStaticPaths() {
-  return [{ params: { id: "references" } }, { params: { id: "hmms" } }];
+  return [
+    { params: { id: "hmms" } },
+    { params: { id: "virtool" } },
+    { params: { id: "references" } },
+  ];
 }
