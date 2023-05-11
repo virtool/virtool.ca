@@ -1,0 +1,32 @@
+---
+import Item from "../menu/Item.astro";
+import { map } from "lodash-es";
+
+type Sections = {
+  title: string;
+  items: item[];
+}[];
+
+type item = {
+  title: string;
+  slug: string;
+};
+
+const { sections, baseUrl }: { sections: Sections; baseUrl: string } =
+  Astro.props;
+---
+
+<ul>
+  {
+    sections.map((section) => (
+      <li class="mb-4">
+        <h5 class="capitalize font-medium text-sm mt-3 mb-2">
+          {section.title}
+        </h5>
+        {map(section.items, (item) => (
+          <Item title={item.title} baseUrl={baseUrl} slug={item.slug} />
+        ))}
+      </li>
+    ))
+  }
+</ul>
