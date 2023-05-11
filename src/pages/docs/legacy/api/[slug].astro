@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import LegacyVersion from "../../../../components/LegacyVersion.astro";
 import Note from "../../../../components/Note.astro";
 import Layout from "../../../../layouts/Layout.astro";
 
@@ -9,7 +10,6 @@ export async function getStaticPaths() {
   });
 
   return entries.map((entry) => {
-    console.log(entry.data.title);
     return {
       params: { slug: entry.slug },
       props: { entry },
@@ -29,7 +29,6 @@ const menu = entries.map((entry) => {
 });
 
 const { entry } = Astro.props;
-const { title } = entry.data.title;
 const { Content } = await entry.render();
 ---
 
@@ -50,7 +49,7 @@ const { Content } = await entry.render();
       <div class="mb-10">
         <Note color="yellow">
           <strong>Legacy API Docs.</strong>
-          These docs are for Virtool 4.3.2.
+          These docs are for Virtool <LegacyVersion />.
         </Note>
       </div>
       <h1>{entry.data.title}</h1>

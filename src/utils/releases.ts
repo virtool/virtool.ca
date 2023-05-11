@@ -1,5 +1,5 @@
+import { map, pick } from "lodash-es";
 import { Cache } from "./cache";
-import { assign, each, map, union } from "lodash-es";
 
 const RELEASE_KEYS = [
   "id",
@@ -9,41 +9,70 @@ const RELEASE_KEYS = [
   "published_at",
   "html_url",
 ];
-function format_releases(release) {
-  const formatted = {};
 
-  each(RELEASE_KEYS, (value) => {
-    formatted[value] = release[value];
+function filterReleases(releases: Array<object>): Array<object> {
+  return releases.filter((release) => {
+    return release["assets"] && !release["draft"];
   });
+}
 
-  formatted["asset_error"] = false;
+function formatRelease(release) {
+  const formatted = pick(release, RELEASE_KEYS);
 
   try {
     const asset = release["assets"][0];
 
-    assign(formatted, {
-      filename: asset["name"],
-      content_type: asset["content_type"],
-      size: asset["size"],
-      download_url: asset["browser_download_url"],
-    });
+    return {
+      ...formatted,
+      assert_error: false,
+      content_type: asset.content_type,
+      download_url: asset.browser_download_url,
+      filename: asset.name,
+      size: asset.size,
+    };
   } catch (error) {
-    formatted["asset_error"] = true;
-    if (!(error instanceof TypeError)) throw error;
-  }
+    if (error instanceof TypeError) {
+      return { ...formatted, asset_error: true };
+    }
 
-  return formatted;
+    throw error;
+  }
 }
 
-const filterReleases = (releases: Array<object>): Array<object> => {
-  return releases.filter((release) => {
-    return release["assets"] && !release["draft"];
-  });
-};
+async function fetchRepoReleases(repo: string): Promise<Array<object>> {
+  let allReleases = [];
+  let page = 1;
 
-export async function getResourceReleases(
-  repo: string
-): Promise<Array<object>> {
+  while (true) {
+    const url = `https://api.github.com/repos/virtool/${repo}/releases?per_page=100&page=${page}`;
+
+    console.log("Making request with URL " + url);
+
+    const response = await fetch(url, {
+      headers: new Headers({
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch releases from GitHub");
+    }
+
+    const releases = await response.json();
+
+    console.log("Made request to GitHub");
+
+    if (releases.length == 0) break;
+
+    allReleases.push(...releases);
+
+    page++;
+  }
+
+  return allReleases;
+}
+
+export async function getRepoReleases(repo: string): Promise<Array<object>> {
   const cache = new Cache();
   await cache.load();
 
@@ -51,13 +80,13 @@ export async function getResourceReleases(
 
   const cached = await cache.get(repo);
 
-  if (cached && date - cached.timestamp < 1000 * 60 * 60) return cached.data;
+  if (cached && date - cached.timestamp < 1000 * 60 * 60) {
+    return cached.data;
+  }
 
-  let releases = await getReleases(repo);
+  const releases = filterReleases(await fetchRepoReleases(repo));
 
-  releases = filterReleases(releases);
-
-  const data = map(releases, format_releases);
+  const data = map(releases, formatRelease);
 
   await cache.set(repo, {
     data,
@@ -67,22 +96,28 @@ export async function getResourceReleases(
   return data;
 }
 
-async function getReleases(repo: string): Promise<Array<object>> {
-  let allReleases = [];
-  let page = 1;
-
-  while (true) {
-    const response = await fetch(
-      `https://api.github.com/repos/virtool/${repo}/releases?per_page=100&page=${page}`
+export function getLatestApiVersion(releases) {
+  const apiReleases = releases.filter((release) => {
+    return (
+      !release.prerelease &&
+      !(release.name.startsWith("v4.") || release.name.startsWith("4."))
     );
+  });
 
-    const releases = await response.json();
+  const latestRelease = apiReleases[0];
 
-    if (releases.length == 0) break;
+  return latestRelease.name;
+}
 
-    allReleases = union(releases, releases, "id");
-    page++;
-  }
+export function getLatestLegacyVersion(releases) {
+  const legacyReleases = releases.filter((release) => {
+    return (
+      !release.prerelease &&
+      (release.name.startsWith("v4.") || release.name.startsWith("4."))
+    );
+  });
 
-  return allReleases;
+  const latestRelease = legacyReleases[0];
+
+  return latestRelease.name.replace("v", "");
 }
