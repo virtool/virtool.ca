@@ -155,7 +155,7 @@ Get the complete representation of a single reference.
 
 | Status | Message   | Reason                   |
 | :----- | :-------- | :----------------------- |
-| `404`  | Not found | reference does not exist |
+| 404  | Not found | reference does not exist |
 
 ## Create
 
@@ -427,10 +427,10 @@ To direct Virtool to **link a remote reference and create a new reference from i
 
 | Status | Message                                  | Reason                                                             |
 | :----- | :--------------------------------------- | :----------------------------------------------------------------- |
-| `400`  | Source reference does not exist          | the `clone_from` id does not refer to an exisingt reference        |
-| `403`  | Not permitted                            | client does not have the `create_ref` permission                   |
-| `502`  | Could not retrieve latest GitHub release | either the repository does not exist or there is no latest release |
-| `502`  | Could not reach GitHub                   | the server was unable to connect to GitHub                         |
+| 400  | Source reference does not exist          | the `clone_from` id does not refer to an exisingt reference        |
+| 403  | Not permitted                            | client does not have the `create_ref` permission                   |
+| 502  | Could not retrieve latest GitHub release | either the repository does not exist or there is no latest release |
+| 502  | Could not reach GitHub                   | the server was unable to connect to GitHub                         |
 
 ## Edit
 
@@ -505,8 +505,8 @@ Currently, only _genome_ is accepted as a value for `data_type`.
 
 | Status | Message             | Reason                                            |
 | :----- | :------------------ | :------------------------------------------------ |
-| `403`  | Insufficient rights | client does not have the `modify` reference right |
-| `404`  | Not found           | reference does not exist                          |
+| 403  | Insufficient rights | client does not have the `modify` reference right |
+| 404  | Not found           | reference does not exist                          |
 
 ## Export
 
@@ -540,7 +540,7 @@ The default scope is `built` if no `scope` parameter is provided.
 
 | Status | Message   | Reason                   |
 | :----- | :-------- | :----------------------- |
-| `404`  | Not found | reference does not exist |
+| 404  | Not found | reference does not exist |
 
 ## Remove
 
@@ -579,8 +579,8 @@ Information about the deletion process is returned in the HTTP response. The `Co
 
 | Status | Message             | Reason                                            |
 | :----- | :------------------ | :------------------------------------------------ |
-| `403`  | Insufficient rights | client does not have the `remove` reference right |
-| `404`  | Not found           | reference does not exist                          |
+| 403  | Insufficient rights | client does not have the `remove` reference right |
+| 404  | Not found           | reference does not exist                          |
 
 ## Find History
 
@@ -768,9 +768,9 @@ This endpoint takes no input.
 
 | Status | Message                         | Reason                                                                  |
 | :----- | :------------------------------ | :---------------------------------------------------------------------- |
-| `400`  | There are unverified OTUs       | some OTUs included in the rebuild have issues                           |
-| `400`  | The are no unbuilt changes      | there are no changes to include in an index rebuild                     |
-| `403`  | Insufficient rights             | client does not have the required reference rights                      |
+| 400  | There are unverified OTUs       | some OTUs included in the rebuild have issues                           |
+| 400  | The are no unbuilt changes      | there are no changes to include in an index rebuild                     |
+| 403  | Insufficient rights             | client does not have the required reference rights                      |
 | `409`  | Index build already in progress | only one index build at a time may be in progress for a given reference |
 
 ## Get User
@@ -804,7 +804,7 @@ Get a specific reference user.
 
 | Status | Message   | Reason                           |
 | :----- | :-------- | :------------------------------- |
-| `404`  | Not found | reference or user does not exist |
+| 404  | Not found | reference or user does not exist |
 
 ## Add User
 
@@ -860,10 +860,10 @@ Allow the added user to view a non-public reference. Control their modification 
 
 | Status | Message             | Reason                                            |
 | :----- | :------------------ | :------------------------------------------------ |
-| `400`  | User already exists | user is already assigned to reference             |
-| `400`  | User does not exist | user does not exist on instance                   |
-| `403`  | Insufficient rights | client does not have the `modify` reference right |
-| `404`  | Not found           | reference does not exist                          |
+| 400  | User already exists | user is already assigned to reference             |
+| 400  | User does not exist | user does not exist on instance                   |
+| 403  | Insufficient rights | client does not have the `modify` reference right |
+| 404  | Not found           | reference does not exist                          |
 
 ## Edit User
 
@@ -916,8 +916,8 @@ Change the modification rights for an existing reference user.
 
 | Status | Message             | Reason                                            |
 | :----- | :------------------ | :------------------------------------------------ |
-| `403`  | Insufficient rights | client does not have the `modify` reference right |
-| `404`  | Not found           | reference or user does not exist                  |
+| 403  | Insufficient rights | client does not have the `modify` reference right |
+| 404  | Not found           | reference or user does not exist                  |
 
 ## Remove User
 
@@ -939,8 +939,8 @@ Remove a user from a reference.
 
 | Status | Message             | Reason                                            |
 | :----- | :------------------ | :------------------------------------------------ |
-| `403`  | Insufficient rights | client does not have the `modify` reference right |
-| `404`  | Not found           | reference or user does not exist                  |
+| 403  | Insufficient rights | client does not have the `modify` reference right |
+| 404  | Not found           | reference or user does not exist                  |
 
 ## Get Group
 
@@ -973,7 +973,7 @@ Get a specific reference user group.
 
 | Status | Message   | Reason                            |
 | :----- | :-------- | :-------------------------------- |
-| `404`  | Not found | reference or group does not exist |
+| 404  | Not found | reference or group does not exist |
 
 ## Add Group
 
@@ -1029,10 +1029,10 @@ Allow the added group to view a non-public reference. Control its modification r
 
 | Status | Message              | Reason                                            |
 | :----- | :------------------- | :------------------------------------------------ |
-| `400`  | Group already exists | group is already assigned to reference            |
-| `400`  | Group does not exist | user group does not exist on instance             |
-| `403`  | Insufficient rights  | client does not have the `modify` reference right |
-| `404`  | Not found            | reference does not exist                          |
+| 400  | Group already exists | group is already assigned to reference            |
+| 400  | Group does not exist | user group does not exist on instance             |
+| 403  | Insufficient rights  | client does not have the `modify` reference right |
+| 404  | Not found            | reference does not exist                          |
 
 ## Edit Group
 
@@ -1085,8 +1085,8 @@ Change the modification rights for an existing reference user group.
 
 | Status | Message             | Reason                                            |
 | :----- | :------------------ | :------------------------------------------------ |
-| `403`  | Insufficient rights | client does not have the `modify` reference right |
-| `404`  | Not found           | reference or group does not exist                 |
+| 403  | Insufficient rights | client does not have the `modify` reference right |
+| 404  | Not found           | reference or group does not exist                 |
 
 ## Remove Group
 
@@ -1108,8 +1108,8 @@ Remove a user group from a reference.
 
 | Status | Message             | Reason                                            |
 | :----- | :------------------ | :------------------------------------------------ |
-| `403`  | Insufficient rights | client does not have the `modify` reference right |
-| `404`  | Not found           | reference or group does not exist                 |
+| 403  | Insufficient rights | client does not have the `modify` reference right |
+| 404  | Not found           | reference or group does not exist                 |
 
 ## Get Release
 
@@ -1234,5 +1234,5 @@ This endpoint takes not input.
 
 | Status | Message             | Reason                                            |
 | :----- | :------------------ | :------------------------------------------------ |
-| `403`  | Insufficient rights | client does not have the `modify` reference right |
-| `404`  | Not found           | reference does not exist                          |
+| 403  | Insufficient rights | client does not have the `modify` reference right |
+| 404  | Not found           | reference does not exist                          |
