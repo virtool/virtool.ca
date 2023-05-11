@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+import { promises as fs } from "fs";
 
 export class Cache {
   path: string;
@@ -34,6 +34,6 @@ export class Cache {
   }
 
   async delete(key: string) {
-    await fs.delete(`${this.path}/${key}.json`);
+    await fs.rm(`${this.path}/${key}.json`, { force: true });
   }
 }

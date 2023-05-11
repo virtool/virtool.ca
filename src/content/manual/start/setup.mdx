@@ -1,7 +1,7 @@
 ---
 title: "Setup"
 description: "Setup a Virtool installation using the web interface"
-order: 4
+order: 2
 ---
 
 import DummyButton from "../../../components/DummyButton.astro";
@@ -38,9 +38,9 @@ Passing the `--no-setup` argument when running Virtool will skip the setup proce
 
 **You can skip this step if you don't use a proxy**. If you connect to the internet through a proxy, you can configure it here.
 
-<Note title="Important" color="red" >
-   HTTPS proxies are not currently supported.
-</ Note>
+<Note title="Important" color="red">
+  HTTPS proxies are not currently supported.
+</Note>
 
 1. View the proxy configuration dialog
 
@@ -171,6 +171,7 @@ Once the server has been setup, you have to create an first user. This user will
 We strongly recommend **not** making the first account a generic administrative account.
 
 Doing so defeats Virtool's built-in auditing, which is designed in accordance with [ISO 17025:2005](https://www.iso.org/standard/39883.html). Each account should correspond to an individual user. Make yourself the first user.
+
 </Note>
 
 1. This form will appear if no users are present in the configured database:

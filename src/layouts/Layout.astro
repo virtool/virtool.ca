@@ -20,7 +20,7 @@ const { title } = Astro.props;
     <link href="/fontawesome-5.15.4/css/all.css" rel="stylesheet" />
     <link href="/prism.css" rel=" stylesheet" />
   </head>
-  <body style="overflow-y: scroll">
+  <body style="overflow-y: scroll; background-color: #f7fafc">
     <nav class="py-3 fixed top-0 left-0 right-0 z-20 bg-zinc-200">
       <div class="lg:container mx-auto flex items-center lg z-10">
         <a
@@ -31,11 +31,10 @@ const { title } = Astro.props;
           Virtool
         </a>
 
-        <NavLink href="/install">Install</NavLink>
         <NavLink href="/docs">Docs</NavLink>
       </div>
     </nav>
-    <main class="lg:container mt-24 mx-auto">
+    <main class="lg:container mt-24 pb-20 mx-auto">
       <slot />
     </main>
   </body>

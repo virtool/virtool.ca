@@ -3,32 +3,31 @@ title: "Users"
 description: "Administer users and user groups."
 ---
 
-import DummyButton from "../../../components/DummyButton.astro";
-import Icon from "../../../components/Icon.astro";
-
-User accounts are used to control access to Virtool. They allow fine control of what actions users are allowed to
-perform and what resources they are allowed to access.
+User accounts are used to control access to Virtool. They allow fine control of what
+actions users are allowed to perform and what resources they are allowed to access.
 
 ## Concepts
 
 ### Ownership
 
-When users create new data items (_eg_. samples, references, jobs), they are automatically assigned as the owner of that
-item.
+When users create new data items (_eg_. samples, references, jobs), they are automatically
+assigned as the owner of that item.
 
-For references and samples, owners have perpetual full rights on their samples and references.
+For references and samples, owners have perpetual full rights on their samples and
+references.
 
 ### Rights
 
-Rights are properties of samples and references that control what actions specific users or user groups are allowed to
+Rights are properties of samples and references that control what actions specific users
+or user groups are allowed to
 perform on them.
 
 Administrators automatically pass all rights checks.
 
 ### Permissions
 
-Permissions are used to control what application-level actions users are allowed to perform. Permissions are inherited
-through group membership.
+Permissions are used to control what application-level actions users are allowed t
+perform. Permissions are inherited through group membership.
 
 Administrators automatically pass all permission checks.
 
@@ -45,8 +44,8 @@ Administrators automatically pass all permission checks.
 
 ### Groups
 
-Groups allow setting rights and permissions for more than one user. Users that are members of a group will inherit
-rights and permissions from the group.
+Groups allow setting rights and permissions for more than one user. Users that are
+members of a group will inherit rights and permissions from the group.
 
 It is not possible to set permissions on a per-user basis.
 
@@ -54,8 +53,8 @@ It is not possible to set permissions on a per-user basis.
 
 User accounts can either be administrative or limited.
 
-Administrators automatically pass all permission and right checks. They can also access the
-[Administration Panel](/docs/manual/guide/administration).
+Administrators automatically pass all permission and right checks. They can also access
+the [Administration Panel](/docs/manual/guide/administration).
 
 ## Create a User
 
@@ -71,8 +70,9 @@ Administrators automatically pass all permission and right checks. They can also
 
 3. Fill out the user creation form.
 
-   Enter a username and password for the user. Clicking **Force user to reset password on login** will display a
-   password reset page for the user when they login for the first time.
+   Enter a username and password for the user. Clicking **Force user to reset password on
+   login** will display a password reset page for the user when they login for the first
+   time.
 
    ![Create user dialog with filled form](/images/users/create_filled.png)
 
@@ -84,8 +84,8 @@ Administrators automatically pass all permission and right checks. They can also
 
 ## Change a User's Password
 
-Administrators can forcefully change a users's password. This is useful when a user forgets their password or an old
-user account must be accessed.
+Administrators can forcefully change a users's password. This is useful when a user
+forgets their password or an old user account must be accessed.
 
 1. Locate the **Change Password** panel in the **Users** tab
 
@@ -101,15 +101,16 @@ user account must be accessed.
 
    ![Password successfully changed](/images/users/password_after.png)
 
-   Clicking _Force user to reset password on login_ will invalidate all of the user's existing sessions and require them
-   to reset their password when they try to access Virtool.
+   Clicking _Force user to reset password on login_ will invalidate all of the user's
+   existing sessions and require them to reset their password when they try to access
+   Virtool.
 
 ## Change a User's Group Membership
 
 Users' group membership can be changed easily.
 
-This may affect what rights the user has on certain samples and references. It can also affect their application
-permissions.
+This may affect what rights the user has on certain samples and references. It can also
+affect their application permissions.
 
 Locate the **Groups** panel in the **Users** tab.
 
@@ -129,7 +130,8 @@ Notice that the user's permissions are changed when group membership is toggled.
 
 ## Change a User's Primary Group
 
-Samples that a user creates can automatically be assigned to the creating user's primary user group.
+Samples that a user creates can automatically be assigned to the creating user's primary
+user group.
 
 How samples are assigned their initial user group is [configurable](/docs/manual/guide/samples/#settings).
 
@@ -158,7 +160,8 @@ The group management interface looks like this:
 
 ## Create a Group
 
-Open the group management interface. Enter a name for the new group in the input at the top of dialog and click <DummyButton color="blue" icon="plus-square" />.
+Open the group management interface. Enter a name for the new group in the input at the
+top of dialog and click <DummyButton color="blue" icon="plus-square" />.
 
 ![New group input filled](/images/users/groups_add_filled.png)
 
@@ -168,7 +171,8 @@ The new group will appear in the groups list.
 
 ## Modify a Group's Permissions
 
-Open the group management interface and select the group you want to change permissions for.
+Open the group management interface and select the group you want to change permissions
+for.
 
 ![Managers selected in groups interface](/images/users/groups_selected.png)
 

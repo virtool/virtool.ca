@@ -42,5 +42,9 @@ export function getMenuSectionsFromCollection(
     });
   }
 
+  forEach(flattened, (section) => {
+    section.items.sort((a, b) => a.order - b.order);
+  });
+
   return flattened;
 }

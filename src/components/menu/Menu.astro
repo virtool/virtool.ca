@@ -23,9 +23,11 @@ const { sections, baseUrl }: { sections: Sections; baseUrl: string } =
         <h5 class="capitalize font-medium text-sm mt-3 mb-2">
           {section.title}
         </h5>
-        {map(section.items, (item) => (
-          <Item title={item.title} baseUrl={baseUrl} slug={item.slug} />
-        ))}
+        <ul class="border-l border-solid border-stone-300 ml-2 pl-2">
+          {map(section.items, (item) => (
+            <Item title={item.title} baseUrl={baseUrl} slug={item.slug} />
+          ))}
+        </ul>
       </li>
     ))
   }

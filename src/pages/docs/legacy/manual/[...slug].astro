@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../../../layouts/Layout.astro";
+import { getMenuSectionsFromCollection } from "../../../../utils/menu";
+import Menu from "../../../../components/menu/Menu.astro";
+import Aside from "../../../../components/Aside.astro";
+import DummyButton from "../../../../components/DummyButton.astro";
+import DummyLink from "../../../../components/DummyLink.astro";
+import DummySaveButton from "../../../../components/DummySaveButton.astro";
+import Icon from "../../../../components/Icon.astro";
+import Key from "../../../../components/Key.astro";
+import MdxImage from "../../../../components/MdxImage.astro";
+import Note from "../../../../components/Note.astro";
+
+export async function getStaticPaths() {
+  const manualEntries = await getCollection(
+    "manual",
+    ({ id }) => id.endsWith("mdx") || id.endsWith("md")
+  );
+
+  return manualEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const sections = getMenuSectionsFromCollection(
+  await getCollection(
+    "manual",
+    ({ id }) => id.endsWith("mdx") || id.endsWith("md")
+  ),
+  ["start", "tutorials", "guide", "science"]
+);
+
+const { entry } = Astro.props;
+const { Content, components } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+  <div class="grid grid-cols-8">
+    <div class="col-span-1">
+      <Menu sections={sections} baseUrl="/docs/legacy/manual" />
+    </div>
+    <div class="col-span-7 prose max-w-4xl">
+      <h1>{entry.data.title}</h1>
+      <div class="prose max-w-4xl">
+        <Content
+          components={{
+            ...components,
+            Aside: Aside,
+            DummyButton: DummyButton,
+            DummyLink: DummyLink,
+            DummySaveButton: DummySaveButton,
+            Icon: Icon,
+            Key: Key,
+            Note: Note,
+            img: MdxImage,
+          }}
+        />
+      </div>
+    </div>
+  </div>
+</Layout>
