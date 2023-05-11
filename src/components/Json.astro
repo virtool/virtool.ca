@@ -7,7 +7,7 @@ const { code } = Astro.props;
 
 <div>
   <pre
-    class="language-json">
+    class="language-json overflow-y-auto max-h-96 not-prose">
     <code set:html={Prism.highlight(
       JSON.stringify(code, null, 2),
       Prism.languages.json,
