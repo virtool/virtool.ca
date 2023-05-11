@@ -46,12 +46,14 @@ async function fetchRepoReleases(repo: string): Promise<Array<object>> {
   while (true) {
     const url = `https://api.github.com/repos/virtool/${repo}/releases?per_page=100&page=${page}`;
 
-    console.log("Making request with URL " + url);
+    const headers = new Headers();
+
+    if (process.env.GITHUB_TOKEN) {
+      headers.set("Authorization", `Bearer ${process.env.GITHUB_TOKEN}`);
+    }
 
     const response = await fetch(url, {
-      headers: new Headers({
-        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-      }),
+      headers,
     });
 
     if (!response.ok) {
@@ -59,8 +61,6 @@ async function fetchRepoReleases(repo: string): Promise<Array<object>> {
     }
 
     const releases = await response.json();
-
-    console.log("Made request to GitHub");
 
     if (releases.length == 0) break;
 
