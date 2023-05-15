@@ -1,6 +1,5 @@
 import { CollectionEntry } from "astro:content";
 import { forEach, pick, map } from "lodash-es";
-
 export function getMenuSectionsFromCollection(
   collection: CollectionEntry<any>,
   sections?: string[]
@@ -38,4 +37,22 @@ export function getMenuSectionsFromCollection(
   });
 
   return flattened;
+}
+
+export function getMenuSectionFromCollection(
+  collection: CollectionEntry<any>,
+  name: string
+) {
+  let menu = {
+    title: name,
+    items: collection.map((entry) => ({
+      title: entry.data.title,
+      slug: entry.slug,
+      order: entry.data.order,
+    })),
+  };
+
+  menu.items.sort((a, b) => a.order - b.order);
+
+  return menu;
 }
