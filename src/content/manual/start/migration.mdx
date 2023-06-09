@@ -95,7 +95,7 @@ container.
 4. Restore the MongoDB database into the new MongoDB Docker container.
 
    ```bash
-   docker-compose exec -T mongo sh -c 'mongorestore --archive' < virtool.dump
+   docker compose exec -T mongo sh -c 'mongorestore --archive' < virtool.dump
    ```
 
 ## To a Newer MongoDB Version
@@ -120,7 +120,7 @@ Follow these instructions if you have MongoDB running in Docker Compose.
    restored if necessary.
 
    ```shell
-   docker-compose exec -T mongo sh -c 'mongodump -d virtool --archive' > virtool.dump
+   docker compose exec -T mongo sh -c 'mongodump -d virtool --archive' > virtool.dump
    ```
 
 2. Check Compatibility Version using `mongo`.
