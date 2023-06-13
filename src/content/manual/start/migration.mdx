@@ -42,8 +42,6 @@ Instead of using a volume, configure a bind mount in `docker-compose.yml`:
    services:
      mongo:
        image: mongo:4.0
-       ports:
-         - "27017:27017"
        volumes:
          - mongo:/data/db
      virtool:
