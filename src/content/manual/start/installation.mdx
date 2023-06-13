@@ -35,8 +35,6 @@ Docker Compose is the only supported method for installing Virtool <LegacyVersio
    services:
      mongo:
        image: mongo:3.6
-       ports:
-         - "27017:27017"
        volumes:
          - mongo:/data/db
      virtool:
