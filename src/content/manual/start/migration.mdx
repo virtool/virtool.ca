@@ -24,65 +24,49 @@ container.
 
 After the migration, the built-in software update system will no longer work.
 
-### Data Directory
+### MongoDB
 
-The _data directory_ refers to the directory configured in Virtool with the `--data-path`
-option.
-
-The simplest way to make the data directory available to the Docker container is to use a
-bind mount. This will map a location on your host machine to a location in the Docker
+First, we will deploy MongoDB as a Docker container and copy your existing database to the
 container.
 
-Instead of using a volume, configure a bind mount in `docker-compose.yml`:
+1. Start with a Docker Compose configuration for MongoDB.
 
-<CodeFile name="docker-compose.yml">
+   <CodeFile name="docker-compose.yml">
 
-```yaml
+   ```yaml
    version: "3.1"
    services:
      mongo:
        image: mongo:4.0
        volumes:
          - mongo:/data/db
-     virtool:
-       image: ghcr.io/virtool/virtool:LEGACY_VERSION
-       environment:
-         VT_DATA_PATH: "/data"
-         VT_HOST: "0.0.0.0"
-       ports:
-         - "9950:9950"
-       volumes:
-         # Bind mount the data directory from the host machine to the container. It will
-         # be located at /data in the container.
-         - type: bind
-           source: /mnt/virtool_data_on_host
-           target: /data
    volumes:
      # MongoDB data is stored in a volume.
      mongo: null
-```
+   ```
 
-</CodeFile>
+   </CodeFile>
 
-### MongoDB
+2. Start MongoDB with Docker Compose
 
-We will deploy MongoDB as a Docker container and copy your existing database to the
-container.
+   ```shell
+   docker compose -p virtool up -d
+   ```
 
-1. Ensure MongoDB is [configured](/docs/manual/start/installation) and running in Docker.
+3. Ensure MongoDB is [configured](/docs/manual/start/installation) and running in Docker.
 
    You can double-check MongoDB is running by running `docker ps`. You should see
-   similar to:
+   something similar to:
 
    ```text
     CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                      NAMES
     1a2b3c4d5e6f        mongo:4.0           "docker-entrypoint.s…"   2 hours ago         Up 2 hours
    ```
 
-2. Stop your existing Virtool server. This will prevent any changes being made to your
+4. Stop your existing Virtool server. This will prevent any changes being made to your
    existing MongoDB database while we migrate.
 
-3. Dump your existing MongoDB database into a file called `virtool.dump`.
+5. Dump your existing MongoDB database into a file called `virtool.dump`.
 
    This will not affect the existing database!
 
@@ -90,11 +74,80 @@ container.
    mongodump --db virtool --archive=virtool.dump
    ```
 
-4. Restore the MongoDB database into the new MongoDB Docker container.
+6. Restore the MongoDB database into the new MongoDB Docker container.
 
    ```bash
    docker compose exec -T mongo sh -c 'mongorestore --archive' < virtool.dump
    ```
+
+### Virtool
+
+Next, we will deploy Virtool as a Docker container and connect it to your existing data
+directory.
+
+The _data directory_ is the directory configured in Virtool with the `--data-path`
+option.
+
+The simplest way to make the data directory available to the Virtool Docker container is
+to use a bind mount. This will map a location on your host machine to a location in the
+Docker container.
+
+1. Update the `docker-compose.yml` to include the Virtool service with a bind mount.
+
+   <CodeFile name="docker-compose.yml">
+
+   ```yaml
+   version: "3.1"
+   services:
+   mongo:
+      image: mongo:4.0
+      volumes:
+         - mongo:/data/db
+   virtool:
+      image: ghcr.io/virtool/virtool:LEGACY_VERSION
+      command: ["python", "run.py", "--no-setup"]
+      environment:
+         VT_DB_CONNECTION_STRING: "mongodb://mongo:27017"
+         VT_DB_NAME: "virtool"
+         VT_DATA_PATH: "/data"
+         VT_HOST: "0.0.0.0"
+      ports:
+         - "9950:9950"
+      volumes:
+         # Bind mount the data directory from the host machine to the container. It will
+         # be located at /data in the container.
+         - type: bind
+         source: /mnt/virtool_data_on_host
+         target: /data
+   volumes:
+   # MongoDB data is stored in a volume.
+   mongo: null
+   ```
+
+   </CodeFile>
+
+   Things to note:
+
+   - We use the `--no-setup` option to skip the initial Virtool setup.
+   - We use the `VT_DATA_PATH` environment variable to configure the data directory.
+   - We use the `VT_DB_CONNECTION_STRING` and `VT_DB_NAME` environment variables to
+     configure the MongoDB connection.
+   - We define a bind mount to our existing data directory on the host machine. In this
+     example it is located at `/mnt/virtool_data_on_host`.
+   - The location of the data directory in the container is `/data`. This points to the
+     bind mount we defined above.
+
+2. Start Virtool with Docker Compose.
+
+   ```shell
+   docker compose -p virtool up -d
+   ```
+
+   Using `docker compose up` will bring up any new service defined in `docker-compose.yml`
+   and will not affect existing services.
+
+3. You should now be able to access Virtool at [localhost:9950](http://localhost:9950) and
+   login with your existing credentials.
 
 ## To a Newer MongoDB Version
 
@@ -113,13 +166,13 @@ Follow these instructions if you have MongoDB running in Docker Compose.
 
 1. Backup the Database
 
-   First, backup your database using the following command (assuming your database is
-   called `virtool`). This will dump the entire database to a folder that can later be
-   restored if necessary.
+First, backup your database using the following command (assuming your database is
+called `virtool`). This will dump the entire database to a folder that can later be
+restored if necessary.
 
-   ```shell
-   docker compose exec -T mongo sh -c 'mongodump -d virtool --archive' > virtool.dump
-   ```
+```shell
+docker compose exec -T mongo sh -c 'mongodump -d virtool --archive' > virtool.dump
+```
 
 2. Check Compatibility Version using `mongo`.
 
