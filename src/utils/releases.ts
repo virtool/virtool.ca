@@ -62,7 +62,9 @@ async function fetchRepoReleases(repo: string): Promise<Array<object>> {
 
     const releases = await response.json();
 
-    if (releases.length == 0) break;
+    if (releases.length == 0) {
+      break;
+    }
 
     allReleases.push(...releases);
 

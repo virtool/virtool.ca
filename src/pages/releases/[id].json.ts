@@ -1,25 +1,31 @@
 import { getRepoReleases } from "../../utils/releases";
 
-enum Repos {
-  hmms = "virtool-hmm",
-  references = "ref-plant-viruses",
-  virtool = "virtool",
+const repoMap = {
+  "hmms": ["virtool-hmm"],
+  "ml": ["ml-plant-viruses"],
+  "references": ["ref-plant-viruses"],
+  "virtool": ["virtool"],
 }
 
 export async function get({ params }): Promise<object> {
-  const repo = Repos[params.id];
+  const repoNames = repoMap[params.id];
 
-  const data = await getRepoReleases(repo);
+  const data = {};
+
+  for (const name of repoNames) {
+    data[name] = await getRepoReleases(name);
+  }
 
   return {
-    body: JSON.stringify({ [repo]: data }),
+    body: JSON.stringify(data),
   };
 }
 
 export function getStaticPaths() {
   return [
     { params: { id: "hmms" } },
-    { params: { id: "virtool" } },
+    { params: { id: "ml" } },
     { params: { id: "references" } },
+    { params: { id: "virtool" } },
   ];
 }
