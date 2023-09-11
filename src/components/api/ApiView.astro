@@ -9,7 +9,7 @@ import ApiEndpoint from "./ApiEndpoint.astro";
 const { section } = Astro.props;
 ---
 
-<div class="prose">
+<div class="prose lg:max-w-none">
   <h1 class="capitalize">{section.title}</h1>
   {
     section.endpoints.map(
