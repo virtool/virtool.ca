@@ -1,4 +1,3 @@
-import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
 import prefetch from "@astrojs/prefetch";
 import sitemap from "@astrojs/sitemap";
@@ -11,7 +10,10 @@ const releases = await getRepoReleases("virtool");
 const version = getLatestLegacyVersion(releases);
 
 export default defineConfig({
-  integrations: [image(), mdx({}), prefetch(), sitemap(), tailwind()],
+  aliases: {
+    "@images/*": ["src/assets/images/*"],
+  },
+  integrations: [mdx({}), prefetch(), sitemap(), tailwind()],
   markdown: {
     rehypePlugins: [
       [
