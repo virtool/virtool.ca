@@ -191,3 +191,22 @@ function formatResponses(endpoint): FormatResponsesReturn {
 function getSchemaFromEndpoint(endpoint) {
   return endpoint?.requestBody?.content?.["application/json"]?.schema;
 }
+
+export function transformTitle(title) {
+  switch (title) {
+    case "admin":
+      return "Administration";
+    case "instance_message":
+      return "Instance Message";
+    case "refs":
+      return "References";
+    case "hmms":
+      return "HMMs";
+    case "ml":
+      return "ML";
+    case "otus":
+      return "OTUs";
+    default:
+      return title;
+  }
+}
