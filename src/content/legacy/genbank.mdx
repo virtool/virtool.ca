@@ -3,10 +3,10 @@ title: "Genbank"
 description: "Interact with NCBI Genbank via the Virtool server."
 ---
 
-import Endpoint from "../../components/legacy/Endpoint.astro"
-import Request from "../../components/legacy/Request.astro"
-import Response from "../../components/legacy/Response.astro"
-import Status from "../../components/legacy/Status.astro"
+import Endpoint from "@components/legacy/Endpoint.astro";
+import Request from "@components/legacy/Request.astro";
+import Response from "@components/legacy/Response.astro";
+import Status from "@components/legacy/Status.astro";
 
 ## Get
 
@@ -39,5 +39,5 @@ The data is retrieved from GenBank and converted into a palatable format.
 
 | Status | Message                 | Reason                                       |
 | :----- | :---------------------- | :------------------------------------------- |
-| 404  | Not found               | accession does not exist on Genbank          |
-| 502  | Could not reach Genbank | the Virtool server could not connect to NCBI |
+| 404    | Not found               | accession does not exist on Genbank          |
+| 502    | Could not reach Genbank | the Virtool server could not connect to NCBI |

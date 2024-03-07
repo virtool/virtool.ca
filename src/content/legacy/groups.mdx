@@ -3,11 +3,11 @@ title: "Groups"
 description: "Manage user groups."
 ---
 
-import Administrator from "../../components/Administrator.astro"
-import Endpoint from "../../components/legacy/Endpoint.astro"
-import Request from "../../components/legacy/Request.astro"
-import Response from "../../components/legacy/Response.astro"
-import Status from "../../components/legacy/Status.astro"
+import Administrator from "@components/Administrator.astro";
+import Endpoint from "@components/legacy/Endpoint.astro";
+import Request from "@components/legacy/Request.astro";
+import Response from "@components/legacy/Response.astro";
+import Status from "@components/legacy/Status.astro";
 
 ## List
 
@@ -83,7 +83,7 @@ Get the complete representation of a single user group.
 
 | Status | Message   | Reason               |
 | :----- | :-------- | :------------------- |
-| 404  | Not found | group does not exist |
+| 404    | Not found | group does not exist |
 
 ## Create
 
@@ -137,9 +137,9 @@ Create a new group. New groups have no permissions. Requestors must be administr
 
 | Status | Message              | Reason                                 |
 | :----- | :------------------- | :------------------------------------- |
-| 400  | Group already exists | the provided `group_id` already exists |
-| 403  | Not permitted        | client is not an administrator         |
-| 422  | Invalid input        | JSON request body is invalid           |
+| 400    | Group already exists | the provided `group_id` already exists |
+| 403    | Not permitted        | client is not an administrator         |
+| 422    | Invalid input        | JSON request body is invalid           |
 
 ## Edit
 
@@ -195,9 +195,9 @@ Update the permissions of an existing group. Unset permissions will retain their
 
 | Status | Message       | Reason                         |
 | :----- | :------------ | :----------------------------- |
-| 403  | Not permitted | client is not an administrator |
-| 404  | Not found     | group does not exist           |
-| 422  | Invalid input | JSON request body is invalid   |
+| 403    | Not permitted | client is not an administrator |
+| 404    | Not found     | group does not exist           |
+| 422    | Invalid input | JSON request body is invalid   |
 
 ## Remove
 
@@ -219,5 +219,5 @@ Remove an existing group.
 
 | Status | Message       | Reason                         |
 | :----- | :------------ | :----------------------------- |
-| 403  | Not permitted | client is not an administrator |
-| 404  | Not found     | group does not exist           |
+| 403    | Not permitted | client is not an administrator |
+| 404    | Not found     | group does not exist           |

@@ -3,10 +3,10 @@ title: "Indexes"
 description: "Query and create virus indexes."
 ---
 
-import Endpoint from "../../components/legacy/Endpoint.astro"
-import Permission from "../../components/legacy/Permission.astro"
-import Request from "../../components/legacy/Request.astro"
-import Response from "../../components/legacy/Response.astro"
+import Endpoint from "@components/legacy/Endpoint.astro";
+import Permission from "@components/legacy/Permission.astro";
+import Request from "@components/legacy/Request.astro";
+import Response from "@components/legacy/Response.astro";
 
 ## Find
 
@@ -155,7 +155,7 @@ Get the complete representation of an index.
 
 | Status | Message   | Reason                                        |
 | :----- | :-------- | :-------------------------------------------- |
-| 404  | Not found | index identified by `index_id` does not exist |
+| 404    | Not found | index identified by `index_id` does not exist |
 
 ## Create
 
@@ -213,4 +213,4 @@ Find the virus changes that are included in a given index build.
 
 | Status | Message   | Reason                                        |
 | :----- | :-------- | :-------------------------------------------- |
-| 404  | Not found | index identified by `index_id` does not exist |
+| 404    | Not found | index identified by `index_id` does not exist |

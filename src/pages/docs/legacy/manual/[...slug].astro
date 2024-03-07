@@ -1,16 +1,16 @@
 ---
+import Aside from "@components/Aside.astro";
+import DummyButton from "@components/DummyButton.astro";
+import DummyLink from "@components/DummyLink.astro";
+import DummySaveButton from "@components/DummySaveButton.astro";
+import Icon from "@components/Icon.astro";
+import Key from "@components/Key.astro";
+import MdxImage from "@components/MdxImage.astro";
+import Note from "@components/Note.astro";
+import Menu from "@components/menu/Menu.astro";
+import Layout from "@layouts/Layout.astro";
+import { getMenuSectionsFromCollection } from "@utils/menu";
 import { getCollection } from "astro:content";
-import Layout from "../../../../layouts/Layout.astro";
-import { getMenuSectionsFromCollection } from "../../../../utils/menu";
-import Menu from "../../../../components/menu/Menu.astro";
-import Aside from "../../../../components/Aside.astro";
-import DummyButton from "../../../../components/DummyButton.astro";
-import DummyLink from "../../../../components/DummyLink.astro";
-import DummySaveButton from "../../../../components/DummySaveButton.astro";
-import Icon from "../../../../components/Icon.astro";
-import Key from "../../../../components/Key.astro";
-import MdxImage from "../../../../components/MdxImage.astro";
-import Note from "../../../../components/Note.astro";
 
 export async function getStaticPaths() {
   const manualEntries = await getCollection(

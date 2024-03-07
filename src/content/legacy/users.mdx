@@ -3,11 +3,11 @@ title: "Users"
 description: "Manage users and user groups."
 ---
 
-import Administrator from "../../components/Administrator.astro"
-import Endpoint from "../../components/legacy/Endpoint.astro"
-import Permission from "../../components/legacy/Permission.astro"
-import Request from "../../components/legacy/Request.astro"
-import Response from "../../components/legacy/Response.astro"
+import Administrator from "@components/Administrator.astro";
+import Endpoint from "@components/legacy/Endpoint.astro";
+import Permission from "@components/legacy/Permission.astro";
+import Request from "@components/legacy/Request.astro";
+import Response from "@components/legacy/Response.astro";
 
 ## List
 
@@ -76,7 +76,7 @@ Get a list of complete representations of all users.
 
 | Status | Message       | Reason                                             |
 | :----- | :------------ | :------------------------------------------------- |
-| 403  | Not permitted | client does not have the 'manage_users` permission |
+| 403    | Not permitted | client does not have the 'manage_users` permission |
 
 ## Get
 
@@ -125,8 +125,8 @@ Get the complete representation of a single user.
 
 | Status | Message       | Reason                         |
 | :----- | :------------ | :----------------------------- |
-| 403  | Not permitted | client is not an administrator |
-| 404  | Not found     | user does not exist            |
+| 403    | Not permitted | client is not an administrator |
+| 404    | Not found     | user does not exist            |
 
 ## Create
 
@@ -192,10 +192,10 @@ Create a new user.
 
 | Status | Message                                   | Reason                                               |
 | :----- | :---------------------------------------- | :--------------------------------------------------- |
-| 400  | Password does not meet length requirement | password must meet `minimum_password_length` setting |
-| 400  | User already exists                       | `user_id` is already in use                          |
-| 403  | Not permitted                             | client is not an administrator                       |
-| 422  | Invalid input                             | JSON request body is invalid                         |
+| 400    | Password does not meet length requirement | password must meet `minimum_password_length` setting |
+| 400    | User already exists                       | `user_id` is already in use                          |
+| 403    | Not permitted                             | client is not an administrator                       |
+| 422    | Invalid input                             | JSON request body is invalid                         |
 
 ## Edit
 
@@ -265,14 +265,14 @@ Adminstrators cannot modify their own administrative status.
 
 | Status | Message                                             | Reason                                               |
 | :----- | :-------------------------------------------------- | :--------------------------------------------------- |
-| 400  | Groups do not exist                                 | one or more passed `groups` do not exist             |
-| 400  | Primary group does not exist                        | passed `primary_group` does not exist                |
-| 400  | Password does not meet length requirement           | password must meet `minimum_password_length` setting |
-| 400  | Users cannot modify their own administrative status | another administrator should perform the action      |
-| 403  | Not permitted                                       | client is not an administrator                       |
-| 404  | Not found                                           | user does not exist                                  |
+| 400    | Groups do not exist                                 | one or more passed `groups` do not exist             |
+| 400    | Primary group does not exist                        | passed `primary_group` does not exist                |
+| 400    | Password does not meet length requirement           | password must meet `minimum_password_length` setting |
+| 400    | Users cannot modify their own administrative status | another administrator should perform the action      |
+| 403    | Not permitted                                       | client is not an administrator                       |
+| 404    | Not found                                           | user does not exist                                  |
 | `409`  | User is not member of group                         | user is not a member of the passed `primary_group`   |
-| 422  | Invalid input                                       | JSON request body is invalid                         |
+| 422    | Invalid input                                       | JSON request body is invalid                         |
 
 ## Remove
 
@@ -294,6 +294,6 @@ Remove a user account.
 
 | Status | Message                   | Reason                                 |
 | :----- | :------------------------ | :------------------------------------- |
-| 400  | Cannot remove own account | users cannot remove their own accounts |
-| 403  | Not permitted             | client is not an administrator         |
-| 404  | Not found                 | user does not exist                    |
+| 400    | Cannot remove own account | users cannot remove their own accounts |
+| 403    | Not permitted             | client is not an administrator         |
+| 404    | Not found                 | user does not exist                    |

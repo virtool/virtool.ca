@@ -1,9 +1,9 @@
 ---
+import ApiVersion from "@components/ApiVersion.astro";
+import LegacyVersion from "@components/LegacyVersion.astro";
+import Layout from "@layouts/Layout.astro";
+import { getApiSpecification } from "@utils/api";
 import { getCollection } from "astro:content";
-import ApiVersion from "../../components/ApiVersion.astro";
-import LegacyVersion from "../../components/LegacyVersion.astro";
-import Layout from "../../layouts/Layout.astro";
-import { getApiSpecification } from "../../utils/api";
 
 const manualEntries = await getCollection(
   "manual",

@@ -3,10 +3,10 @@ title: "Uploads"
 description: "Upload and manage bioinformatic data files."
 ---
 
-import Endpoint from "../../components/legacy/Endpoint.astro"
-import Permission from "../../components/legacy/Permission.astro"
-import Request from "../../components/legacy/Request.astro"
-import Response from "../../components/legacy/Response.astro"
+import Endpoint from "@components/legacy/Endpoint.astro";
+import Permission from "@components/legacy/Permission.astro";
+import Request from "@components/legacy/Request.astro";
+import Response from "@components/legacy/Response.astro";
 
 When uploads are required in Virtool, they should be targeted at `/upload`. The available endpoints are:
 
@@ -57,9 +57,9 @@ Uploads a file into Virtool file manager. The file will given a unique ID compos
 
 | Status | Message                | Reason                                                          |
 | :----- | :--------------------- | :-------------------------------------------------------------- |
-| 401  | Requires authorization | request is not associated with an authorized session or API key |
-| 403  | Not permitted          | client doesn't have the `upload_file` permission                |
-| 404  | Not found              | `file_type` does not exist                                      |
+| 401    | Requires authorization | request is not associated with an authorized session or API key |
+| 403    | Not permitted          | client doesn't have the `upload_file` permission                |
+| 404    | Not found              | `file_type` does not exist                                      |
 
 ## Delete File
 
@@ -81,6 +81,6 @@ Delete a previously uploaded file.
 
 | Status | Message                | Reason                                                          |
 | :----- | :--------------------- | :-------------------------------------------------------------- |
-| 401  | Requires authorization | request is not associated with an authorized session or API key |
-| 403  | Not permitted          | user does not have `remove_file` permission                     |
-| 404  | Not found              | file does not exist                                             |
+| 401    | Requires authorization | request is not associated with an authorized session or API key |
+| 403    | Not permitted          | user does not have `remove_file` permission                     |
+| 404    | Not found              | file does not exist                                             |
