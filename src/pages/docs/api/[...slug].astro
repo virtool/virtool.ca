@@ -3,7 +3,7 @@ import ApiGuide from "@components/api/ApiGuide.astro";
 import ApiView from "@components/api/ApiView.astro";
 import Menu from "@components/menu/Menu.astro";
 import Layout from "@layouts/Layout.astro";
-import { getApiSpecification } from "@utils/api";
+import { getApiSpecification, transformTitle } from "@utils/api";
 import { getMenuSectionsFromCollection } from "@utils/menu";
 import { getCollection } from "astro:content";
 
@@ -42,7 +42,7 @@ const { sectionTitles } = await getApiSpecification();
 sections.push({
   title: "API",
   items: sectionTitles.map((title) => ({
-    title,
+    title: transformTitle(title),
     slug: `${title.toLowerCase()}`,
   })),
 });

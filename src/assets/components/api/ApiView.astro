@@ -1,4 +1,5 @@
 ---
+import { transformTitle } from "@utils/api";
 import { micromark } from "micromark";
 import { gfm, gfmHtml } from "micromark-extension-gfm";
 import ApiEndpoint from "./ApiEndpoint.astro";
@@ -11,9 +12,9 @@ const { section } = Astro.props;
 
 <div class="lg:max-w-none">
   <header class="prose">
-    <h1 class="capitalize">{section.title}</h1>
+    <h1 class="capitalize">{transformTitle(section.title)}</h1>
   </header>
-  {
+  { 
     section.endpoints.map(
       ({
         description,
