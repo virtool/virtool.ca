@@ -6,12 +6,13 @@ import ApiErrors from "./ApiErrors.astro";
 import ApiExample from "./ApiExample.astro";
 import ApiParameters from "./ApiParameters.astro";
 import ApiResponse from "./ApiResponse.astro";
-
 const { section } = Astro.props;
 ---
 
-<div class="prose lg:max-w-none">
-  <h1 class="capitalize">{section.title}</h1>
+<div class="lg:max-w-none">
+  <header class="prose">
+    <h1 class="capitalize">{section.title}</h1>
+  </header>
   {
     section.endpoints.map(
       ({
