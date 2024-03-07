@@ -6,6 +6,7 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
+            // This gets rid of extra quotes in inline code blocks.
             "code::before": { content: "" },
             "code::after": { content: "" },
           },
