@@ -3,10 +3,10 @@ title: "History"
 description: "Read and revert virus history."
 ---
 
-import Endpoint from "../../components/legacy/Endpoint.astro"
-import Permission from "../../components/legacy/Permission.astro"
-import Request from "../../components/legacy/Request.astro"
-import Response from "../../components/legacy/Response.astro"
+import Endpoint from "@ components/legacy/Endpoint.astro";
+import Permission from "@components/legacy/Permission.astro";
+import Request from "@components/legacy/Request.astro";
+import Response from "@components/legacy/Response.astro";
 
 ## Find
 
@@ -83,7 +83,7 @@ List all virus changes with the most recent changes first. All parameters are op
 
 | Status | Message       | Reason                                   |
 | :----- | :------------ | :--------------------------------------- |
-| 422  | Invalid query | invalid key or value in URL query string |
+| 422    | Invalid query | invalid key or value in URL query string |
 
 ## Get
 
@@ -130,7 +130,7 @@ Get the complete representation of a single virus change.
 
 | Status | Message   | Reason                |
 | :----- | :-------- | :-------------------- |
-| 404  | Not found | change does not exist |
+| 404    | Not found | change does not exist |
 
 ## Revert
 
@@ -152,6 +152,6 @@ Revert a specific change and all changes that occurred after it. Changes that ha
 
 | Status | Message             | Reason                                                            |
 | :----- | :------------------ | :---------------------------------------------------------------- |
-| 403  | Insufficient rights | user does not have required reference rights                      |
-| 404  | Not found           | change does not exist                                             |
+| 403    | Insufficient rights | user does not have required reference rights                      |
+| 404    | Not found           | change does not exist                                             |
 | `409`  | Not unbuilt         | change has been included in an index build and cannot be reverted |

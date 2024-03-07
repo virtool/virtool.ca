@@ -1,0 +1,63 @@
+---
+import { micromark } from "micromark";
+import { gfm, gfmHtml } from "micromark-extension-gfm";
+import ApiEndpoint from "./ApiEndpoint.astro";
+import ApiErrors from "./ApiErrors.astro";
+import ApiExample from "./ApiExample.astro";
+import ApiParameters from "./ApiParameters.astro";
+import ApiResponse from "./ApiResponse.astro";
+
+const { section } = Astro.props;
+---
+
+<div class="prose lg:max-w-none">
+  <h1 class="capitalize">{section.title}</h1>
+  {
+    section.endpoints.map(
+      ({
+        description,
+        method,
+        parameters,
+        path,
+        errors,
+        example,
+        response,
+        title,
+      }) => {
+        return (
+          <section class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 py-12">
+            <div class="col-span-2 prose">
+              <h2>{title}</h2>
+            </div>
+            <div class="prose">
+              <div
+                set:html={micromark(description, {
+                  allowDangerousHtml: true,
+                  extensions: [gfm()],
+                  htmlExtensions: [gfmHtml()],
+                })}
+              />
+
+              {parameters.length > 0 && (
+                <ApiParameters parameters={parameters} />
+              )}
+
+              {errors.length > 0 && <ApiErrors errors={errors} />}
+            </div>
+            <div>
+              <header class="prose">
+                <h3>Request</h3>
+              </header>
+
+              <ApiEndpoint path={path} method={method} />
+              {example && <ApiExample example={example} />}
+              {response && (
+                <ApiResponse data={response} status={response.status} />
+              )}
+            </div>
+          </section>
+        );
+      }
+    )
+  }
+</div>

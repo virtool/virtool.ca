@@ -1,5 +1,4 @@
 import mdx from "@astrojs/mdx";
-import prefetch from "@astrojs/prefetch";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
@@ -10,10 +9,7 @@ const releases = await getRepoReleases("virtool");
 const version = getLatestLegacyVersion(releases);
 
 export default defineConfig({
-  aliases: {
-    "@images/*": ["src/assets/images/*"],
-  },
-  integrations: [mdx({}), prefetch(), sitemap(), tailwind()],
+  integrations: [mdx({}), sitemap(), tailwind()],
   markdown: {
     rehypePlugins: [
       [
@@ -30,5 +26,6 @@ export default defineConfig({
       ],
     ],
   },
+  prefetch: true,
   site: "https://www.virtool.ca",
 });

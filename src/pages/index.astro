@@ -1,8 +1,8 @@
 ---
-import Feature from "../components/Feature.astro";
-import FeatureBlurb from "../components/FeatureBlurb.astro";
-import FeatureImage from "../components/FeatureImage.astro";
-import Wave from "../components/Wave.astro";
+import Feature from "@components/Feature.astro";
+import FeatureBlurb from "@components/FeatureBlurb.astro";
+import FeatureImage from "@components/FeatureImage.astro";
+import Wave from "@components/Wave.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -40,8 +40,10 @@ import Layout from "../layouts/Layout.astro";
   <section>
     <Wave />
     <Feature>
+      <img 
+      src="../../assets/images/pathoscope.png" />
       <FeatureImage
-        src="/images/landing/pathoscope.png"
+        src="../../assets/images/pathoscope.png"
         alt="Example of a Pathoscope result hit."
       />
       <FeatureBlurb

@@ -56,7 +56,7 @@ async function fetchRepoReleases(repo: string): Promise<Array<object>> {
       headers,
     });
 
-    console.log(response.body)
+    console.log(response.body);
 
     if (!response.ok) {
       throw new Error("Failed to fetch releases from GitHub");

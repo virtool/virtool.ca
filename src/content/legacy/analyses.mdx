@@ -3,11 +3,11 @@ title: "Analyses"
 description: "Query and modify analyses."
 ---
 
-import Endpoint from "../../components/legacy/Endpoint.astro"
-import Permission from "../../components/legacy/Permission.astro"
-import Request from "../../components/legacy/Request.astro"
-import Response from "../../components/legacy/Response.astro"
-import Status from "../../components/legacy/Status.astro"
+import Endpoint from "@components/legacy/Endpoint.astro";
+import Permission from "@components/legacy/Permission.astro";
+import Request from "@components/legacy/Request.astro";
+import Response from "@components/legacy/Response.astro";
+import Status from "@components/legacy/Status.astro";
 
 Analyses are the results of a given Virtool analytical workflows on a single sample.
 
@@ -57,6 +57,6 @@ Get a complete analysis document.
 
 | Status | Message                      | Reason                                                               |
 | :----- | :--------------------------- | :------------------------------------------------------------------- |
-| 400  | Parent sample does not exist | the parent sample for the analysis could not be found                |
-| 403  | Insufficient rights          | client does not have the required sample rights to view the analysis |
-| 404  | Not found                    | `analysis_id` in URL does not exist                                  |
+| 400    | Parent sample does not exist | the parent sample for the analysis could not be found                |
+| 403    | Insufficient rights          | client does not have the required sample rights to view the analysis |
+| 404    | Not found                    | `analysis_id` in URL does not exist                                  |
