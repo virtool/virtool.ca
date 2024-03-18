@@ -1,12 +1,9 @@
 import { readFile } from "node:fs/promises";
-import { APIRoute } from "astro";
 
-export async function get(): APIRoute {
+export async function GET(): Promise<Response> {
   const references = await readFile("./public/legacy-releases.json", {
     encoding: "utf-8",
   });
 
-  return {
-    body: references,
-  };
+  return new Response(references);
 }
