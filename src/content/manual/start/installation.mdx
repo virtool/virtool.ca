@@ -22,8 +22,9 @@ Higher CPU clock speeds and core counts will allow more operations to be run in 
 
 Docker Compose is the only supported method for installing Virtool <LegacyVersion />.
 
-1. [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and
-   [the compose plugin](https://docs.docker.com/compose/install/linux/#install-using-the-repository) on your Linux host.
+1. [Install Docker](https://docs.docker.com/engine/install/) on Linux.
+ 
+   We do not support deployment on MacOS or Windows.
 
 2. Create a `docker-compose.yml` file to create a Virtool instance and MongoDB
    server.
@@ -37,20 +38,43 @@ Docker Compose is the only supported method for installing Virtool <LegacyVersio
        volumes:
          - mongo:/data/db
      virtool:
-       image: ghcr.io/virtool/virtool:LEGACY_VERSION
+       image: ghcr.io/virtool/virtool:v4.4.0-beta.1
+       command: ["python", "run.py", "--no-setup"]
        environment:
+         VT_DB_CONNECTION_STRING: "mongodb://mongo:27017"
+         VT_DB_NAME: "virtool"         
          VT_DATA_PATH: "/data"
          VT_HOST: "0.0.0.0"
+         VT_MEM: 120
+         VT_PROC: 30
+         VT_LG_MEM: 60
+         VT_LG_PROC: 15
+         VT_SM_MEM: 10
+         VT_SM_PROC: 5
+         VT_WATCH_PATH: "/watch"
        ports:
          - "9950:9950"
        volumes:
          - virtool:/data
+         - type: bind
+           source: /mnt/watch
+           target: /watch
    volumes:
      mongo: null
      virtool: null
    ```
 
    </CodeFile>
+
+   * Replace `VT_MEM` and `VT_PROC` with values suitable for your system. Leave CPU and
+     RAM for your operating system.
+   * Set `VT_LG_PROC`, `VT_LG_MEM`, `VT_SM_PROC`, and `VT_SM_MEM` to be factors of the
+     `VT_PROC` and `VT_MEM`. These are the resources that will be reserved for small and large workflows.
+   * The _watch_path_ is a location on your host system where you can drop FASTQ files and have
+     them automatically loaded into Virtool. We show you how to setup a bind mount in this
+     YML file.
+
+     Replace `source` with a location on your host where you'd like to drop FASTQ files.
 
 3. Start the services with:
 
