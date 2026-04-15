@@ -1,11 +1,11 @@
-import { CollectionEntry } from "astro:content";
 import { forEach, pick, map } from "lodash-es";
+
 export function getMenuSectionsFromCollection(
-  collection: CollectionEntry<any>,
+  collection: any[],
   sections?: string[]
 ) {
   let menu = collection.reduce((menu, entry) => {
-    const key = entry.slug.split("/")[0];
+    const key = entry.id.split("/")[0];
 
     let section = menu[key];
 
@@ -19,7 +19,7 @@ export function getMenuSectionsFromCollection(
 
     section.items.push({
       title: entry.data.title,
-      slug: entry.slug,
+      slug: entry.id,
       order: entry.data.order,
     });
 
@@ -40,14 +40,14 @@ export function getMenuSectionsFromCollection(
 }
 
 export function getMenuSectionFromCollection(
-  collection: CollectionEntry<any>,
+  collection: any[],
   name: string
 ) {
   let menu = {
     title: name,
     items: collection.map((entry) => ({
       title: entry.data.title,
-      slug: entry.slug,
+      slug: entry.id,
       order: entry.data.order,
     })),
   };
