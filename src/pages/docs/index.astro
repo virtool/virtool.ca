@@ -1,79 +1,53 @@
 ---
-import ApiVersion from "@components/ApiVersion.astro";
-import LegacyVersion from "@components/LegacyVersion.astro";
+import Aside from "@components/Aside.astro";
+import DummyButton from "@components/DummyButton.astro";
+import DummyLink from "@components/DummyLink.astro";
+import DummySaveButton from "@components/DummySaveButton.astro";
+import Icon from "@components/Icon.astro";
+import Key from "@components/Key.astro";
+import MdxImage from "@components/MdxImage.astro";
+import Note from "@components/Note.astro";
+import Menu from "@components/menu/Menu.astro";
 import Layout from "@layouts/Layout.astro";
-import { getApiSpecification } from "@utils/api";
-import { getCollection } from "astro:content";
+import { getMenuSectionsFromCollection } from "@utils/menu";
+import { getCollection, render } from "astro:content";
 
-const manualEntries = await getCollection(
-  "manual",
-  ({ id }) => id.startsWith("guide")
+const manualEntries = await getCollection("manual");
+
+const startEntries = manualEntries.filter(({ id }) => id.startsWith("start"));
+startEntries.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+const entry = startEntries[0];
+const { Content, components } = await render(entry);
+
+const sections = getMenuSectionsFromCollection(
+  manualEntries,
+  ["start", "tutorials", "guide", "science"]
 );
-
-const firstManualEntry = manualEntries[0];
-
-const firstApiSectionTitle = (await getApiSpecification()).sectionTitles[0];
 ---
 
-<Layout title="Docs">
-  <header>
-    <h1 class="text-4xl font-bold mb-10">Docs</h1>
-  </header>
-  <section class="prose mb-20">
-    <h2 class="text-3xl mb-10">Users</h2>
-    <div class="pl-4 border-l-4 border-blue-400">
-      <h3 class="text-2xl mt-6">
-        <a href={`/docs/legacy/manual/${firstManualEntry.id}`}>
-          User Manual <LegacyVersion />
-        </a>
-      </h3>
-      <p>For the standalone version of Virtool.</p>
+<Layout title={entry.data.title}>
+  <div class="flex gap-16">
+    <div class="col-span-2 self-start sticky top-24">
+        <Menu sections={sections} baseUrl="/docs" />
     </div>
-  </section>
-  <section class="prose">
-    <h2 class="text-3xl mb-10">Developers</h2>
-    <div class="divide-y-2 pl-4">
-      <div>
-        <h3>
-          <a href={`/docs/legacy/api/account`}>
-            API Documentation <LegacyVersion /></a
-          >
-        </h3>
-        <p>For the standalone version of Virtool.</p>
-      </div>
-      <div>
-        <h3>
-          <a href={`/docs/api/${firstApiSectionTitle}`}>
-            API Documentation <ApiVersion />
-          </a>
-        </h3>
-        <p>For the preview cloud-native version of Virtool.</p>
-      </div>
-      <div>
-        <h3>
-          <a href="https://ui.virtool.ca"
-            >React Components <i class="fas fa-external-link"></i></a
-          >
-        </h3>
-        <p>A Storybook of React components used in Virtool.</p>
-      </div>
-      <div>
-        <h3>
-          <a href="https://workflow.virtool.ca"
-            >Workflow Framework <i class="fas fa-external-link"></i></a
-          >
-        </h3>
-        <p>
-          Documentation for Virtool's <a
-            href="https://github.com/virtool/virtool-workflow"
-            >workflow framework</a
-          >.
-        </p>
-        <p>
-          This is targeted at project contributors. Custom workflows are not
-          currently supported by Virtool
-        </p>
+    <div class="col-span-10 prose max-w-4xl">
+      <h1>{entry.data.title}</h1>
+      <div class="prose max-w-4xl">
+        <Content
+          components={{
+            ...components,
+            Aside: Aside,
+            DummyButton: DummyButton,
+            DummyLink: DummyLink,
+            DummySaveButton: DummySaveButton,
+            Icon: Icon,
+            Key: Key,
+            Note: Note,
+            img: MdxImage,
+          }}
+        />
       </div>
     </div>
-  </section>
+  </div>
 </Layout>
