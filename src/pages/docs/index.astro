@@ -7,7 +7,7 @@ import { getCollection } from "astro:content";
 
 const manualEntries = await getCollection(
   "manual",
-  ({ id }) => id.startsWith("guide") && id.endsWith("mdx")
+  ({ id }) => id.startsWith("guide")
 );
 
 const firstManualEntry = manualEntries[0];
@@ -23,7 +23,7 @@ const firstApiSectionTitle = (await getApiSpecification()).sectionTitles[0];
     <h2 class="text-3xl mb-10">Users</h2>
     <div class="pl-4 border-l-4 border-blue-400">
       <h3 class="text-2xl mt-6">
-        <a href={`/docs/legacy/manual/${firstManualEntry.slug}`}>
+        <a href={`/docs/legacy/manual/${firstManualEntry.id}`}>
           User Manual <LegacyVersion />
         </a>
       </h3>

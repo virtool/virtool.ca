@@ -8,13 +8,10 @@ import { getMenuSectionsFromCollection } from "@utils/menu";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const overviewCollection = await getCollection(
-    "api",
-    ({ id }) => id.endsWith("mdx") || id.endsWith("md")
-  );
+  const overviewCollection = await getCollection("api");
 
   const overviewSections = overviewCollection.map((section) => ({
-    params: { slug: section.slug },
+    params: { slug: section.id },
     props: { section, type: "mdx" },
   }));
 
@@ -31,10 +28,7 @@ export async function getStaticPaths() {
 }
 
 const sections = getMenuSectionsFromCollection(
-  await getCollection(
-    "api",
-    ({ id }) => id.endsWith("mdx") || id.endsWith("md")
-  )
+  await getCollection("api")
 );
 
 const { sectionTitles } = await getApiSpecification();

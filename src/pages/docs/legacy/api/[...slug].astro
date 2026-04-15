@@ -4,34 +4,28 @@ import Note from "@components/Note.astro";
 import Menu from "@components/menu/Menu.astro";
 import Layout from "@layouts/Layout.astro";
 import { getMenuSectionFromCollection } from "@utils/menu";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const entries = await getCollection("legacy", ({ id }) => {
-    return id.endsWith("mdx");
-  });
+  const entries = await getCollection("legacy");
 
   return entries.map((entry) => {
     return {
-      params: { slug: entry.slug },
+      params: { slug: entry.id },
       props: { entry },
     };
   });
 }
 
-const entries = await getCollection("legacy", ({ id }) => {
-  return id.endsWith("mdx");
-});
+const entries = await getCollection("legacy");
 
 const section = getMenuSectionFromCollection(
-  await getCollection("legacy", ({ id }) => {
-    return id.endsWith("mdx");
-  }),
+  await getCollection("legacy"),
   "API"
 );
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <Layout title={entry.data.title}>

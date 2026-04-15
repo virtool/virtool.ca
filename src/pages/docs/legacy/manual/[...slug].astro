@@ -10,30 +10,24 @@ import Note from "@components/Note.astro";
 import Menu from "@components/menu/Menu.astro";
 import Layout from "@layouts/Layout.astro";
 import { getMenuSectionsFromCollection } from "@utils/menu";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const manualEntries = await getCollection(
-    "manual",
-    ({ id }) => id.endsWith("mdx") || id.endsWith("md")
-  );
+  const manualEntries = await getCollection("manual");
 
   return manualEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
 
 const sections = getMenuSectionsFromCollection(
-  await getCollection(
-    "manual",
-    ({ id }) => id.endsWith("mdx") || id.endsWith("md")
-  ),
+  await getCollection("manual"),
   ["start", "tutorials", "guide", "science"]
 );
 
 const { entry } = Astro.props;
-const { Content, components } = await entry.render();
+const { Content, components } = await render(entry);
 ---
 
 <Layout title={entry.data.title}>
