@@ -10,13 +10,13 @@ const RELEASE_KEYS = [
   "html_url",
 ];
 
-function filterReleases(releases: Array<object>): Array<object> {
+export function filterReleases(releases: Array<object>): Array<object> {
   return releases.filter((release) => {
-    return release["assets"] && !release["draft"];
+    return release["assets"]?.length > 0 && !release["draft"];
   });
 }
 
-function formatRelease(release) {
+export function formatRelease(release) {
   const formatted = pick(release, RELEASE_KEYS);
 
   try {
@@ -24,7 +24,7 @@ function formatRelease(release) {
 
     return {
       ...formatted,
-      assert_error: false,
+      asset_error: false,
       content_type: asset.content_type,
       download_url: asset.browser_download_url,
       filename: asset.name,
@@ -55,8 +55,6 @@ async function fetchRepoReleases(repo: string): Promise<Array<object>> {
     const response = await fetch(url, {
       headers,
     });
-
-    console.log(response.body);
 
     if (!response.ok) {
       throw new Error("Failed to fetch releases from GitHub");
@@ -90,7 +88,9 @@ export async function getRepoReleases(repo: string): Promise<Array<object>> {
 
   const releases = filterReleases(await fetchRepoReleases(repo));
 
-  const data = map(releases, formatRelease);
+  const data = map(releases, formatRelease).filter(
+    (release) => !release.asset_error,
+  );
 
   await cache.set(repo, {
     data,
