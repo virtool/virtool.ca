@@ -5,9 +5,5 @@ export async function GET(): Promise<Response> {
     encoding: "utf-8",
   });
 
-  return new Response(references, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  return Response.json(JSON.parse(references));
 }

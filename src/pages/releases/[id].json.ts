@@ -7,7 +7,7 @@ const repoMap = {
   virtool: ["virtool"],
 };
 
-export async function GET({ params }): Promise<object> {
+export async function GET({ params }): Promise<Response> {
   const repoNames = repoMap[params.id];
 
   const data = {};
@@ -16,11 +16,7 @@ export async function GET({ params }): Promise<object> {
     data[name] = await getRepoReleases(name);
   }
 
-  return new Response(JSON.stringify(data), {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  return Response.json(data);
 }
 
 export function getStaticPaths() {
