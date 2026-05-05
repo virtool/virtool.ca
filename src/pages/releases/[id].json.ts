@@ -16,7 +16,11 @@ export async function GET({ params }): Promise<object> {
     data[name] = await getRepoReleases(name);
   }
 
-  return new Response(JSON.stringify(data));
+  return new Response(JSON.stringify(data), {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 }
 
 export function getStaticPaths() {

@@ -23,6 +23,7 @@ pnpm-debug.log*
 # editor
 .idea
 .vscode
+.codex
 
 # cache
 /public/.cache
